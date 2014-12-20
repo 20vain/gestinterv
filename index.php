@@ -9,9 +9,9 @@ if (empty($_GET["p"])) { header("Location: index.php?p=index"); }
 // --- AJOUT D'UNE NEWS --
 if ( (!empty($_POST)) && (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") )
 {
-	$news 		= addslashes($_POST["news"]); // Récupération de la news + Sécurité caractères spéciaux
-	$dateNews 	= $_POST["dateNews"]; // Récupération de la date
-	$auteur 	= addslashes($_POST["auteur"]); // Récupération auteur de la news + Sécurité caractères spéciaux
+	$news 		= htmlentities($_POST["news"]); // Récupération de la news + Sécurité caractères spéciaux
+	$dateNews 	= htmlentities($_POST["dateNews"]); // Récupération de la date
+	$auteur 	= htmlentities($_POST["auteur"]); // Récupération auteur de la news + Sécurité caractères spéciaux
 
 	$add 		= mysql_query ( "INSERT INTO tnews VALUES ('','$news','$dateNews','$auteur');" ) or die ( mysql_error() ) ; // Insertion des données dans la BDD - Si pb, affichage d'une erreur
 ?>
@@ -202,9 +202,9 @@ if ($_GET["p"] == "index")
 <fieldset>
 	<table class="table table-striped table-condensed">
 	<?php
-	$sql = $connexion->query("SELECT * FROM tnews ORDER BY id DESC;"); // Connexion à la BDD
+	$sql = mysql_query ("SELECT * FROM tnews ORDER BY id DESC;"); // Connexion à la BDD
  
-	foreach ($sql as $row) {
+	while ($row = mysql_fetch_array($sql)) {// Tant qu'il y a des news dans la table tnews, on affiche un tableau
 	echo '<tr>' ; // Une ligne par news
 		echo '<td style="text-align:center; vertical-align:middle;"><i>' . $row["dateNews"]	. '</i></td>' ; // Date de la news
 		echo '<td style="text-align:center; vertical-align:middle;"><b>' . $row["auteur"] . '</b></td>' ; // Auteur (technicien) de la news
@@ -222,7 +222,7 @@ if ($_GET["p"] == "index")
 <form class="well" method="POST" style="width:450px;"> <input type="hidden" name="ajout" value="1" />
 <h3>Ajouter un mot</h3>			
 	<b>Date</b><br />
-	<input name="dateNews" type="text" class="form-control" value="<?php echo date("d/m/Y"); ?>" required /><br /> <!-- Champ de saisie OBLIGATOIRE - DATE -->
+	<input name="dateNews" type="text" class="form-control calendrier" value="<?php echo date("d/m/Y"); ?>" required /><br /> <!-- Champ de saisie OBLIGATOIRE - DATE -->
 
 	<b>Message</b><br />
 	<textarea name="news" class="form-control" required></textarea><br /> <!-- Champ de saisie OBLIGATOIRE - NEWS -->
@@ -244,7 +244,7 @@ if ($_GET["p"] == "index")
 <hr />
 <?php } ?>
 
-<div class="well">
+<div class="well"> <!-- Pied de page -->
 	<p>&copy; 2012-2015 - Julien HOMMET (<a href="mailto:hommet.julien@gmail.com">Envoyer un mail</a>)<br />
 	<em>MIS Avranches & Saint-James</em></p>
 	
@@ -253,10 +253,9 @@ if ($_GET["p"] == "index")
 		<br />Powered by : <a href="http://getbootstrap.com/" target="_blank"><img src="img/bootstrap_logo.png" style="width:48px; height:48px;"> Twitter BootStrap 3.3.1</a> <img src="img/html5_logo.png" style="width:48px; height:48px;"> HTML 5</a> <img src="img/css3_logo.png" style="width:48px; height:48px;"> CSS 3</a> <a href="http://jquery.com/" target="_blank"><img src="img/jquery_logo.png" style="width:48px; height:48px;"> jQuery 2.1.3</a><br />
 	</p>
 </div>
-   
-   
-   
-</div> </div>
+
+ 
+</div> </div> <!-- FIN DE LA MISE EN PAGE -->
 
 </body>
 
