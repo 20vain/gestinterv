@@ -72,7 +72,7 @@ else { }
 
 <body>
 
-<div class="container"> <div class="span12">
+<div class="container"> <div class="span1">
 
 <?php // TITRES
 switch ($_GET['p']) {
@@ -114,6 +114,10 @@ switch ($_GET['p']) {
 	
 	case 'ajoutdemande':
 		echo "<div class='page-header'> <h1>Ajouter une demande d'intervention<h1> </div>";
+	break;
+	
+	case 'interv':
+		echo "<div class='page-header'> <h1>Liste des demandes et des interventions<h1> </div>";
 	break;
 	
 	
@@ -179,6 +183,10 @@ switch ($_GET['p']) {
 		
 		case 'ajoutdemande':
 			include_once('demande/ajout_interv_fiche.php');
+		break;
+		
+		case 'interv':
+			include_once('interventions/index.php');
 		break;
 		
 		
@@ -250,7 +258,7 @@ if ($_GET["p"] == "index")
 	
 	<p align="center">GestInterv <b>v5.1</b>
 	<br />
-		<br />Powered by : <a href="http://getbootstrap.com/" target="_blank"><img src="img/bootstrap_logo.png" style="width:48px; height:48px;"> Twitter BootStrap 3.3.1</a> <img src="img/html5_logo.png" style="width:48px; height:48px;"> HTML 5</a> <img src="img/css3_logo.png" style="width:48px; height:48px;"> CSS 3</a> <a href="http://jquery.com/" target="_blank"><img src="img/jquery_logo.png" style="width:48px; height:48px;"> jQuery 2.1.3</a><br />
+		<br />Powered by : <a href="http://getbootstrap.com/" target="_blank"><img src="img/bootstrap_logo.png" style="width:48px; height:48px;"> Twitter BootStrap 3.3.1</a> <img src="img/html5_logo.png" style="width:48px; height:48px;"> HTML 5</a> <img src="img/css3_logo.png" style="width:48px; height:48px;"> CSS 3</a> <a href="http://php.net/" target="_blank"><img src="img/php_logo.png" style="width:48px; height:48px;"> PHP 5.6.4 </a> <a href="http://www.mysql.com/" target="_blank"><img src="img/mysql_logo.png" style="width:48px; height:48px;"> MySQL 5.6.16</a> <a href="http://jquery.com/" target="_blank"><img src="img/jquery_logo.png" style="width:48px; height:48px;"> jQuery 2.1.3</a><br />
 	</p>
 </div>
 
