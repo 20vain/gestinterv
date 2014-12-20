@@ -202,15 +202,14 @@ if ($_GET["p"] == "index")
 <fieldset>
 	<table class="table table-striped table-condensed">
 	<?php
-		$sql = mysql_query ( "SELECT * FROM tnews ORDER BY id DESC;" ) or die ( mysql_error() ) ;
-
-	while ($ligne = mysql_fetch_array($sql)) // Tant qu'il y a des news dans la table tnews, on affiche un tableau
-	{
-		echo '<tr>' ; // Une ligne par news
-		echo '<td style="text-align:center; vertical-align:middle;"><i>' . $ligne["dateNews"]	. '</i></td>' ; // Date de la news
-		echo '<td style="text-align:center; vertical-align:middle;"><b>' . $ligne["auteur"] . '</b></td>' ; // Auteur (technicien) de la news
-		echo '<td style="text-align:justify; vertical-align:middle;" width="75%" class="well">' . $ligne['news'] . '</td>' ; // Message / news, avec support des retours à la ligne & retours chariots
-		echo "<td style='text-align:center; vertical-align:middle;'><form method='POST'> <input type='hidden' name='id' value='" . $ligne["id"] . "' /> <input type='hidden' name='delete' value='1' /> <button class='btn btn-danger';><span class='glyphicon glyphicon-trash' aria-hidden='true'></span><br />Supprimer</button> </form></td>" ; // Bouton de suppression de la news (fait appel à la page delnews.php)
+	$sql = $connexion->query("SELECT * FROM tnews ORDER BY id DESC;"); // Connexion à la BDD
+ 
+	foreach ($sql as $row) {
+	echo '<tr>' ; // Une ligne par news
+		echo '<td style="text-align:center; vertical-align:middle;"><i>' . $row["dateNews"]	. '</i></td>' ; // Date de la news
+		echo '<td style="text-align:center; vertical-align:middle;"><b>' . $row["auteur"] . '</b></td>' ; // Auteur (technicien) de la news
+		echo '<td style="text-align:justify; vertical-align:middle;" width="75%" class="well">' . $row['news'] . '</td>' ; // Message / news, avec support des retours à la ligne & retours chariots
+		echo "<td style='text-align:center; vertical-align:middle;'><form method='POST'> <input type='hidden' name='id' value='" . $row["id"] . "' /> <input type='hidden' name='delete' value='1' /> <button class='btn btn-danger';><span class='glyphicon glyphicon-trash' aria-hidden='true'></span><br />Supprimer</button> </form></td>" ; // Bouton de suppression de la news (fait appel à la page delnews.php)
 		echo '</tr>' ;
 	}
 	?>
