@@ -1,5 +1,6 @@
 <?php include_once ("../admin/auth_db.php");
 
+// CONDITION = Création d'une demande et d'une nouvelle fiche client - FULL NEW
 if ( (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") && (count($_POST) != 0) )
 {
 	$nom		= addslashes($_POST["nom"]);
@@ -104,6 +105,24 @@ else if ( (isset($_POST["client-connu"])) && ($_POST["client-connu"]=="1") && (c
 
 	$client = "SELECT * FROM tclients WHERE id = '$codeClient';" ;
 	$resultat1 = mysql_query ( $client ) or die ( mysql_error() ) ;
+}
+
+
+// -- CONDITION : impression de la demande à partir du tableau d'affichage des demandes
+else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && (count($_POST) != 0) )
+{
+	$codeClient = $_POST["codeClient"];
+
+	$client = "SELECT * FROM tclients WHERE id = '$codeClient';" ;
+	$resultat1 = mysql_query ( $client ) or die ( mysql_error() ) ;
+	
+	if (isset($_POST["rdv"])) { $rdv = "1"; } else { $rdv = "0"; }
+	if (isset($_POST["pro"])) { $pro = "1"; } else { $pro = "0"; }
+
+	$idInterv = $_POST["idPreinterv"];
+
+	$interv = "SELECT * FROM tpreinterv WHERE id = '$idInterv';" ;
+	$resultat = mysql_query ( $interv ) or die ( mysql_error() ) ;
 }
 ?>
 
