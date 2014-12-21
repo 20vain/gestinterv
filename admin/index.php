@@ -1,5 +1,7 @@
 ﻿<center><h2>Gestion complète du système</h2></center>
 
+<div class="container">
+
 <table class="table">
 	<tr>
 		<td>
@@ -21,3 +23,5 @@
 </table>
 <hr />
 <?php include ("stats.php"); ?>
+
+</div>
