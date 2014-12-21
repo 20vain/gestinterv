@@ -187,5 +187,6 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 </table>
 <br />
 <h2>Observations diverses / Travail à effectuer :</h2>
-	<center><a href="../index.php?p=demande">Retour accueil</a></center>
+	<?php if (isset($_POST["print_demande"])) { echo '<center><a href="../index.php?p=interv">Retour accueil</a></center>'; }
+	else echo '<center><a href="../index.php?p=demande">Retour accueil</a></center>'; ?>
 </body>

@@ -48,18 +48,16 @@ else { }
 
 <!-- Fichier STYLE alternatif pour calendrier JS & autres -->
 	<link href="css/style.css" rel="stylesheet">
-	
-<!-- CSS Bootstrap -->
-	<link href="css/bootstrap.css" rel="stylesheet">
 
 <!-- Script JS pour le calendrier -->
 	<script type="text/javascript" src="js/calendar.js"></script>
 
-<!-- Bootstrap JS library -->
-	<script type="text/javascript" src="js/bootstrap.js"></script>
-	
-<!-- jQuery library -->
-	<script type="text/javascript" src="js/jquery.js"></script>
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -109,7 +107,7 @@ switch ($_GET['p']) {
 	break;
 	
 	case 'interv':
-		echo "<div class='page-header'> <h1>Liste des demandes et des interventions<h1> </div>";
+		echo "<div class='page-header'> <h1>Affichage des différents tableaux d'interventions<h1> </div>";
 	break;
 	
 	
