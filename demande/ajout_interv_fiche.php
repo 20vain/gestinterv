@@ -84,7 +84,7 @@
 <table class="table">
 	<tr>
 		<td>
-			Date de <b>DÉPÔT</b> matériel - (champ obligatoire)
+			Date de <b>DÉPÔT</b> matériel <span class="label label-danger">Champ obligatoire</span>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-calendar"></span>
 				<input type="text" class="form-control calendrier" name="dateDepot" value="<?php echo date('d/m/Y'); ?>" required />
@@ -92,7 +92,7 @@
 		</td>
 		<td>&nbsp;</td>
 		<td>
-			Date de <b>RESTITUTION</b> matériel - (champ obligatoire)
+			Date de <b>RESTITUTION</b> matériel <span class="label label-danger">Champ obligatoire</span>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-calendar"></span>
 				<input type="text" class="form-control calendrier" name="dateRestitution" required />
@@ -108,7 +108,7 @@
 	
 	<tr>
 		<td>
-			<b>MATÉRIEL</b> - (champ obligatoire)
+			<b>MATÉRIEL</b> <span class="label label-danger">Champ obligatoire</span>
 			<select name="materiel" class="form-control" required >
 				<option value=""></option>
 				<?php
@@ -154,7 +154,7 @@
 	
 	<tr>
 		<td colspan="3">
-			<b>Type d'intervention</b> - (champ obligatoire)
+			<b>Type d'intervention</b> <span class="label label-danger">Champ obligatoire</span>
 			<select name="typeInterv" required class="form-control">
 				<option value=""></option>
 				<?php

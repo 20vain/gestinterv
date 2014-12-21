@@ -22,7 +22,7 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="22") )
 
 <div class="container1">
 
-<table class='table table-bordered table-hover table-condensed'><legend><h3>Récapitulatif des <u><b>INTERVENTIONS TERMINÉES</b></u></b></h3></legend>
+<table class='table table-bordered table-hover table-condensed'><legend><h3>Récapitulatif des <u><b>50 DERNIÈRES INTERVENTIONS TERMINÉES</b></u></b></h3></legend>
 	<?php
 	// Affichage de toutes les interventions TERMINÉES
 	$interv_ok = "SELECT * FROM tinterventions WHERE statut='Terminé - OK' ORDER BY id DESC LIMIT 0,50;" ;

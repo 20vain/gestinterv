@@ -1,30 +1,27 @@
-<div class="container">
+<hr />
 
-<table class="table">
-	<tr>
-		<td style="vertical-align:middle;">
-			<a href="#interv_wip">
-				<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#listing_interv_wip">
-					<span class="glyphicon glyphicon-list"></span><br />Liste des<br />interventions en cours
-				</button>
-			</a> 
-		</td>
-		<td style="vertical-align:middle;">
-			<a href="#interv_wait">
-				<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#listing_interv_wait">
-					<span class="glyphicon glyphicon-list"></span><br />Liste des<br />interventions en attente
-				</button>
-			</a>
-		</td>
-		<td style="vertical-align:middle;">
-			<a href="#interv_OK">
-				<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#listing_interv_OK">
-					<span class="glyphicon glyphicon-list"></span><br />Liste des<br />interventions en terminées
-				</button>
-			</a>
-		</td>
-	</tr>
-</table>
+<div class="container">
+<center>
+	<a href="#interv_wip">
+		<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#listing_interv_wip">
+			<span class="glyphicon glyphicon-list"></span><br />Liste des<br />interventions <b>en cours</b>
+		</button>
+	</a> 
+
+	<a href="#interv_wait">
+		<button type="button" class="btn btn-warning" data-toggle="collapse" data-target="#listing_interv_wait">
+			<span class="glyphicon glyphicon-list"></span><br />Liste des<br />interventions <b>en attente</b>
+		</button>
+	</a>
+
+	<a href="#interv_OK">
+		<button type="button" class="btn btn-success" data-toggle="collapse" data-target="#listing_interv_OK">
+			<span class="glyphicon glyphicon-list"></span><br />Liste des<br />interventions <b>terminées</b>
+		</button>
+	</a>
+</center>
+
+<hr />
 
 <?php include_once ("admin/recherche.php"); ?>
 

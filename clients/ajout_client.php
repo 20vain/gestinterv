@@ -44,10 +44,10 @@ if ( count($_POST) != 0 )
 <fieldset class="well">
 
 <form action="#" method="POST">
-<table class="table table-striped">
+<table class="table">
 	<tr>
 		<td>
-			<b>NOM</b> - (champ obligatoire)
+			<b>NOM</b> <span class="label label-danger">Champ obligatoire</span>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-user"></span>
 				<input type="text" class="form-control" name="nom" maxlength="50" placeholder="NOM client" required />
@@ -65,7 +65,7 @@ if ( count($_POST) != 0 )
 	
 	<tr>
 		<td>
-			<b>TÉLÉPHONE PORTABLE</b> - (champ obligatoire)
+			<b>TÉLÉPHONE PORTABLE</b> <span class="label label-danger">Champ obligatoire</span>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-phone"></span>
 				<input type="text" class="form-control" name="telPort" maxlength="10" placeholder="0634567890" required />
@@ -83,7 +83,7 @@ if ( count($_POST) != 0 )
 	
 	<tr>
 		<td>
-			<b>ADRESSE POSTALE</b> - (champ obligatoire)
+			<b>ADRESSE POSTALE</b> <span class="label label-danger">Champ obligatoire</span>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-envelope"></span>
 				<input type="text" class="form-control" name="adresse" maxlength="100" placeholder="Adresse postale" required />
@@ -101,7 +101,7 @@ if ( count($_POST) != 0 )
 	
 	<tr>
 		<td>
-			<b>Magasin</b>
+			<b>Magasin</b> <span class="label label-danger">Champ obligatoire</span>
 			<select name="magasin" class="form-control" required>
 				<option value=""></option>
 				<option value="Avranches">Avranches</option>				

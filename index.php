@@ -110,6 +110,10 @@ switch ($_GET['p']) {
 		echo "<div class='page-header'> <h1>Affichage des différents tableaux d'interventions<h1> </div>";
 	break;
 	
+	case 'transfo-demande':
+		echo "<div class='page-header'> <h1>Transformation d'une demande en intervention<h1> </div>";
+	break;
+	
 	
 	// ADMINISTRATION	
 	case 'administration':
@@ -130,6 +134,7 @@ switch ($_GET['p']) {
 		<?php if ( ($_GET["p"] == "demande") OR ($_GET["p"] == "ajoutdemande") ) { echo '<a href="index.php?p=demande" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>'; } else { echo '<a href="index.php?p=demande" class="btn btn-default"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>'; } ?>
 		<?php if ($_GET["p"] == "interv") { echo '<a href="index.php?p=interv" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>'; } else { echo '<a href="index.php?p=interv" class="btn btn-default"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>'; } ?>
 		<?php if ($_GET["p"] == "administration") { echo '<a href="index.php?p=administration" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>'; } else { echo '<a href="index.php?p=administration" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>'; } ?>
+		<?php if ($_GET["p"] == "transfo-demande") { echo '<a href="#" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>Transformation demande<br />en intervention</b></a>'; } ?>
 	</div>
 </nav>
 
@@ -179,6 +184,10 @@ switch ($_GET['p']) {
 		
 		case 'interv':
 			include_once('interventions/index.php');
+		break;
+		
+		case 'transfo-demande':
+			include_once('interventions/transfo_demande_interv.php');
 		break;
 		
 		

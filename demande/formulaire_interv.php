@@ -13,7 +13,7 @@
 <table class="table">
 	<tr>
 		<td>
-			<b>NOM</b> - (champ obligatoire)
+			<b>NOM</b> <span class="label label-danger">Champ obligatoire</span>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-user"></span>
 				<input type="text" class="form-control" name="nom" maxlength="50" placeholder="NOM client" required />
@@ -31,7 +31,7 @@
 	
 	<tr>
 		<td>
-			<b>TÉL. PORTABLE</b> - (champ obligatoire)
+			<b>TÉL. PORTABLE</b> <span class="label label-danger">Champ obligatoire</span>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-phone"></span>
 				<input type="text" class="form-control" name="telPort" maxlength="10" placeholder="0634567890" required />
@@ -49,7 +49,7 @@
 	
 	<tr>
 		<td>
-			<b>ADRESSE POSTALE</b> - (champ obligatoire)
+			<b>ADRESSE POSTALE</b> <span class="label label-danger">Champ obligatoire</span>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-envelope"></span>
 				<input type="text" class="form-control" name="adresse" maxlength="100" placeholder="Adresse postale" required />
@@ -67,7 +67,7 @@
 	
 	<tr>
 		<td>
-			<b>Magasin</b> - (champ obligatoire)
+			<b>Magasin</b> <span class="label label-danger">Champ obligatoire</span>
 			<select name="magasin" class="form-control" required>
 				<option value=""></option>
 				<option value="Avranches">Avranches</option>				
@@ -96,7 +96,7 @@
 <table class="table">
 	<tr>
 		<td>
-			Date de <b>DÉPÔT</b> matériel - (champ obligatoire)
+			Date de <b>DÉPÔT</b> matériel <span class="label label-danger">Champ obligatoire</span>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-calendar"></span>
 				<input type="text" class="form-control calendrier" name="dateDepot" value="<?php echo date('d/m/Y'); ?>" required />
@@ -104,7 +104,7 @@
 		</td>
 		<td>&nbsp;</td>
 		<td>
-			Date de <b>RESTITUTION</b> matériel - (champ obligatoire)
+			Date de <b>RESTITUTION</b> matériel <span class="label label-danger">Champ obligatoire</span>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-calendar"></span>
 				<input type="text" class="form-control calendrier" name="dateRestitution" required />
@@ -120,7 +120,7 @@
 	
 	<tr>
 		<td>
-			<b>MATÉRIEL</b> - (champ obligatoire)
+			<b>MATÉRIEL</b> <span class="label label-danger">Champ obligatoire</span>
 			<select name="materiel" class="form-control" required >
 				<option value=""></option>
 				<?php
@@ -166,7 +166,7 @@
 	
 	<tr>
 		<td colspan="3">
-			<b>Type d'intervention</b> - (champ obligatoire)
+			<b>Type d'intervention</b> <span class="label label-danger">Champ obligatoire</span>
 			<select name="typeInterv" required class="form-control">
 				<option value=""></option>
 				<?php

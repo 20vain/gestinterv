@@ -22,7 +22,7 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="20") )
 
 <div class="container1">
 
-<table class='table table-bordered table-hover table-condensed'><legend><h3>Récapitulatif des <u><b>DEMANDES</b></u></b></h3></legend>
+<table class='table table-bordered table-hover table-condensed'><legend><h3>Récapitulatif des <u><b>DEMANDES EN COURS</b></u></b></h3></legend>
 	<?php
 		// Affichage de toutes les pré-interventions
 	$preInterv = "SELECT * FROM  tpreinterv ORDER BY tpreinterv.dateRestitution ASC" ;
@@ -73,7 +73,7 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="20") )
 			if ( $preInterv['dossierMesDocs'] == "Sauvegarde du dossier Mes Documents et Bureau" ) { echo "<td style='background-color:#E03C3C; text-align:center; vertical-align:middle;'><b>Sauvegarder à effectuer</b></td>" ; }
 			else { echo "<td style='text-align:center; vertical-align:middle;'>Aucune sauvegarde à effectuer</td>" ; }
 			
-			echo "<td style='text-align:center; vertical-align:middle;'><form action='index.php?p=interv-preinterv' method='POST'> <input type='hidden' name='idPreinterv' value='".$preInterv["id"]."' /> <input type='hidden' name='codeClient' value='" . $preInterv["codeClient"] . "'> <button class='btn btn-success'>Effectuer l'intervention</button> </form></td>
+			echo "<td style='text-align:center; vertical-align:middle;'><form action='index.php?p=transfo-demande' method='POST'> <input type='hidden' name='idPreinterv' value='".$preInterv["id"]."' /> <input type='hidden' name='codeClient' value='" . $preInterv["codeClient"] . "'> <button class='btn btn-success'><span class='glyphicon glyphicon-wrench' aria-hidden='true'></span><br />Effectuer l'intervention</button> </form></td>
 			<td style='text-align:center; vertical-align:middle;'><form action='demande/print_demande.php' method='POST'> <input type='hidden' name='idPreinterv' value='" . $preInterv["id"] . "'> <input type='hidden' name='codeClient' value='" . $codeClient . "'> <input type='hidden' name='print_demande' value='1'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>
 			<td style='text-align:center; vertical-align:middle;'><form method='post' action='#'> <input type='hidden' name='idPreinterv' value='".$preInterv["id"]."'> <input type='hidden' name='delete' value='20' /> <button class='btn btn-danger'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span><br /> Suppression <br />de la demande</button> </form></td>";
 			echo "</tr>" ;
