@@ -24,4 +24,7 @@
 <hr />
 <?php include ("stats.php"); ?>
 
+<hr />
+	<p align="right"><a href="#top" class="btn btn-info"><span class="glyphicon glyphicon-plane"></span> Remonter <span class="glyphicon glyphicon-plane"></span></a></p>
+
 </div>

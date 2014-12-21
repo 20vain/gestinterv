@@ -43,7 +43,8 @@ while ( $ligne = mysql_fetch_array($tab) )
 <?php 
 }
 ?>
-
+<hr />
+	<p align="right"><a href="#top" class="btn btn-info"><span class="glyphicon glyphicon-plane"></span> Remonter <span class="glyphicon glyphicon-plane"></span></a></p>
 </div>
 
 <center><a href="index.php?p=clients" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-repeat"></span><br />Retour</a></center>
