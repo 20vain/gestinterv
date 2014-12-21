@@ -17,10 +17,6 @@ if ( (!empty($_POST)) && (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") )
 ?>
 	<div class="alert alert-success">
 		Le message a bien été <strong>publié</strong> !
-		<button type="button" class="close" data-dismiss="alert">
-			<span aria-hidden="true">&times;</span>
-			<span class="sr-only">Fermer</span>
-		</button>
 	</div>
 <?php
 }
@@ -35,10 +31,6 @@ else if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="1
 ?>
 	<div class="alert alert-warning">
 		Le message n° <?php echo $id; ?> vient d'être <strong>supprimé</strong> !
-		<button type="button" class="close" data-dismiss="alert">
-			<span aria-hidden="true">&times;</span>
-			<span class="sr-only">Fermer</span>
-		</button>
 	</div>
 <?php
 } // FIN FONCTION SUPPRESSION
@@ -56,23 +48,23 @@ else { }
 
 <!-- Fichier STYLE alternatif pour calendrier JS & autres -->
 	<link href="css/style.css" rel="stylesheet">
+	
+<!-- CSS Bootstrap -->
+	<link href="css/bootstrap.css" rel="stylesheet">
 
 <!-- Script JS pour le calendrier -->
 	<script type="text/javascript" src="js/calendar.js"></script>
 
- <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-
-<!-- Latest compiled JavaScript -->
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>	
-
+<!-- Bootstrap JS library -->
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	
 <!-- jQuery library -->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
 </head>
 
 <body>
 
-<div class="container"> <div class="span1">
+<div class="container">
 
 <?php // TITRES
 switch ($_GET['p']) {
@@ -142,6 +134,8 @@ switch ($_GET['p']) {
 		<?php if ($_GET["p"] == "administration") { echo '<a href="index.php?p=administration" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>'; } else { echo '<a href="index.php?p=administration" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>'; } ?>
 	</div>
 </nav>
+
+</div>
 	
 <?php // CONTENU
 	switch ($_GET['p']) {
@@ -178,7 +172,7 @@ switch ($_GET['p']) {
 		
 		// INTERVENTIONS
 		case 'demande':
-			include_once('demande/index.php');
+			include_once('demande/formulaire_interv.php');
 		break;
 		
 		case 'ajoutdemande':
@@ -205,7 +199,9 @@ switch ($_GET['p']) {
 <?php
 if ($_GET["p"] == "index")
 	{ ?>
-<!--<legend align="center">Nous sommes aujourd'hui le <big><b><?php echo date("d/m/y"); ?></b></big></legend>-->
+<div class="container">
+
+<legend align="lft">Nous sommes aujourd'hui le <big><b><?php echo date("d/m/y"); ?></b></big></legend>
 <legend>Informations / messages</legend>
 <fieldset>
 	<table class="table table-striped table-condensed">
@@ -262,8 +258,7 @@ if ($_GET["p"] == "index")
 	</p>
 </div>
 
- 
-</div> </div> <!-- FIN DE LA MISE EN PAGE -->
+</div> <!-- FIN DE MISE EN PAGE -->
 
 </body>
 

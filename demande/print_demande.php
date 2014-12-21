@@ -107,10 +107,6 @@ else if ( (isset($_POST["client-connu"])) && ($_POST["client-connu"]=="1") && (c
 }
 ?>
 
-<head> 
-	<title>Impression d'une demande d'intervention - MIS Informatique</title>
-</head>
-
 <body>
 <!--<body onLoad="window.print()">-->
 	<center>
@@ -174,4 +170,3 @@ else if ( (isset($_POST["client-connu"])) && ($_POST["client-connu"]=="1") && (c
 <h2>Observations diverses / Travail à effectuer :</h2>
 	<center><a href="../index.php?p=demande">Retour accueil</a></center>
 </body>
-

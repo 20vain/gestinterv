@@ -21,6 +21,8 @@
 
 ?>
 
+<div class="container">
+
 <center><table class="table-condensed">
 	<tr>
 		<td>
@@ -187,4 +189,7 @@
 </table>
 
 <center><a href="index.php?p=clients" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-repeat"></span><br />Retour</a></center>
+
+</div>
+
 <br />

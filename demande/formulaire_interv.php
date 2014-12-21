@@ -1,3 +1,5 @@
+<div class="container">
+
 <?php include_once ("admin/recherche.php"); ?>
 <hr />
 <h1>Ajout d'une demande d'intervention</h1>
@@ -216,3 +218,5 @@
 	</form>
 
 <br />
+
+</div>

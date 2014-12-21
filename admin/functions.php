@@ -17,7 +17,7 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="2") )
  
 // --- SUPPRESSION D'UNE LIGNE D'UN TABLEAU
 function delete ($id,$table) {
-	$sql = mysql_query ( "DELETE FROM ".$table." WHERE id=".$id.";" ) or die ( mysql_error() ) ; // Exécution de la requête - Si pb, affichage erreur.
+	$sql = mysql_query ( "DELETE FROM ".$table." WHERE id=".$id.";" ) or die ( mysql_error() ) ; // Exécution de la requête - Si pb, affichage erreur.	
 }
 
 
@@ -30,6 +30,7 @@ function search_client ($nom,$telFixe,$telPort) {
 		
 		if (mysql_num_rows($sql_client) >= 1 ) 
 		{
+			echo '<div class="container">';
 			echo "<h3>Résultat de la recherche :</h3>";
 			echo "<h4>Nombre de résultat = <b>".mysql_num_rows($sql_client)."</b></h4>";
 			
@@ -55,6 +56,7 @@ function search_client ($nom,$telFixe,$telPort) {
 				<hr style="height:5px; background-color:#ccc" />
 	<?php
 			}
+			echo '</div>';
 		}
 	
 		else { echo "Client <b>[".$nom."]</b> inconnu - Merci de créer sa fiche client grâce au bouton ci-dessous: <br />

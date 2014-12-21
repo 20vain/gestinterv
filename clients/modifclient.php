@@ -27,6 +27,8 @@ if ( (isset($_POST["modifFicheClient"])) && ($_POST["modifFicheClient"]=="1") )
 // FIN FONCTION MISE A JOUR FICHE CLIENT
 ?>
 
+<div class="container">
+
 <form action="#" method="post">
 <center><table class="table-condensed">
 	<tr>
@@ -111,4 +113,7 @@ if ( (isset($_POST["modifFicheClient"])) && ($_POST["modifFicheClient"]=="1") )
 	</tr>	
 </table>
 </center>
+
+</div>
+
 <br />

@@ -37,9 +37,9 @@ if ( count($_POST) != 0 )
 } // FIN DE L'AJOUT
 ?>
 
-<p align="justify">Besoin de créer une nouvelle fiche client ?</p>
-
 <hr />
+
+<div class="container">
 
 <fieldset class="well">
 
@@ -130,3 +130,5 @@ Envoyer les modifications</button></center>
 
 <center><a href="index.php?p=clients" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-repeat"></span><br />Retour</a></center>
 <br />
+
+</div>

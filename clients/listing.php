@@ -9,11 +9,14 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="3") )
 	</div>
 <?php
 } // FIN FONCTION SUPPRESSION
-
-include_once ("admin/recherche.php");
 ?>
 
+<div class="container">
+
+	<?php include_once ("admin/recherche.php"); ?>
+
 <hr />
+
 
 <?php
 $tab = mysql_query ( "SELECT * FROM tclients ORDER BY nom" ) or die ( mysql_error() ) ;
@@ -40,6 +43,8 @@ while ( $ligne = mysql_fetch_array($tab) )
 <?php 
 }
 ?>
+
+</div>
 
 <center><a href="index.php?p=clients" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-repeat"></span><br />Retour</a></center>
 <br />
