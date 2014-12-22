@@ -263,10 +263,44 @@
 						</div>
 					<?php } // FIN BOUCLE ?>
 
-			<h4>Sous-partie Windows</h4>
-			<input type='checkbox' name='maj[]' value='Mises à jour système' /> Installation des <b>mises à jour</b> du système
-			<input type='checkbox' name='maj[]' value='Service Pack Windows installé(s)' /> <b>Service Pack</b> Windows installé(s)		
-			<input type='checkbox' name='maj[]' value='Activation Windows' /> <b>Activation</b> Windows
+		<h4>Sous-partie Windows</h4>
+		
+		<table class="table table-condensed">
+			<tr>
+				<td style="text-align:center; vertical-align:middle;">
+					<div class="input-group">
+						<label>
+							<span class="input-group-addon">
+								<input type='checkbox' name='maj[]' value='Mises à jour système' />
+							</span>
+							Installation des <b>mises à jour</b> du système
+						</label>
+					</div>
+				</td>
+				
+				<td style="text-align:center; vertical-align:middle;">
+					<div class="input-group">
+						<label>
+							<span class="input-group-addon">
+								<input type='checkbox' name='maj[]' value='Service Pack Windows installé(s)' />
+							</span>
+							<b>Service Pack</b> Windows installé(s)
+						</label>
+					</div>
+				</td>
+				
+				<td style="text-align:center; vertical-align:middle;">
+					<div class="input-group">
+						<label>
+							<span class="input-group-addon">
+								<input type='checkbox' name='maj[]' value='Activation Windows' />
+							</span>
+							<b>Activation</b> Windows
+						</label>
+					</div>
+				</td>
+			</tr>
+		</table>
 
 		</fieldset>
 
@@ -275,50 +309,118 @@
 		<fieldset><h2>Partie 4 - Observations & informations complémentaires</h2>
 		<hr />
 		
-			
-				<b>Mot de passe PC</b> : <input type="text" name="password" />
-
-				<input type="checkbox" name="virus[]" value="Fichiers croisés au démarrage - Fiabilité HDD à voir" /> -> <b>Fichiers croisés</b> au démarrage - Fiabilité HDD à voir.
-
-				<input type="checkbox" name="virus[]" value="Fiabilité PC douteuse" /> -> <b>Fiabilité PC douteuse</b> --- Informations complémentaires : <input type="text" name="fiabilite" width="75px;" /> 
+		<b>Mot de passe PC</b> : <input type="text" name="password" class="form-control" />
+		
+		<table class="table table-condensed">
+			<tr>
+				<td style="text-align:center; vertical-align:middle;">
+					<div class="input-group">
+						<label>
+							<span class="input-group-addon">
+								<input type="checkbox" name="virus[]" value="Fichiers croisés au démarrage - Fiabilité HDD à voir" />
+							</span>
+							<b>Fichiers croisés</b> au démarrage - Fiabilité HDD à voir.
+						</label>
+					</div>
+				</td>
+				
+				<td style="text-align:center; vertical-align:middle;">
+					<div class="input-group">
+						<label>
+							<span class="input-group-addon">
+								<input type="checkbox" name="virus[]" value="Fiabilité PC douteuse" />
+							</span>
+							<b>Fiabilité PC douteuse</b>
+						</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="input-group">
+						<label>
+						Informations complémentaires
+							<span class="input-group-addon">
+								<textarea name="fiabilite" class="form-control" style="width:450px; height:150px;"></textarea>
+							</span>
+						</label>
+					</div>
+				</td>
+			</tr>
+		</table>
 
 		<hr />
 		
-		<h3><b>Mémoire</b></h3>
-
-				<input type="checkbox" name="ram[]" value="Ajout RAM nécessaire"> <b>Ajout de mémoire vive (RAM) nécessaire</b>
-
-			<br />
-			<b>Qté de mémoire vive à ajouter</b> :
-			<select name="ram[]" style="width:100px;">
-				<option value=""></option>
-				<option value="512 Mo">512 Mo</option>
-				<option value="1 Go">1 Go</option>
-				<option value="2 Go">2 Go</option>
-				<option value="3 Go">3 Go</option>
-				<option value="4 Go">4 Go</option>
-				<option value="6 Go">6 Go</option>
-				<option value="8 Go">8 Go</option>
-			</select>
-		---  
-		<b>Type de RAM</b> :
-			<select name="ram[]" style="width:150px;">
-				<option value=""></option>
-				<option value="DDR">DDR</option>
-				<option value="DDR2">DDR 2</option>
-				<option value="DDR3">DDR 3</option>
-				<option value="DDR4">DDR 4</option>
-				<option value="---">-----</option>
-				<option value="SO-DIMM DDR">SO-DIMM DDR</option>
-				<option value="SO-DIMM DDR2">SO-DIMM DDR 2</option>
-				<option value="SO-DIMM DDR3">SO-DIMM DDR 3</option>
-				<option value="SO-DIMM DDR4">SO-DIMM DDR 4</option>
-			</select>
-		<br />
-		<b>Prix RAM</b> : <input type="text" name="ram[]" style="width:60px;" /> €
-
+		<h3>Mémoire</h3>
+		
+		<table class="table table-condensed well">
+			<tr>
+				<td style="text-align:center; vertical-align:middle;">
+					<div class="input-group">
+						<label>
+							<span class="input-group-addon">
+								<input type="checkbox" name="ram[]" value="Ajout RAM nécessaire">
+							</span>
+							<b>Ajout de mémoire vive (RAM) nécessaire</b>
+						</label>
+					</div>
+				</td>
+				
+				<td style="text-align:center; vertical-align:middle;">
+					<div class="input-group">
+					&nbsp;
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:center; vertical-align:middle;">
+					<div class="input-group">
+						<b>Qté de mémoire vive à ajouter</b><br />
+						<select name="ram[]" style="width:100px;">
+							<option value=""></option>
+							<option value="512 Mo">512 Mo</option>
+							<option value="1 Go">1 Go</option>
+							<option value="2 Go">2 Go</option>
+							<option value="3 Go">3 Go</option>
+							<option value="4 Go">4 Go</option>
+							<option value="6 Go">6 Go</option>
+							<option value="8 Go">8 Go</option>
+						</select>
+					</div>
+				</td>
+				<td style="text-align:center; vertical-align:middle;">
+					<b>Type de RAM</b>
+					<select name="ram[]" style="width:150px;">
+						<option value=""></option>
+						<option value="DDR">DDR</option>
+						<option value="DDR2">DDR 2</option>
+						<option value="DDR3">DDR 3</option>
+						<option value="DDR4">DDR 4</option>
+						<option value="---">-----</option>
+						<option value="SO-DIMM DDR">SO-DIMM DDR</option>
+						<option value="SO-DIMM DDR2">SO-DIMM DDR 2</option>
+						<option value="SO-DIMM DDR3">SO-DIMM DDR 3</option>
+						<option value="SO-DIMM DDR4">SO-DIMM DDR 4</option>
+					</select>
+				</td>
+				<td style="text-align:center; vertical-align:middle;">
+					<div class="input-group">
+						<label>
+							<b>Prix de la RAM</b>
+							<span class="input-group-addon">
+								<input type="text" name="ram[]" style="width:60px;" /> €
+							</span>
+						</label>
+					</div>
+				</td>
+			</tr>
 			
-		<center><label><input type="checkbox" name="ram[]" value="RAM déjà installée dans le PC - Voir accord client"> <b>RAM <u>déjà installée</u> et <u>fonctionnelle</u> dans le PC.</b></center>
+			<tr>
+				<td style="text-align:center; vertical-align:middle;">
+					<label><input type="checkbox" name="ram[]" value="RAM déjà installée dans le PC - Voir accord client"> <b>RAM <u>déjà installée</u> et <u>fonctionnelle</u> dans le PC.</b></label>
+				</td>
+			</tr>
+		</table>
 		
 		<hr /><br />
 
@@ -344,7 +446,7 @@
 				?>
 			</select>
 			
-		<b>Observations</b> : <textarea name="observation" type="text" style="width:650px; height:250px;"></textarea>
+		<b>Observations</b> : <textarea name="observation" type="text" class="form-control"></textarea>
 		<br />
 		<b>Technicien en charge du PC</b> :<br />
 			<select name="technicien" required>
