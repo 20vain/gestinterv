@@ -1,6 +1,6 @@
 <div class="container">
 
-	<form action="intervention/ajout-intervention-pc.php" method="POST">
+	<form action="interventions/ajout_interv_pc.php" method="POST">
 	
 	<input type="hidden" name="idPreinterv" value="<?php echo $id; ?>" /> <!-- Code pré-intervention -->
 	<input type="hidden" name="codeClient" value="<?php echo $ligne['codeClient']; ?>" /> <!-- Code Client -->

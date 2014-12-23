@@ -76,55 +76,54 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="21") )
 			$materiel = $ligne0['materiel']	;
 			switch ($materiel) { // Selon le matériel qui a été sélectionné, la page ne sera pas la même.
 				case 'PC FIXE':
-					echo "<td style='text-align:center; vertical-align:middle;'> <form action='intervention/imprimer-intervention-pc.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
+					echo "<td style='text-align:center; vertical-align:middle;'> <form action='interventions/print_interv_pc.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
 				break;
 				
 				case 'KIT EVO':
-					echo "<td style='text-align:center; vertical-align:middle;'> <form action='intervention/imprimer-intervention-pc.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
+					echo "<td style='text-align:center; vertical-align:middle;'> <form action='interventions/print_interv_pc.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
 				break;
 				
 				case 'PC PORTABLE':
-					echo "<td style='text-align:center; vertical-align:middle;'> <form action='intervention/imprimer-intervention-pc.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
+					echo "<td style='text-align:center; vertical-align:middle;'> <form action='interventions/print_interv_pc.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
 				break;
 				
 				case 'NETBOOK':
-					echo "<td style='text-align:center; vertical-align:middle;'> <form action='intervention/imprimer-intervention-pc.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
+					echo "<td style='text-align:center; vertical-align:middle;'> <form action='interventions/print_interv_pc.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
 				break;
 				
 				case 'TOUT EN UN':
-					echo "<td style='text-align:center; vertical-align:middle;'> <form action='intervention/imprimer-intervention-pc.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
+					echo "<td style='text-align:center; vertical-align:middle;'> <form action='interventions/print_interv_pc.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
 				break;
 				
 				case 'PC HYBRIDE':
-					echo "<td style='text-align:center; vertical-align:middle;'> <form action='intervention/imprimer-intervention-pc.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
+					echo "<td style='text-align:center; vertical-align:middle;'> <form action='interventions/print_interv_pc.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
 				break;
 				
 				case 'IMPRIMANTE':
-					echo "<td style='text-align:center; vertical-align:middle;'> <form action='intervention/imprimer-intervention-peripheriques.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
+					echo "<td style='text-align:center; vertical-align:middle;'> <form action='interventions/print_interv_periph.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
 				break;
 				
 				case 'TABLETTE TACTILE':
-					echo "<td style='text-align:center; vertical-align:middle;'> <form action='intervention/imprimer-intervention-peripheriques.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
+					echo "<td style='text-align:center; vertical-align:middle;'> <form action='interventions/print_interv_periph.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
 				break;
 				
 				case 'PERIPHERIQUE':
-					echo "<td style='text-align:center; vertical-align:middle;'> <form action='intervention/imprimer-intervention-peripheriques.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
+					echo "<td style='text-align:center; vertical-align:middle;'> <form action='interventions/print_interv_periph.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
 				break;
 				
 				case 'AUTRES / DIVERS':
-					echo "<td style='text-align:center; vertical-align:middle;'> <form action='intervention/imprimer-intervention-peripheriques.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
+					echo "<td style='text-align:center; vertical-align:middle;'> <form action='interventions/print_interv_periph.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
 				break;
 				
 				case 'SAV':
-					echo "<td style='text-align:center; vertical-align:middle;'> <form action='intervention/imprimer-intervention-peripheriques.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
+					echo "<td style='text-align:center; vertical-align:middle;'> <form action='interventions/print_interv_periph.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>";
 				break;
 				
 				case 'ASSURANCE':
-					echo "<td style='text-align:center; vertical-align:middle;'> <form action='intervention/imprimer-intervention-peripheriques.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><i class='icon-print icon-white'></i> Affichage / Impression</button> </form></td>";
+					echo "<td style='text-align:center; vertical-align:middle;'> <form action='interventions/print_interv_periph.php' method='POST'> <input type='hidden' name='id' value='" . $ligne0['id'] . "'> <button class='btn btn-info'><i class='icon-print icon-white'></i> Affichage / Impression</button> </form></td>";
 				break;
 			}
 			echo "<td style='text-align:center; vertical-align:middle;'><form method='post' action='#'> <input type='hidden' name='idInterv' value='".$ligne0["id"]."'> <input type='hidden' name='delete' value='21' /> <button class='btn btn-danger'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span><br /> Suppression <br />de l'intervention</button> </form></td>";
-			// echo "<td> <form action='index.php?p=facturation' method='POST'> <input type='hidden' name='id' value='" . $ligne0["id"] . "'> <input type='submit' value='Facturation'> </form></td>";	
 			echo "</tr>" ;
 		}
 	?>

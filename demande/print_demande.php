@@ -126,8 +126,7 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 }
 ?>
 
-<body>
-<!--<body onLoad="window.print()">-->
+<body onLoad="window.print()">
 	<center>
 		<h1>Demande d'intervention</h1>
 	</center>

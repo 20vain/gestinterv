@@ -48,19 +48,19 @@ $codeClient = $_POST["codeClient"];
 			break;
 			
 			case 'TOUT EN UN':
-			include ('interv_pc'); // Page complète (logiciels, virus, obs...)
+			include ('interv_pc.php'); // Page complète (logiciels, virus, obs...)
 			break;
 			
 			case 'PC PORTABLE':
-			include ('interv_pc'); // Page complète (logiciels, virus, obs...)
+			include ('interv_pc.php'); // Page complète (logiciels, virus, obs...)
 			break;
 			
 			case 'NETBOOK':
-			include ('interv_pc'); // Page complète (logiciels, virus, obs...)
+			include ('interv_pc.php'); // Page complète (logiciels, virus, obs...)
 			break;
 			
 			case 'PC HYBRIDE':
-			include ('interv_pc'); // Page complète (logiciels, virus, obs...)
+			include ('interv_pc.php'); // Page complète (logiciels, virus, obs...)
 			break;
 
 			case 'IMPRIMANTE':
