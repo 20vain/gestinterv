@@ -307,241 +307,322 @@
 		<hr />
 
 		<fieldset><h2>Partie 4 - Observations & informations complémentaires</h2>
-		<hr />
-		
-		<b>Mot de passe PC</b> : <input type="text" name="password" class="form-control" />
-		
-		<table class="table table-condensed">
-			<tr>
-				<td style="text-align:center; vertical-align:middle;">
-					<div class="input-group">
-						<label>
-							<span class="input-group-addon">
-								<input type="checkbox" name="virus[]" value="Fichiers croisés au démarrage - Fiabilité HDD à voir" />
-							</span>
-							<b>Fichiers croisés</b> au démarrage - Fiabilité HDD à voir.
-						</label>
-					</div>
-				</td>
-				
-				<td style="text-align:center; vertical-align:middle;">
-					<div class="input-group">
-						<label>
-							<span class="input-group-addon">
-								<input type="checkbox" name="virus[]" value="Fiabilité PC douteuse" />
-							</span>
-							<b>Fiabilité PC douteuse</b>
-						</label>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div class="input-group">
-						<label>
-						Informations complémentaires
-							<span class="input-group-addon">
-								<textarea name="fiabilite" class="form-control" style="width:450px; height:150px;"></textarea>
-							</span>
-						</label>
-					</div>
-				</td>
-			</tr>
-		</table>
+			<hr />
+			
+			<b>Mot de passe PC</b> : <input type="text" name="password" class="form-control" />
+			
+			<table class="table table-condensed">
+				<tr>
+					<td style="text-align:center; vertical-align:middle;">
+						<div class="input-group">
+							<label>
+								<span class="input-group-addon">
+									<input type="checkbox" name="virus[]" value="Fichiers croisés au démarrage - Fiabilité HDD à voir" />
+								</span>
+								<b>Fichiers croisés</b> au démarrage - Fiabilité HDD à voir.
+							</label>
+						</div>
+					</td>
+					
+					<td style="text-align:center; vertical-align:middle;">
+						<div class="input-group">
+							<label>
+								<span class="input-group-addon">
+									<input type="checkbox" name="virus[]" value="Fiabilité PC douteuse" />
+								</span>
+								<b>Fiabilité PC douteuse</b>
+							</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="input-group">
+							<label>
+							Informations complémentaires
+								<span class="input-group-addon">
+									<textarea name="fiabilite" class="form-control" style="width:450px; height:150px;"></textarea>
+								</span>
+							</label>
+						</div>
+					</td>
+				</tr>
+			</table>
 
-		<hr />
-		
-		<h3>Mémoire</h3>
-		
-		<table class="table table-condensed well">
-			<tr>
-				<td style="text-align:center; vertical-align:middle;">
-					<div class="input-group">
-						<label>
-							<span class="input-group-addon">
-								<input type="checkbox" name="ram[]" value="Ajout RAM nécessaire">
-							</span>
-							<b>Ajout de mémoire vive (RAM) nécessaire</b>
-						</label>
-					</div>
-				</td>
-				
-				<td style="text-align:center; vertical-align:middle;">
-					<div class="input-group">
-					&nbsp;
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td style="text-align:center; vertical-align:middle;">
-					<div class="input-group">
-						<b>Qté de mémoire vive à ajouter</b><br />
-						<select name="ram[]" style="width:100px;">
+			<hr />
+			
+			<h3>Mémoire</h3>
+			
+			<table class="table table-condensed well">
+				<tr>
+					<td style="text-align:center; vertical-align:middle;">
+						<div class="input-group">
+							<label>
+								<span class="input-group-addon">
+									<input type="checkbox" name="ram[]" value="Ajout RAM nécessaire">
+								</span>
+								<b>Ajout de mémoire vive (RAM) nécessaire</b>
+							</label>
+						</div>
+					</td>
+					
+					<td style="text-align:center; vertical-align:middle;">
+						<div class="input-group">
+						&nbsp;
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:center; vertical-align:middle;">
+						<div class="input-group">
+							<b>Qté de mémoire vive à ajouter</b><br />
+							<select name="ram[]" style="width:100px;">
+								<option value=""></option>
+								<option value="512 Mo">512 Mo</option>
+								<option value="1 Go">1 Go</option>
+								<option value="2 Go">2 Go</option>
+								<option value="3 Go">3 Go</option>
+								<option value="4 Go">4 Go</option>
+								<option value="6 Go">6 Go</option>
+								<option value="8 Go">8 Go</option>
+							</select>
+						</div>
+					</td>
+					<td style="text-align:center; vertical-align:middle;">
+						<b>Type de RAM</b>
+						<select name="ram[]" style="width:150px;">
 							<option value=""></option>
-							<option value="512 Mo">512 Mo</option>
-							<option value="1 Go">1 Go</option>
-							<option value="2 Go">2 Go</option>
-							<option value="3 Go">3 Go</option>
-							<option value="4 Go">4 Go</option>
-							<option value="6 Go">6 Go</option>
-							<option value="8 Go">8 Go</option>
+							<option value="DDR">DDR</option>
+							<option value="DDR2">DDR 2</option>
+							<option value="DDR3">DDR 3</option>
+							<option value="DDR4">DDR 4</option>
+							<option value="---">-----</option>
+							<option value="SO-DIMM DDR">SO-DIMM DDR</option>
+							<option value="SO-DIMM DDR2">SO-DIMM DDR 2</option>
+							<option value="SO-DIMM DDR3">SO-DIMM DDR 3</option>
+							<option value="SO-DIMM DDR4">SO-DIMM DDR 4</option>
 						</select>
-					</div>
-				</td>
-				<td style="text-align:center; vertical-align:middle;">
-					<b>Type de RAM</b>
-					<select name="ram[]" style="width:150px;">
-						<option value=""></option>
-						<option value="DDR">DDR</option>
-						<option value="DDR2">DDR 2</option>
-						<option value="DDR3">DDR 3</option>
-						<option value="DDR4">DDR 4</option>
-						<option value="---">-----</option>
-						<option value="SO-DIMM DDR">SO-DIMM DDR</option>
-						<option value="SO-DIMM DDR2">SO-DIMM DDR 2</option>
-						<option value="SO-DIMM DDR3">SO-DIMM DDR 3</option>
-						<option value="SO-DIMM DDR4">SO-DIMM DDR 4</option>
-					</select>
-				</td>
-				<td style="text-align:center; vertical-align:middle;">
-					<div class="input-group">
-						<label>
-							<b>Prix de la RAM</b>
-							<span class="input-group-addon">
-								<input type="text" name="ram[]" style="width:60px;" /> €
-							</span>
-						</label>
-					</div>
-				</td>
-			</tr>
-			
-			<tr>
-				<td style="text-align:center; vertical-align:middle;">
-					<label><input type="checkbox" name="ram[]" value="RAM déjà installée dans le PC - Voir accord client"> <b>RAM <u>déjà installée</u> et <u>fonctionnelle</u> dans le PC.</b></label>
-				</td>
-			</tr>
-		</table>
-		
-		<hr /><br />
+					</td>
+					<td style="text-align:center; vertical-align:middle;">
+						<div class="input-group">
+							<label>
+								<b>Prix de la RAM</b>
+								<span class="input-group-addon">
+									<input type="text" name="ram[]" style="width:60px;" /> €
+								</span>
+							</label>
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td style="text-align:center; vertical-align:middle;">
+						<label><input type="checkbox" name="ram[]" value="RAM déjà installée dans le PC - Voir accord client"> <b>RAM <u>déjà installée</u> et <u>fonctionnelle</u> dans le PC.</b></label>
+					</td>
+				</tr>
+			</table>
 
-			Type d'<b>intervention</b> :
-			<select name="intervention" style="width:235px;">
-			<option selected value="<?php echo $preInterv['typeInterv']; ?>">[ Présélection ] - <?php echo $preInterv['typeInterv']; ?></option>
-			<?php
-			// Requête d'affichage des TYPE D'INTERVENTIONS
-				$type_interv = mysql_query ( "SELECT * FROM ttypeinterv ;" ) or die ( mysql_error() ) ;
-			// Boucle d'affichage
-				while ( $interv = mysql_fetch_array($type_interv) )
-				{ echo "<option value='" . $interv['interv'] . "'>" . $interv['interv'] . "</option>"; }
-			?>
-			</select>
+			<br />
+
+			<table class="table table-condensed">
+				<tr>
+					<td>
+						Type d'<b>intervention</b> :
+						<select name="intervention" class="form-control">
+							<option selected value="<?php echo $preInterv['typeInterv']; ?>">[ Présélection ] - <?php echo $preInterv['typeInterv']; ?></option>
+							<?php $type_interv = mysql_query ( "SELECT * FROM ttypeinterv ;" ) or die ( mysql_error() ) ;
+
+								while ( $interv = mysql_fetch_array($type_interv) )
+								{ echo "<option value='" . $interv['nom'] . "'>" . $interv['nom'] . "</option>"; }
+							?>
+						</select>
+					</td>
+					<td>&nbsp;</td>
+					<td>
+						<b>Matériel</b> :
+						<select name="materiel" class="form-control">
+							<option selected value="<?php echo $preInterv['materiel']; ?>">[ Présélection ] - <?php echo $preInterv['materiel']; ?></option>
+							<?php $req3 = mysql_query ( "SELECT * FROM ttypemateriel ;" )  or  die ( mysql_error() ) ;
+							
+							while ( $ligne33 = mysql_fetch_array($req3) ) // Boucle d'affichage
+							{ echo "<option value='" . $ligne33['nom'] . "'>" . $ligne33['nom'] . "</option>"; }
+							?>
+						</select>
+					</td>
+				</tr>
+			</table>
 			
-		<b>Matériel</b> :
-			<select name="materiel">
-				<option selected value="<?php echo $preInterv['materiel']; ?>">[ Présélection ] - <?php echo $preInterv['materiel']; ?></option>
-				<?php
-				$req3 = mysql_query ( "SELECT * FROM ttypemateriel ;" )  or  die ( mysql_error() ) ; // Requête d'affichage des TYPE D'INTERVENTIONS
-				while ( $ligne33 = mysql_fetch_array($req3) ) // Boucle d'affichage
-				{ echo "<option value='" . $ligne33['materiel'] . "'>" . $ligne33['materiel'] . "</option>"; }
-				?>
-			</select>
-			
-		<b>Observations</b> : <textarea name="observation" type="text" class="form-control"></textarea>
-		<br />
-		<b>Technicien en charge du PC</b> :<br />
-			<select name="technicien" required>
-			<option name="NULL" selected></option>
-			<?php
-			// Requête d'affichage des TYPE D'INTERVENTIONS
-				$req2 = mysql_query ( "SELECT * FROM ttechniciens ;" ) or die ( mysql_error() ) ;
-			
-			// Boucle d'affichage
+			<br />
+			<b>Observations</b> : <textarea name="observation" type="text" class="form-control"></textarea>
+			<br />
+
+			<b>Technicien en charge du PC</b> :<br />
+			<select name="technicien" required class="form-control" style="width:300px;">
+				<option name="NULL" selected></option>
+				<?php $req2 = mysql_query ( "SELECT * FROM ttechniciens ;" ) or die ( mysql_error() ) ;
+
 				while ( $ligne22 = mysql_fetch_array($req2) )
 				{ echo "<option value='" . $ligne22['nom'] . "'>" . $ligne22['nom'] . "</option>"; } ?>
 			</select>
 
 
-		<hr />			
-				
-	<h3><b>Coûts de l'intervention</b></h3>
+			<br />			
+					
+			<h3><b>Coûts de l'intervention</b></h3>
 
-	<table>
-	<td style="text-align:center; vertical-align:middle;">
-
-					<input name="cout-interv" type="checkbox" value="39" />Mini-Nettoyage
-
-							<input class="input-small" type="text" style="text-align:right; width:50px;" value="39,00" />€ 
-
-					<input name="cout-interv" type="checkbox" value="59" />Nettoyage
-
-							<input class="input-small" type="text" style="text-align:right; width:50px;" value="59,00" />€ 
-
-					<input name="cout-interv" type="checkbox" value="79" />Formatage
-
-							<input class="input-small" type="text" style="text-align:right; width:50px;" value="79,00" />€ 
-
-					<input name="mo-atelier" type="checkbox" value="1" />MO Atelier
-						
-						
-							<input class="input-small" type="text" style="text-align:right; width:50px;" name="cout-mo" />€ 
-
-	</td>
-
-	<td style="width:50px;"></td>
-
-	<td style="text-align:center; vertical-align:middle;">			
-				
-					 
-					<input name="coutcomp1" type="checkbox" value="1" />Coût complémentaire n°1
-
-							<input class="input-small" type="text" style="text-align:right; width:50px;" name="prix-coutcomp1" />€ --- <input type="text" size="45" name="name-coutcomp1" />
-
-					<input name="coutcomp2" type="checkbox" value="1" />Coût complémentaire n°2
-
-							<input class="input-small" type="text" style="text-align:right; width:50px;" name="prix-coutcomp2" />€ --- <input type="text" size="45" name="name-coutcomp2" />
-
-					<input name="coutcomp3" type="checkbox" value="1" />Coût complémentaire n°3
-
-							<input class="input-small" type="text" style="text-align:right; width:50px;" name="prix-coutcomp3" />€ --- <input type="text" size="45" name="name-coutcomp3" />
-
-					<input name="coutcomp4" type="checkbox" value="1" />Coût complémentaire n°4
-						
-						
-							<input class="input-small" type="text" style="text-align:right; width:50px;" name="prix-coutcomp4" />€ --- <input type="text" size="45" name="name-coutcomp4" />
-
-	</td>
-	</table>
+			<table class="table table-condensed">
+				<tr>
+					<td style="text-align:center; vertical-align:middle;">
+						<label>
+							<input name="cout-interv" type="checkbox" value="39" /> Mini-Nettoyage
+							<div class="input-group">
+								<input class="form-control" type="text" value="39,00" /><span class="input-group-addon">€</span>
+							</div>
+						</label>
+					</td>
+					<td style="text-align:center; vertical-align:middle;">
+						<label>
+							<input name="cout-interv" type="checkbox" value="59" /> Nettoyage
+							<div class="input-group">
+								<input class="form-control" type="text" value="59,00" /><span class="input-group-addon">€</span>
+							</div>
+						</label>
+					</td>
+					<td style="text-align:center; vertical-align:middle;">
+						<label>
+							<input name="cout-interv" type="checkbox" value="79" /> Formatage
+							<div class="input-group">
+								<input class="form-control" type="text" value="79,00" /><span class="input-group-addon">€</span>
+							</div>
+						</label>
+					</td>
+					<td style="text-align:center; vertical-align:middle;">
+						<label>
+							<input name="mo-atelier" type="checkbox" value="1" /> MO Atelier
+							<div class="input-group">
+								<input class="form-control" type="text" name="cout-mo" /><span class="input-group-addon">€</span> 
+							</div>
+						</label>
+					</td>				
+				</tr>
+			</table>
 			
+			<table class="table table-condensed">
+				<tr>				
+					<td>
+						<input name="coutcomp1" type="checkbox" value="1" /> Coût complémentaire n°1
+						<div class="input-group">
+							<input class="form-control" type="text" name="prix-coutcomp1" /><span class="input-group-addon">€</span>
+						</div>
+					</td>
+					<td>
+						<b>Justificatif</b>
+						<input type="text" name="name-coutcomp1" class="form-control" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<input name="coutcomp2" type="checkbox" value="1" /> Coût complémentaire n°2
+						<div class="input-group">
+							<input class="form-control" type="text" name="prix-coutcomp2" /><span class="input-group-addon">€</span>
+						</div>
+					</td>
+					<td>
+						<b>Justificatif</b>
+						<input type="text" name="name-coutcomp2" class="form-control" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<input name="coutcomp3" type="checkbox" value="1" /> Coût complémentaire n°3
+						<div class="input-group">
+							<input class="form-control" type="text" name="prix-coutcomp3" /><span class="input-group-addon">€</span>
+						</div>
+					</td>
+					<td>
+						<b>Justificatif</b>
+						<input type="text" name="name-coutcomp3" class="form-control" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<input name="coutcomp4" type="checkbox" value="1" /> Coût complémentaire n°4
+						<div class="input-group">
+							<input class="form-control" type="text" name="prix-coutcomp4" /><span class="input-group-addon">€</span>
+						</div>
+					</td>
+					<td>
+						<b>Justificatif</b>
+						<input type="text" name="name-coutcomp4" class="form-control" />
+					</td>
+				</tr>
+			</table>
+
 		</fieldset>
 		
 		<br />
+		
+		<table class="table table-condensed">
+				<tr>
+					<td style="text-align:center; vertical-align:middle;">
+						<div class="input-group">
+							<label>
+								<span class="input-group-addon"><input type="checkbox" name="winxp" value="1" /></span>
+								Donner brochure <b>Windows XP</b>
+							</label>
+						</div>
+					</td>
+					
+					<td style="text-align:center; vertical-align:middle;">
+						<div class="input-group">
+							<label>
+								<span class="input-group-addon"><input type="checkbox" name="win7" value="1" /></span>
+								Donner brochure <b>Windows 7</b>
+							</label>
+						</div>
+					</td>
+					
+					<td style="text-align:center; vertical-align:middle;">
+						<div class="input-group">
+							<label>
+								<span class="input-group-addon"><input type="checkbox" name="win8" value="1" /></span>
+								Donner brochure <b>Windows 8</b>
+							</label>
+						</div>
+					</td>			
+				</tr>
+			</table>
+		
+		</br>
+		
+	<center>
+		
+		État de l'intervention :<br />
+			<select name="statut" style="width:250px;" required class="form-control">
+				<option name=""></option>
+				<option name="En cours">En cours</option>
+				<option name="Terminé - OK">Terminé - OK</option>
+				<option name="En attente">En attente</option>
+			</select>
+		
 
-					<input type="checkbox" name="winxp" value="1" />Donner brochure <b>Windows XP</b>
-				
-					<input type="checkbox" name="win7" value="1" />Donner brochure <b>Windows 7</b>
-				
-					<input type="checkbox" name="win8" value="1" />Donner brochure <b>Windows 8</b>
-
-				<center>État de l'intervention :<br />
-				<select name="statut" style="width:250px;" required>
-					<option name=""></option>
-					<option name="En cours">En cours</option>
-					<option name="Terminé - OK">Terminé - OK</option>
-					<option name="En attente">En attente</option>
-				</select></center>
-
-		<hr />
-			<center>Magasin :<br />
-				<select name="magasin" style="width:250px;">
-						<option value="<?php echo $ligne['magasin'] ; ?>">[ACTUELLEMENT] : <?php echo $ligne['magasin'] ; ?></option>				
-						<option value="Avranches">Avranches</option>				
-						<option value="Saint-James">Saint-James</option>
-				</select></center>
+		<br />
+		
+		Magasin :<br />
+			<select name="magasin" style="width:250px;" required class="form-control">
+					<option value="<?php echo $ligne['magasin'] ; ?>">[ACTUELLEMENT] : <?php echo $ligne['magasin'] ; ?></option>				
+					<option value="Avranches">Avranches</option>				
+					<option value="Saint-James">Saint-James</option>
+			</select>
 
 		<hr />
 		
-		<center><button class="btn btn-large btn-success">Enregistrer l'intervention <i class="icon-ok-sign"></i></button></center>
-		<br />
+	<button class="btn btn-large btn-success">Enregistrer l'intervention <span class="glyphicon glyphicon-ok"></span></button>
+	
+	</center>
 
 	</form>
 
