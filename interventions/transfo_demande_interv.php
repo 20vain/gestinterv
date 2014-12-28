@@ -7,80 +7,109 @@ $codeClient = $_POST["codeClient"];
 	$Resultat = mysql_query ( $preInterv ) or die ( mysql_error() ) ;
 	
 // Affiche du nom à côté de la pré-intervention concernée
-	$nom_client = mysql_query ( "SELECT tclients.* FROM tclients WHERE tclients.id = '$codeClient' ;" ) or die ( mysql_error() ) ;
+	$nom_client = mysql_query ( "SELECT * FROM tclients WHERE id = '$codeClient' ;" ) or die ( mysql_error() ) ;
 	$ligne = mysql_fetch_array($nom_client);
-	echo "<head> <title>[".$ligne['nom']."] - Intervention</title> </head>";
 ?>
+
+<hr />
+
 <center>
-<div class="container">
+	<div class="container">
 
-	<fieldset class="well"><h2>Client "<?php echo $ligne['nom'].' '.$ligne['prenom']; ?>"</h2>
-	Téléphone <u>PORTABLE</u> = <b><?php echo $ligne['telPort']."</b> <br />Téléphone <u>FIXE</u> = <b>".$ligne['telFixe']; ?></b><br />
-	<?php if ( !empty($ligne["mail"]) ) { echo "Adresse e-mail =  <em>".$ligne['mail']."</em><br />"; } ?>
-	Adresse postale = <?php echo $ligne['adresse'];?>
-	</fieldset>
-	
-<table class='table table-bordered table-condensed'><caption><h3>Rappel - Pré-intervention sélectionnée</h3></caption>
-	<tr> <th> Date de<br>RESTITUTION </th> <th> MATERIEL </th> <th> INTERVENTION </th> <th>OBSERVATIONS</th> <th colspan="2">SAUVEGARDE DOCS CLIENTS</th> </tr>
-	<?php
-		while ($preInterv = mysql_fetch_array($Resultat))
-		{ // Reprise de toutes les infos de la pré-intervention
-			echo "<tr>" ;
-			echo "<td align=center><b>" . $preInterv['dateRestitution'] . "</b></td>" ;
-			echo "<td align=center>" . $preInterv['materiel'] . "</td>" ;
-			echo "<td align=center>" . $preInterv['typeInterv'] . "</td>" ;
-			echo "<td align=center>" . nl2br($preInterv['observations']) . "</td>" ;
-			echo "<td align=center>" . $preInterv['dossierMesDocs'] . "</td>" ;
-			echo "<td align=center>" . $preInterv['dossierClt'] . "</td>" ;
-			echo "</tr>" ;
+		<fieldset class="well"><h2>Client [<u><?php echo $ligne['nom'].' '.$ligne['prenom']; ?></u>]</h2>
+		<table class="table table-condensed" style="width:500px;">
+			<tr>
+				<td>Téléphone <u>PORTABLE</u></td>
+				<td><b><?php echo $ligne['telPort']; ?></b></td>
+			</tr>
+			<tr>
+				<td>Téléphone <u>FIXE</u></td>
+				<td><?php echo $ligne['telFixe']; ?></td>
+			</tr>
+			<tr>
+				<td><u>MAGASIN</u></td>
+				<?php
+				if ( $ligne['magasin'] == "Saint-James" ) { echo "<td style='background-color:#FF9900'><b>" . $ligne['magasin'] . "</b></td>" ; }
+				else if ( $ligne['magasin'] == "Avranches" ) { echo "<td><b>" . $ligne['magasin'] . "</b></td>" ; }
+				?>	
+			</tr>
+			<tr>
+				<td>Adresse postale</td>
+				<td><?php echo $ligne['adresse'];?></td>
+			</tr>
+			<?php if ( !empty($ligne["mail"]) ) { ?>
+			<tr>
+				<td>Adresse e-mail</td>
+				<td><em><?php echo $ligne['mail']; ?></em></td>
+			</tr>
+			<?php } // FIN DE CONDITION POUR L'AFFICHAGE DE L'ADRESSE EMAIL ?>
+		</table>
 
-		$materiel = $preInterv['materiel']; // Variable reprenant le nom du matériel pour le switch
-	?>	
-</table>
+		</fieldset>
+		
+		<table class='table table-bordered'><caption><h3>Rappel - Pré-intervention sélectionnée</h3></caption>
+			<tr> <th style='text-align:center; vertical-align:middle;'> Date de<br>RESTITUTION</th> <th style='text-align:center; vertical-align:middle;'> MATERIEL </th> <th style='text-align:center; vertical-align:middle;'> INTERVENTION </th> <th colspan="3" style='text-align:center; vertical-align:middle;'>OBSERVATIONS ET INFORMATIONS COMPLÉMENTAIRES</th> </tr>
+			<?php
+				while ($preInterv = mysql_fetch_array($Resultat))
+				{
+					echo "<tr>" ;
+					echo "<td style='text-align:center; vertical-align:middle;'><b>" . $preInterv['dateRestitution'] . "</b></td>" ;
+					echo "<td style='text-align:center; vertical-align:middle;'>" . $preInterv['materiel'] . "</td>" ;
+					echo "<td style='text-align:center; vertical-align:middle;'><b>" . $preInterv['typeInterv'] . "</b></td>" ;
+					echo "<td>" . nl2br($preInterv['observations']) . "</td>" ;
+					echo "<td style='text-align:center; vertical-align:middle;'>" . $preInterv['dossierMesDocs'] . "</td>" ;
+					echo "<td style='text-align:center; vertical-align:middle;'>" . $preInterv['dossierClt'] . "</td>" ;
+					echo "</tr>" ;
 
+				$materiel = $preInterv['materiel']; // Variable reprenant le nom du matériel pour le switch
+			?>	
+		</table>
+
+	</div>
 </center>
-</div>
+
+<hr />
 
 <?php
-		switch ($materiel) { // Selon le matériel qui a été sélectionné, la page ne sera pas la même.
-			case 'PC FIXE':
-			include ('interv_pc.php'); // Page complète (logiciels, virus, obs...)
-			break;
-			
-			case 'TOUT EN UN':
-			include ('interv_pc.php'); // Page complète (logiciels, virus, obs...)
-			break;
-			
-			case 'PC PORTABLE':
-			include ('interv_pc.php'); // Page complète (logiciels, virus, obs...)
-			break;
-			
-			case 'NETBOOK':
-			include ('interv_pc.php'); // Page complète (logiciels, virus, obs...)
-			break;
-			
-			case 'PC HYBRIDE':
-			include ('interv_pc.php'); // Page complète (logiciels, virus, obs...)
-			break;
+					switch ($materiel) {
+						case 'PC FIXE':
+						include_once ('interv_pc.php');
+						break;
+						
+						case 'TOUT EN UN':
+						include_once ('interv_pc.php');
+						break;
+						
+						case 'PC PORTABLE':
+						include_once ('interv_pc.php');
+						break;
+						
+						case 'NETBOOK':
+						include_once ('interv_pc.php');
+						break;
+						
+						case 'PC HYBRIDE':
+						include_once ('interv_pc.php');
+						break;
 
-			case 'IMPRIMANTE':
-			include ('peripheriques.php'); // Page personnalisée (Observations, technicien)
-			break;
+						case 'IMPRIMANTE':
+						include_once ('peripheriques.php');
+						break;
 
-			case 'PERIPHERIQUE':
-			include ('peripheriques.php'); // Page personnalisée (Observations, technicien)
-			break;
+						case 'PERIPHERIQUE':
+						include_once ('peripheriques.php');
+						break;
 
-			case 'TABLETTE TACTILE':
-			include ('peripheriques.php'); // Page personnalisée (Observations, technicien)
-			break;
+						case 'TABLETTE TACTILE':
+						include_once ('peripheriques.php');
+						break;
 
-			case 'AUTRES':
-			include ('peripheriques.php'); // Page personnalisée (Observations, technicien)
-			break;
+						case 'AUTRES':
+						include_once ('peripheriques.php');
+						break;
 
-		} // FIN - Reprise de toutes les infos de la pré-intervention
-	}
+					}
+				}
 ?>
 
 <br />

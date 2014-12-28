@@ -17,7 +17,6 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="3") )
 
 <hr />
 
-
 <?php
 $tab = mysql_query ( "SELECT * FROM tclients ORDER BY nom" ) or die ( mysql_error() ) ;
 
@@ -41,8 +40,7 @@ while ( $ligne = mysql_fetch_array($tab) )
 	</tr>
 </table>
 <?php 
-}
-?>
+} ?>
 <hr />
 	<p align="right"><a href="#top" class="btn btn-info"><span class="glyphicon glyphicon-plane"></span> Remonter <span class="glyphicon glyphicon-plane"></span></a></p>
 </div>

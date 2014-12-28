@@ -42,7 +42,7 @@ if ( (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") && (count($_POST) != 0) 
 	
 	if ( (isset($_POST["boiteMails"])) && ($_POST["boiteMails"] == "1") ) { $boiteMails = "Sauvegarde mails + AdressBook"; }
 	
-	$ajout2	= mysql_query ( "INSERT INTO tpreinterv VALUES ('','$id_client','$dateDepot','$dateRestitution','$materiel','$typeInterv','$observations','$password','$dossierMesDocs','$dossiersClt');" ) or die ( mysql_error() ) ;
+	$ajout2	= mysql_query ( "INSERT INTO tpreinterv VALUES ('','$id_client','$dateDepot','$dateRestitution','$materiel','$typeInterv','$observations','$session_user','$password','$dossierMesDocs','$dossiersClt');" ) or die ( mysql_error() ) ;
 	$lastadd_preinterv = mysql_insert_id(); // Reprise du code de l'intervention pour la redirection
 	
 	$interv = "SELECT * FROM tpreinterv WHERE id = '$lastadd_preinterv';" ;
@@ -97,7 +97,7 @@ else if ( (isset($_POST["client-connu"])) && ($_POST["client-connu"]=="1") && (c
 	
 	if ( (isset($_POST["boiteMails"])) && ($_POST["boiteMails"] == "1") ) { $boiteMails = "Sauvegarde mails + AdressBook"; }
 	
-	$ajout = mysql_query ( "INSERT INTO tpreinterv VALUES ('','$codeClient','$dateDepot','$dateRestitution','$materiel','$typeInterv','$observations','$password','$dossierMesDocs','$dossiersClt');" ) or die ( mysql_error() ) ;
+	$ajout = mysql_query ( "INSERT INTO tpreinterv VALUES ('','$codeClient','$dateDepot','$dateRestitution','$materiel','$typeInterv','$observations','$session_user','$password','$dossierMesDocs','$dossiersClt');" ) or die ( mysql_error() ) ;
 	$lastadd_preinterv = mysql_insert_id(); // Reprise du code de l'intervention pour la redirection
 
 	$interv = "SELECT * FROM tpreinterv WHERE id = '$lastadd_preinterv';" ;

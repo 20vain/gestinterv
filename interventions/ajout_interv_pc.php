@@ -158,9 +158,10 @@ else { $prix = ""; }
 	
 $statut = $_POST["statut"];
 
+$session = $_POST["session"];
 $password = $_POST["password"];
 
-$add_interv = "INSERT INTO tinterventions VALUES ('','$codeClient','$codePreInterv','$dateInterv','$antivirus','$malwares','$spywares','$strLogiciels','$strMaj','$strVirus','$strSauvegarde','$poidsSauvegarde','$strRam','$intervention','$materiel','$observation','$technicien','$prix','$cout_complementaire','$statut','$password');";
+$add_interv = "INSERT INTO tinterventions VALUES ('','$codeClient','$codePreInterv','$dateInterv','$antivirus','$malwares','$spywares','$strLogiciels','$strMaj','$strVirus','$strSauvegarde','$poidsSauvegarde','$strRam','$intervention','$materiel','$observation','$technicien','$prix','$cout_complementaire','$statut','$session','$password');";
 
 $req = mysql_query ( $add_interv ) or die ( mysql_error() ) ;
 	// FIN - AJOUT D'UNE INTERVENTION
