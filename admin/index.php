@@ -1,4 +1,4 @@
-﻿<center><h2>Gestion complète du système</h2></center>
+﻿<center><h2>Gestion du système GESTINTERV</h2></center>
 
 <div class="container">
 

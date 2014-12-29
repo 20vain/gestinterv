@@ -17,34 +17,33 @@ $codeClient = $_POST["codeClient"];
 	<div class="container">
 
 		<fieldset class="well"><h2>Client [<u><?php echo $ligne['nom'].' '.$ligne['prenom']; ?></u>]</h2>
-		<table class="table table-condensed" style="width:500px;">
-			<tr>
-				<td>Téléphone <u>PORTABLE</u></td>
-				<td><b><?php echo $ligne['telPort']; ?></b></td>
-			</tr>
-			<tr>
-				<td>Téléphone <u>FIXE</u></td>
-				<td><?php echo $ligne['telFixe']; ?></td>
-			</tr>
-			<tr>
-				<td><u>MAGASIN</u></td>
-				<?php
-				if ( $ligne['magasin'] == "Saint-James" ) { echo "<td style='background-color:#FF9900'><b>" . $ligne['magasin'] . "</b></td>" ; }
-				else if ( $ligne['magasin'] == "Avranches" ) { echo "<td><b>" . $ligne['magasin'] . "</b></td>" ; }
-				?>	
-			</tr>
-			<tr>
-				<td>Adresse postale</td>
-				<td><?php echo $ligne['adresse'];?></td>
-			</tr>
-			<?php if ( !empty($ligne["mail"]) ) { ?>
-			<tr>
-				<td>Adresse e-mail</td>
-				<td><em><?php echo $ligne['mail']; ?></em></td>
-			</tr>
-			<?php } // FIN DE CONDITION POUR L'AFFICHAGE DE L'ADRESSE EMAIL ?>
-		</table>
-
+			<table class="table table-condensed" style="width:500px;">
+				<tr>
+					<td>Téléphone <u>PORTABLE</u></td>
+					<td><b><?php echo $ligne['telPort']; ?></b></td>
+				</tr>
+				<tr>
+					<td>Téléphone <u>FIXE</u></td>
+					<td><?php echo $ligne['telFixe']; ?></td>
+				</tr>
+				<tr>
+					<td><u>MAGASIN</u></td>
+					<?php
+					if ( $ligne['magasin'] == "Saint-James" ) { echo "<td style='background-color:#FF9900'><b>" . $ligne['magasin'] . "</b></td>" ; }
+					else if ( $ligne['magasin'] == "Avranches" ) { echo "<td><b>" . $ligne['magasin'] . "</b></td>" ; }
+					?>	
+				</tr>
+				<tr>
+					<td>Adresse postale</td>
+					<td><?php echo $ligne['adresse'];?></td>
+				</tr>
+				<?php if ( !empty($ligne["mail"]) ) { ?>
+				<tr>
+					<td>Adresse e-mail</td>
+					<td><em><?php echo $ligne['mail']; ?></em></td>
+				</tr>
+				<?php } // FIN DE CONDITION POUR L'AFFICHAGE DE L'ADRESSE EMAIL ?>
+			</table>
 		</fieldset>
 		
 		<table class='table table-bordered'><caption><h3>Rappel - Pré-intervention sélectionnée</h3></caption>
@@ -93,19 +92,19 @@ $codeClient = $_POST["codeClient"];
 						break;
 
 						case 'IMPRIMANTE':
-						include_once ('peripheriques.php');
+						include_once ('interv_periph.php');
 						break;
 
 						case 'PERIPHERIQUE':
-						include_once ('peripheriques.php');
+						include_once ('interv_periph.php');
 						break;
 
 						case 'TABLETTE TACTILE':
-						include_once ('peripheriques.php');
+						include_once ('interv_periph.php');
 						break;
 
-						case 'AUTRES':
-						include_once ('peripheriques.php');
+						case 'AUTRE':
+						include_once ('interv_periph.php');
 						break;
 
 					}

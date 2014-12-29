@@ -59,8 +59,8 @@ else if ( (!empty($_POST)) && (isset($_POST["update"])) && ($_POST["update"]=="1
 ?>
 
 
-<center><h2>Liste des<br />types d'intervention</h2></center>
-<table class="table table-condensed table-striped">
+<center><h2>Liste des<br />logiciels</h2></center>
+<table class="table table-condensed table-striped table-hover">
 <tr> <th style="text-align:center;">Nom</th> <th colspan="2" style="text-align:center;">Opération</th> </tr>
 <?php 
 	$sql = mysql_query ( " SELECT * FROM tlogiciels ; " ) or die ( mysql_error() ) ;
@@ -79,11 +79,12 @@ else if ( (!empty($_POST)) && (isset($_POST["update"])) && ($_POST["update"]=="1
 <hr />
 
 <!-- Formulaire de création de news -->
-<center><h2>Ajouter un nouveau type d'intervention</h2>
 	<form method="POST" class="well">
+	<center><h4>Ajouter un nouveau logiciel</h4>
+	<hr />
 		<input type="hidden" name="verif" value="ajout-logiciel">
 		
-		Nom de l'intervention : <input name="logiciel" type="text" required /><br />
-		<button class="btn btn-large btn-primary">Ajouter</button>
+		Nom du logiciel : <input name="logiciel" type="text" required /><br />
+		<button class="btn btn-large btn-success">Ajouter<br /><span class="glyphicon glyphicon-tag"></span></button>
 	</form>
 </center>

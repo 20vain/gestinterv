@@ -42,6 +42,20 @@ else
 // Récupération des cases cochées - MAJ
 
 
+// Récupération des cases cochées - VIRUS
+if ( isset($_POST['virus']) && (!empty($_POST['virus'])) ) // Si les POST_Logiciels existent & ne sont pas vides
+{
+
+	foreach ($_POST['virus'] as $virus) // Pour tous les POST_Logiciel devenu ici la variable "$logiciels"
+		{ $tabVirus[] = $virus; }// Remplissage d'un tableau contenant les POST_logiciels
+
+			// Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
+			$strVirus = addslashes( (implode(", ", $tabVirus)) );
+}
+else 
+{ $strVirus = " "; } // Aucun statut de coché
+
+
 if ( isset($_POST['maj']) && !empty($_POST['maj']) ) // Si les POST_Logiciels existent & ne sont pas vides
 {
 	foreach ($_POST['maj'] as $maj) // Pour tous les POST_Logiciel devenu ici la variable "$logiciels"
@@ -53,21 +67,6 @@ if ( isset($_POST['maj']) && !empty($_POST['maj']) ) // Si les POST_Logiciels ex
 else 
 { $strMaj = " "; } // Aucun statut de coché
 
-// Récupération des cases cochées - VIRUS
-if ( isset($_POST['virus']) && !empty($_POST['virus']) ) // Si les POST_Logiciels existent & ne sont pas vides
-{
-	// Informations complémentaires quant à la case "Fiabilité ..."
-	$fiabilite = addslashes($_POST['fiabilite']);
-	
-	foreach ($_POST['virus'] as $virus) // Pour tous les POST_Logiciel devenu ici la variable "$logiciels"
-		{ $tabVirus[] = $virus; }// Remplissage d'un tableau contenant les POST_logiciels
-
-			// Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
-			$strVirus = addslashes( (implode(", ", $tabVirus)) );
-			$strVirus .=' '.$fiabilite;
-}
-else 
-{ $strVirus = " "; } // Aucun statut de coché
 
 // Récupération des cases cochées - SAUVEGARDES
 if ( isset($_POST['sauvegarde']) && !empty($_POST['sauvegarde']) ) // Si les POST_Logiciels existent & ne sont pas vides
@@ -96,6 +95,7 @@ else
 
 $intervention = $_POST["intervention"];
 $materiel = $_POST["materiel"];
+$fiabilite = $_POST['fiabilite'];
 
 $observation = addslashes($_POST["observation"]);
 
@@ -161,7 +161,7 @@ $statut = $_POST["statut"];
 $session = $_POST["session"];
 $password = $_POST["password"];
 
-$add_interv = "INSERT INTO tinterventions VALUES ('','$codeClient','$codePreInterv','$dateInterv','$antivirus','$malwares','$spywares','$strLogiciels','$strMaj','$strVirus','$strSauvegarde','$poidsSauvegarde','$strRam','$intervention','$materiel','$observation','$technicien','$prix','$cout_complementaire','$statut','$session','$password');";
+$add_interv = "INSERT INTO tinterventions VALUES ('','$codeClient','$codePreInterv','$dateInterv','$antivirus','$malwares','$spywares','$strLogiciels','$strMaj','$strVirus','$strSauvegarde','$poidsSauvegarde','$strRam','$intervention','$materiel','$fiabilite','$observation','$technicien','$prix','$cout_complementaire','$statut','$session','$password');";
 
 $req = mysql_query ( $add_interv ) or die ( mysql_error() ) ;
 	// FIN - AJOUT D'UNE INTERVENTION
@@ -191,7 +191,7 @@ $sql1 = mysql_query ( $update1 ) or die ( mysql_error() ) ;
 
 <head>
 	<!-- Loading Bootstrap -->
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">	
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">	
 </head>
 
 <body>

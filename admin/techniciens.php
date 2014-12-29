@@ -62,7 +62,7 @@ else { }
 
 
 <center><h2>Liste des<br />technicien</h2></center>
-<table class="table table-condensed table-striped">
+<table class="table table-condensed table-striped table-hover">
 <tr> <th style="text-align:center;">Nom</th> <th colspan="2" style="text-align:center;">Opération</th> </tr>
 <?php 
 	$sql = mysql_query ( " SELECT * FROM ttechniciens ; " ) or die ( mysql_error() ) ;
@@ -82,11 +82,12 @@ else { }
 <hr />
 
 <!-- Formulaire de création de news -->
-<center><h2>Ajouter un nouveau technicien</h2>
 	<form method="POST" class="well">
+	<center><h4>Ajouter un nouveau technicien</h4>
+	<hr />
 		<input type="hidden" name="verif" value="ajout-technicien">
 		
 		Nom du technicien : <input name="technicien" type="text" required /><br />
-		<button class="btn btn-large btn-primary">Ajouter</button>
+		<button class="btn btn-large btn-success">Ajouter<br /><span class="glyphicon glyphicon-tag"></span></button>
 	</form>
 </center>

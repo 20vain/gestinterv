@@ -6,7 +6,7 @@ include_once ("admin/functions.php");
 if (empty($_GET["p"])) { header("Location: index.php?p=index"); }
 
 
-// --- AJOUT D'UNE NEWS --
+// --- AJOUT D'UNE NEWS
 if ( (!empty($_POST)) && (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") )
 {
 	$news 		= htmlentities($_POST["news"]); // Récupération de la news + Sécurité caractères spéciaux
@@ -20,7 +20,7 @@ if ( (!empty($_POST)) && (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") )
 	</div>
 <?php
 }
-// FIN FONCTION AJOUT NEWS
+// FIN PROCEDURE AJOUT NEWS
 
 
 // --- SUPPRESSION D'UNE NEWS
@@ -35,7 +35,7 @@ else if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="1
 <?php
 } // FIN FONCTION SUPPRESSION
 
-else { }
+else { } // Si il n'y a pas de suppression, on ne fait rien
 ?>
 
 <!DOCTYPE html>
@@ -45,14 +45,14 @@ else { }
 
 	<title>Gestinterv</title>
 
-<!-- Fichier STYLE alternatif pour calendrier JS & autres -->
-	<link href="css/style.css" rel="stylesheet">
+<!-- CSS -->
+	<link href="css/style.css" rel="stylesheet"> <!-- Fichier STYLE alternatif pour calendrier JS & autres -->
 	<link href="bootstrap/css/bootstrap.css" rel="stylesheet"> <!-- BOOTSTRAP 3.3.1 -->
 
-<!-- Script JS pour le calendrier -->
-	<script type="text/javascript" src="js/calendar.js"></script>
+<!-- JS -->
+	<script type="text/javascript" src="js/calendar.js"></script> <!-- Script JS Calendrier -->
 	<script src="js/jquery.min.js" type="text/javascript"></script> <!-- jQuery 2.1.3 -->
-	<script src="bootstrap/js/bootstrap.min.js"></script> <!-- BOOTSTRAP 3.3.1 -->
+	<script src="bootstrap/js/bootstrap.js"></script> <!-- BOOTSTRAP JS 3.3.1 -->
 
 </head>
 
@@ -60,10 +60,10 @@ else { }
 
 <div class="container">
 
-<?php // TITRES
+<?php // TITRES sur la page d'accueil
 switch ($_GET['p']) {
 	case 'accueil':
-		echo "<div class='page-header well'> <h1>Accueil - MIS - Gestion des interventions</h1> </div>";
+		echo "<div class='page-header well'> <h1>Accueil - Gestion des interventions</h1> </div>";
 	break;
 	
 	// CLIENTS
@@ -110,6 +110,10 @@ switch ($_GET['p']) {
 		echo "<div class='page-header well'> <h1>Transformation d'une demande en intervention<h1> </div>";
 	break;
 	
+	case 'modifinterv':
+		echo "<div class='page-header well'> <h1>Modification d'une intervention<h1> </div>";
+	break;
+	
 	
 	// ADMINISTRATION	
 	case 'administration':
@@ -117,7 +121,7 @@ switch ($_GET['p']) {
 	break;
 	
 	default:
-		echo "<div class='page-header well'> <h1>Accueil - MIS - Gestion des interventions</h1> </div>";
+		echo "<div class='page-header well'> <h1>Accueil - Gestion des interventions</h1> </div>";
 	break;
 	
 	}
@@ -129,38 +133,46 @@ switch ($_GET['p']) {
 		if ($_GET["p"] == "index") { 
 			echo '<a href="index.php?p=index" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>';
 		}
-		else {
-			echo '<a href="index.php?p=index" class="btn btn-default"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>';
-		} 
+			else {
+				echo '<a href="index.php?p=index" class="btn btn-default"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>';
+			} 
 		
 		if ( ($_GET["p"] == "clients") OR ($_GET["p"] == "listing_clients") OR ($_GET["p"] == "add_client") OR ($_GET["p"] == "ficheclient") OR ($_GET["p"] == "modifclient") ) {
 			echo '<a href="index.php?p=clients" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <b>Gestion clientèle</b></a>';
 		} 
-		else { 
-			echo '<a href="index.php?p=clients" class="btn btn-default"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <b>Gestion clientèle</b></a>';
-		}
+			else { 
+				echo '<a href="index.php?p=clients" class="btn btn-default"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <b>Gestion clientèle</b></a>';
+			}
 		
 		if ( ($_GET["p"] == "demande") OR ($_GET["p"] == "ajoutdemande") ) {
 			echo '<a href="index.php?p=demande" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>';
 		}
-		else {
-			echo '<a href="index.php?p=demande" class="btn btn-default"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>';
-		}
+			else {
+				echo '<a href="index.php?p=demande" class="btn btn-default"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>';
+			}
+		
 		if ($_GET["p"] == "interv") {
 			echo '<a href="index.php?p=interv" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>';
 		}
-		else {
-			echo '<a href="index.php?p=interv" class="btn btn-default"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>';
-		}
+			else {
+				echo '<a href="index.php?p=interv" class="btn btn-default"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>';
+			}
+		
 		if ($_GET["p"] == "administration") {
 			echo '<a href="index.php?p=administration" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>';
 		} 
-		else {
-			echo '<a href="index.php?p=administration" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>';
-		}
+			else {
+				echo '<a href="index.php?p=administration" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>';
+			}
 		if ($_GET["p"] == "transfo-demande") {
 			echo '<a href="#" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>Transformation demande<br />en intervention</b></a>';
-		} ?>
+		}
+	
+		if ($_GET["p"] == "modifinterv") {
+			echo '<a href="#" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>Modification<br />d\'une demande</b></a>';
+		}
+
+		?>
 	</div>
 </nav>
 
@@ -216,6 +228,10 @@ switch ($_GET['p']) {
 			include_once('interventions/transfo_demande_interv.php');
 		break;
 		
+		case 'modifinterv':
+			include_once('interventions/index_modif.php');
+		break;
+		
 		
 		// ADMINISTRATION PORTAIL
 		case 'administration':
@@ -263,7 +279,7 @@ if ($_GET["p"] == "index")
 		<input name="dateNews" type="text" class="form-control calendrier" value="<?php echo date("d/m/Y"); ?>" required /><br /> <!-- Champ de saisie OBLIGATOIRE - DATE -->
 
 		<b>Message</b><br />
-		<textarea name="news" class="form-control" required></textarea><br /> <!-- Champ de saisie OBLIGATOIRE - NEWS -->
+		<textarea name="news" class="form-control" style="height:200px;" required ></textarea><br /> <!-- Champ de saisie OBLIGATOIRE - NEWS -->
 
 		<b>Auteur</b><br />
 		<select name="auteur" class="form-control" > <!-- Liste déroulante - Affichage de tous les techniciens -->

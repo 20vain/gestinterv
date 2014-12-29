@@ -61,7 +61,7 @@ else { }
 ?>
 
 <center><h2>Liste des<br />types d'intervention</h2></center>
-<table class="table table-condensed table-striped">
+<table class="table table-condensed table-striped table-hover">
 <tr> <th style="text-align:center;">Nom</th> <th colspan="2" style="text-align:center;">Opération</th> </tr>
 <?php 
 	$sql = mysql_query ( " SELECT * FROM ttypeinterv ; " ) or die ( mysql_error() ) ;
@@ -81,11 +81,12 @@ else { }
 <hr />
 
 <!-- Formulaire de création de news -->
-<center><h2>Ajouter un nouveau type d'intervention</h2>
 	<form method="POST" class="well">
+	<center><h4>Ajouter un nouveau type d'intervention</h4>
+	<hr />
 		<input type="hidden" name="verif" value="ajout-typeinterv">
 		
 		Nom de l'intervention : <input name="typeinterv" type="text" required /><br />
-		<button class="btn btn-large btn-primary">Ajouter</button>
+		<button class="btn btn-large btn-success">Ajouter<br /><span class="glyphicon glyphicon-tag"></span></button>
 	</form>
 </center>

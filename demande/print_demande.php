@@ -26,6 +26,7 @@ if ( (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") && (count($_POST) != 0) 
 	$password = addslashes($_POST["password"]);
 	$typeInterv = addslashes($_POST["typeInterv"]);
 	$observations = addslashes($_POST["observations"]);
+	$technicien = addslashes($_POST["technicien"]);
 	
 	if ( isset($_POST["accessoires"]) ) { $accessoires = $_POST["accessoires"]; $observations = "$observations+$accessoires"; } // Si des accessoires ont été mit (pour les pc portables et autres), une indication sera mise dans la colonne observations
 	
@@ -42,7 +43,7 @@ if ( (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") && (count($_POST) != 0) 
 	
 	if ( (isset($_POST["boiteMails"])) && ($_POST["boiteMails"] == "1") ) { $boiteMails = "Sauvegarde mails + AdressBook"; }
 	
-	$ajout2	= mysql_query ( "INSERT INTO tpreinterv VALUES ('','$id_client','$dateDepot','$dateRestitution','$materiel','$typeInterv','$observations','$session_user','$password','$dossierMesDocs','$dossiersClt');" ) or die ( mysql_error() ) ;
+	$ajout2	= mysql_query ( "INSERT INTO tpreinterv VALUES ('','$id_client','$dateDepot','$dateRestitution','$materiel','$typeInterv','$observations','$session_user','$password','$dossierMesDocs','$dossiersClt','$technicien');" ) or die ( mysql_error() ) ;
 	$lastadd_preinterv = mysql_insert_id(); // Reprise du code de l'intervention pour la redirection
 	
 	$interv = "SELECT * FROM tpreinterv WHERE id = '$lastadd_preinterv';" ;
@@ -81,6 +82,7 @@ else if ( (isset($_POST["client-connu"])) && ($_POST["client-connu"]=="1") && (c
 	$password = addslashes($_POST["password"]);
 	$typeInterv = addslashes($_POST["typeInterv"]);
 	$observations = addslashes($_POST["observations"]);
+	$technicien = addslashes($_POST["technicien"]);
 	
 	if ( isset($_POST["accessoires"]) ) { $accessoires = $_POST["accessoires"]; $observations = "$observations+$accessoires"; } // Si des accessoires ont été mit (pour les pc portables et autres), une indication sera mise dans la colonne observations
 	
@@ -97,7 +99,7 @@ else if ( (isset($_POST["client-connu"])) && ($_POST["client-connu"]=="1") && (c
 	
 	if ( (isset($_POST["boiteMails"])) && ($_POST["boiteMails"] == "1") ) { $boiteMails = "Sauvegarde mails + AdressBook"; }
 	
-	$ajout = mysql_query ( "INSERT INTO tpreinterv VALUES ('','$codeClient','$dateDepot','$dateRestitution','$materiel','$typeInterv','$observations','$session_user','$password','$dossierMesDocs','$dossiersClt');" ) or die ( mysql_error() ) ;
+	$ajout = mysql_query ( "INSERT INTO tpreinterv VALUES ('','$codeClient','$dateDepot','$dateRestitution','$materiel','$typeInterv','$observations','$session_user','$password','$dossierMesDocs','$dossiersClt','$technicien');" ) or die ( mysql_error() ) ;
 	$lastadd_preinterv = mysql_insert_id(); // Reprise du code de l'intervention pour la redirection
 
 	$interv = "SELECT * FROM tpreinterv WHERE id = '$lastadd_preinterv';" ;
@@ -127,65 +129,99 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 ?>
 
 <body onLoad="window.print()">
-	<center>
-		<h1>Demande d'intervention</h1>
-	</center>
-<table>
-<td style="width:25%">
-<?php
-	// Tant qu'il y a des interventions & des clients à côté... :
-	while ( ($ligne = mysql_fetch_array($resultat)) && ($ligne1 = mysql_fetch_array($resultat1)) )
-	{
-		if ( $ligne1['rdv']=="1" ) { echo "<fieldset style='background-color:#ebebeb;'><u><b>RENDEZ-VOUS</b></u></fieldset>"; }
-		if ( $ligne1['pro']=="1" ) { echo "<fieldset style='background-color:#ebebeb;'><u><b>CLIENT PROFESSIONNEL</b></u></fieldset>"; }
-?>
-</td>
-<td>
-<?php
-		echo "<u>Client</u> : <b><font size='6'>" . $ligne1['nom'] . " " . $ligne1['prenom'] . "</font></b>" ; if ( $ligne1['magasin']=="Saint-James" ) { echo " ---> <u><b><font size='5'>PC STJ</font></b></u><br />"; } else { echo "<br />" ; }
-		if ( !empty($ligne1['telPort']) ) { echo "<u>Téléphone PORTABLE</u> : <b>" . $ligne1['telPort'] . "</b><br />"; }
-		if ( !empty($ligne1['telFixe']) ) { echo "- <u>Téléphone FIXE</u> : <b>" . $ligne1['telFixe'] . "</b><br />" ; }
-		if ( !empty($ligne1['adresse']) ) { echo "<u>Adresse</u> : <b>" . $ligne1['adresse'] . "</b><br />"; }
-		if ( !empty($ligne1['mail']) ) { echo "- <u>E-Mail</u> : ". $ligne1['mail']; }
-?>
-</td>
-</table>
-<hr />
-<?php
-		echo "Dépôt du matériel le : " . $ligne['dateDepot'] . " ----> Date de restitution prévue pour le : <font size='6'><b>" . $ligne['dateRestitution'] . "</b></font> <br />";
-		echo "Type de matériel : <b><font size='5'>" . $ligne['materiel'] . "</font/></b>" ;				
-		echo " ----> Type d'intervention à effectuer : <b><font size='5'>" . $ligne['typeInterv'] . "</font></b><br />" ;
-		echo "<br />";
-		echo "<fieldset> <legend><b>Intervention à effectuer</b> :</legend>" . nl2br($ligne['observations']) . "</fieldset> <br />" ;
-		if (!empty($session_user)) { echo "Session utilisateur : <b>" . $session_user . "</b> <br />" ; }
-		if (!empty($ligne['password'])) { echo "Mot de passe : <b>" . $ligne['password'] . "</b> <br />" ; }
-		if ( ($ligne['dossierMesDocs'] == "Sauvegarde du dossier Mes Documents et Bureau") ) { echo "Sauvegarde des fichiers clients : <b>" . $ligne['dossierMesDocs'] . "</b> <br />"; }
-		if (!empty($ligne['dossierClt'])) { echo "Dossiers spécifiques à sauvergarder : <b>" . $ligne['dossierClt'] . "</b> <br />" ; }
-		if (!empty($boiteMails)) { echo $boiteMails."<br />"; } 
-  	}
-?>
-<hr />
+	<center><h1>INTERVENTION à effectuer</h1></center>
 
+	<?php
+		// Tant qu'il y a des interventions & des clients à côté... :
+		while ( ($ligne = mysql_fetch_array($resultat)) && ($ligne1 = mysql_fetch_array($resultat1)) )
+		{ ?>
+			<table border="0" rules="all">
+				<tr>
+					<td>
+						Client : <b><font size='6'><?php echo $ligne1['nom'] . " " . $ligne1['prenom'];?></font></b>&nbsp;
+					</td>
+					<td>
+						<?php if ( !empty($ligne1['telPort']) ) { echo "Téléphone PORTABLE : <b>" . $ligne1['telPort'] . "</b><br />"; }
+						if ( !empty($ligne1['telFixe']) ) { echo "Téléphone FIXE : <b>" . $ligne1['telFixe'] . "</b>" ; }?>
+					</td>
+					<td>
+						<?php
+						if ( $ligne1['rdv']=="1" ) { echo "<fieldset style='background-color:#ebebeb;'><b>RENDEZ-VOUS</b></fieldset>"; }
+						if ( $ligne1['pro']=="1" ) { echo "<fieldset style='background-color:#ebebeb;'><b>CLIENT PROFESSIONNEL</b></fieldset>"; }
+						?>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<?php if ( !empty($ligne1['telPort']) ) { echo "Adresse : <b>" . $ligne1['adresse'] . "</b><br />"; }
+						if ( !empty($ligne1['telFixe']) ) { echo "E-Mail : ". $ligne1['mail']; }?>
+					</td>
+					<td>
+						Magasin : <b><?php echo $ligne1['magasin'];?></b>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						Dépôt du matériel le : <?php echo $ligne['dateDepot'];?><br />
+						Date de restitution : <font size='5'><b><?php echo $ligne['dateRestitution'];?></b></font>
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="2">
+						Type de matériel : <b><font size='5'><?php echo $ligne['materiel']; ?></font/></b>
+						<br />
+						Type d'intervention à effectuer : <b><font size='5'><?php echo $ligne['typeInterv']; ?></font/></b>
+					</td>					
+				</tr>
+			</table>
+
+		<hr />
+
+			<table border="0" rules="all">
+				<tr>
+					<td>
+						<fieldset> <legend><b>Observations complémentaires</b></legend>
+							<?php echo nl2br($ligne['observations']); ?>
+						</fieldset>
+					</td>
+					<td>
+						<?php
+							if (!empty($session_user)) { echo "Session utilisateur : <b>" . $session_user . "</b> <br />" ; }
+							if (!empty($ligne['password'])) { echo "Mot de passe : <b>" . $ligne['password'] . "</b> <br />" ; }
+							if ( ($ligne['dossierMesDocs'] == "Sauvegarde du dossier Mes Documents et Bureau") ) { echo "<b>" . $ligne['dossierMesDocs'] . "</b> <br />"; }
+							if (!empty($ligne['dossierClt'])) { echo "Dossiers spécifiques à sauvergarder : <b>" . $ligne['dossierClt'] . "</b> <br />" ; }
+							if (!empty($boiteMails)) { echo $boiteMails."<br />"; }
+						?>
+					</td>
+				</tr>
+			</table>
+		Techicien ayant pris la demande : <b><?php echo $ligne['technicien']; ?>
+<?php
+		} // FIN BOUCLE AFFICHAGE
+		?>
+<hr />
 
 <table border="0" rules="all">
-<tr> <th>&nbsp;</th> <td>Analyse externe</th> <td>Analyse interne</th> <th align="center" colspan="2">Informations complémentaires</th> </tr>
-<tr>
-	<td>Virus</td> <td><input type="text" style="width:65px; height:35px;" /></td> <td><input type="text" style="width:65px; height:35px;" /></td> <td><input type="checkbox" />ADWC &nbsp; <input type="checkbox" />RK &nbsp; <input type="checkbox" />CC</td>
-</tr>
-<tr>
-	<td>Malwares</td> <td><input type="text" style="width:65px; height:35px;" /></td> <td><input type="text" style="width:65px; height:35px;" /></td> <td><input type="checkbox" /> Optimisation démarrage <br /> <input type="checkbox" /> Réinitialisation navigateurs &nbsp; <input type="checkbox" />Suppression proxy</td>
-</tr>
-<tr>
-	<td>Spywares</td> <td></td> <td><input type="text" style="width:65px; height:35px;" /></td> <td><input type="checkbox" /> Scan redémarrage effectué</td>
-</tr>
-<tr> <td></td> <td></td> <td></td>
-	<td><input type="checkbox" />Suppression antivirus --><br />
-	<input type="checkbox" />Install+MàJ MSE/Antivir &nbsp; <input type="checkbox" />Install+MàJ Spybot</td>
-</tr>
-
+	<tr> <th></th> <td>Analyse externe</th> <td>Analyse interne</th> <th align="center" colspan="2">Informations complémentaires</th></tr>
+	<tr>
+		<td>Virus</td> <td><input type="text" style="width:65px; height:35px;" /></td> <td></td> <td><input type="checkbox" />ADWC &nbsp; <input type="checkbox" />RK &nbsp; <input type="checkbox" />CC</td>
+	</tr>
+	<tr>
+		<td>Malwares</td> <td></td> <td></td> <td><input type="checkbox" /> Optimisation démarrage <br /> <input type="checkbox" /> RàZ navigateurs &nbsp; <input type="checkbox" />Suppression proxy</td>
+	</tr>
+	<tr>
+		<td>Spywares</td> <td></td> <td><input type="text" style="width:65px; height:35px;" /></td> <td><input type="checkbox" /> Scan redémarrage effectué</td>
+	</tr>
+	<tr> <td colspan="4">
+	<input type="checkbox" />Suppression de l'antivirus client =<br />
+		<input type="checkbox" />Install+MàJ Antivirus &nbsp; <input type="checkbox" />Install+MàJ Spybot</td>
+	</tr>
 </table>
-<br />
-<h2>Observations diverses / Travail à effectuer :</h2>
+
+<h3>Complément d'information</h3>
 	<?php if (isset($_POST["print_demande"])) { echo '<center><a href="../index.php?p=interv">Retour accueil</a></center>'; }
 	else echo '<center><a href="../index.php?p=demande">Retour accueil</a></center>'; ?>
 </body>

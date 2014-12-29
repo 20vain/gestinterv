@@ -1,16 +1,62 @@
 <?php // Récupération variables d'identification pour redirections
-$idPreinterv = $_POST["idPreinterv"];
+$idIntervention = $_POST["id"];
 $codeClient = $_POST["codeClient"];
+
+// intervention
+$sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idIntervention' ;" ) or die ( mysql_error() ) ;		
+	$ligne = mysql_fetch_array($sql_interv);
+ 
+// Affiche de la fiche client
+	$codeClient = $_POST["codeClient"];
+	
+	$sql = mysql_query ( "SELECT * FROM tclients WHERE id = '$codeClient' ;" ) or die ( mysql_error() ) ;		
+	$clt = mysql_fetch_array($sql);
+	$nom_client = $clt['nom'];
+
 ?>
 
 <div class="container">
 
-	<form action="interventions/ajout_interv_pc.php" method="POST">
+	<form action="interventions/update_interv_pc.php" method="POST">
 	
-	<input type="hidden" name="idPreinterv" value="<?php echo $idPreinterv; ?>" /> <!-- Code pré-intervention -->
+	<input type="hidden" name="idIntervention" value="<?php echo $idIntervention; ?>" /> <!-- Code intervention -->
 	<input type="hidden" name="codeClient" value="<?php echo $codeClient; ?>" /> <!-- Code Client -->
 
-	<center><h1>Nouvelle intervention</h1></center>
+	<center><h1>Modification de l'intervention n°<?php echo $idIntervention; ?></h1></center>
+	
+		<fieldset class="well">
+		<center>
+		<h2>Client [<u><?php echo $clt['nom'].' '.$clt['prenom']; ?></u>]</h2>
+			<table class="table table-condensed" style="width:500px;">
+				<tr>
+					<td>Téléphone <u>PORTABLE</u></td>
+					<td><b><?php echo $clt['telPort']; ?></b></td>
+				</tr>
+				<tr>
+					<td>Téléphone <u>FIXE</u></td>
+					<td><?php echo $clt['telFixe']; ?></td>
+				</tr>
+				<tr>
+					<td><u>MAGASIN</u></td>
+					<?php
+					if ( $clt['magasin'] == "Saint-James" ) { echo "<td style='background-color:#FF9900'><b>" . $clt['magasin'] . "</b></td>" ; }
+					else if ( $clt['magasin'] == "Avranches" ) { echo "<td><b>" . $clt['magasin'] . "</b></td>" ; }
+					?>	
+				</tr>
+				<tr>
+					<td>Adresse postale</td>
+					<td><?php echo $clt['adresse'];?></td>
+				</tr>
+				<?php if ( !empty($clt["mail"]) ) { ?>
+				<tr>
+					<td>Adresse e-mail</td>
+					<td><em><?php echo $clt['mail']; ?></em></td>
+				</tr>
+				<?php } // FIN DE CONDITION POUR L'AFFICHAGE DE L'ADRESSE EMAIL ?>
+			</table>
+		</center>
+		</fieldset>
+	
 		
 		<fieldset>
 			<center><b>Date de l'intervention</b> <input name="dateInterv" type="text" class="calendrier form-control" value="<?php echo date('d/m/Y'); ?>" style="width:100px;" /> (date du jour)</center>
@@ -18,6 +64,23 @@ $codeClient = $_POST["codeClient"];
 			<h2>Partie 1 - Analyses antivirus / anti-spywares</h2>
 		<br />
 	
+	<?php
+		// Explosion de la chaîne de caractères ANTIVIRUS
+		$antivirus = $ligne['antivirus'];
+			list($antivirusexterne, $antivirusinterne) = explode("+",$antivirus);
+
+
+		// Explosion de la chaîne de caractères MALWARES
+		$malwares = $ligne['malwares'];
+			list($malwaresexterne, $malwaresinterne) = explode("+",$malwares);
+		
+		// Spywares
+		$spybot = $ligne['spybot'];
+		if (stripos($spybot, 'Scan au redémarrage effectué') !== FALSE)
+			{ list($spybot_nb, $spybot_redemarrage) = explode("+",$spybot); }
+		else { list($spybot_nb) = explode("+",$spybot); }
+	?>
+
 	<div class="well">
 		<table class="table table-bordered table-condensed">
 			<tr> <!-- Ligne en-têtes de colonnes -->
@@ -42,19 +105,23 @@ $codeClient = $_POST["codeClient"];
 					<b>Virus</b>
 				</td>
 				<td style="text-align:center; vertical-align:middle;">
-					<input name="antivirus-externe" type="text" class="form-control" />
+					<input name="antivirus-externe" type="text" class="form-control" value="<?php echo $antivirusexterne; ?>" />
 				</td>
 				<td style="text-align:center; vertical-align:middle;">
-					<input name="antivirus-interne" type="text" class="form-control" />
+					<input name="antivirus-interne" type="text" class="form-control" value="<?php echo $antivirusinterne; ?>" />
 				</td>
 				<td>
 					<div class="input-group">
-						<label><span class="input-group-addon"><input type="checkbox" name="cookies" value="Cookies traçeurs uniquement" /> Cookies traçeurs uniquement</span></label>
+						<?php
+						if ( (stripos($ligne['antivirus'], 'Cookies traçeurs uniquement') !== FALSE) ) { ?><label><span class="input-group-addon"><input type="checkbox" name="cookies" value="Cookies traçeurs uniquement" checked /> Cookies traçeurs uniquement</span></label><?php } // FIN de condition 
+						else {?> <label><span class="input-group-addon"><input type="checkbox" name="cookies" value="Cookies traçeurs uniquement" /> Cookies traçeurs uniquement</span></label> <?php } // FIN ELSE ?>
 					</div>
 				</td>
 				<td>
 					<div class="input-group">
-						<label><span class="input-group-addon"><input type="checkbox" name="adwcleaner" value="ADWC effectué" /> <b>ADW Cleaner</b></span></label>
+						<?php
+						if ( (stripos($ligne['antivirus'], 'ADWC effectué') !== FALSE) ) { ?><label><span class="input-group-addon"><input type="checkbox" name="adwcleaner" value="ADWC effectué" checked /> <b>ADW Cleaner</b></span></label><?php } // FIN de condition 
+						else {?> <label><span class="input-group-addon"><input type="checkbox" name="adwcleaner" value="ADWC effectué" /> <b>ADW Cleaner</b></span></label> <?php } // FIN ELSE ?>
 					</div>
 				</td>
 			</tr>
@@ -64,15 +131,17 @@ $codeClient = $_POST["codeClient"];
 					<b>Malwares</b>
 				</td>
 				<td style="text-align:center; vertical-align:middle;">
-					<input name="malwares-externe" type="text" class="form-control" />
+					<input name="malwares-externe" type="text" class="form-control" value="<?php echo $malwaresexterne; ?>" />
 				</td>
 				<td style="text-align:center; vertical-align:middle;">
-					<input name="malwares-interne" type="text" class="form-control" />
+					<input name="malwares-interne" type="text" class="form-control" value="<?php echo $malwaresinterne; ?>" />
 				</td>
 				<td>&nbsp;</td>
 				<td>
 					<div class="input-group">
-						<label><span class="input-group-addon"><input type="checkbox" name="roguekiller" value="RK effectué" /> <b>RogueKiller</b></span></label>
+						<?php
+						if ( (stripos($ligne['antivirus'], 'RK effectué') !== FALSE) ) { ?><label><span class="input-group-addon"><input type="checkbox" name="roguekiller" value="RK effectué" checked /> <b>RogueKiller</b></span></label><?php } // FIN de condition 
+						else {?> <label><span class="input-group-addon"><input type="checkbox" name="roguekiller" value="RK effectué" /> <b>RogueKiller</b></span></label> <?php } // FIN ELSE ?>
 					</div>
 				</td>
 			</tr>
@@ -85,16 +154,20 @@ $codeClient = $_POST["codeClient"];
 					&nbsp;
 				</td>
 				<td style="text-align:center; vertical-align:middle;">
-					<input name="spywares" type="text" class="form-control" />
+					<input name="spywares" type="text" class="form-control" value="<?php echo $spybot_nb; ?>" />
 				</td>
 				<td>
 					<div class="input-group">
-						<label><span class="input-group-addon"><input type="checkbox" name="scan-redemarrage" value="Scan Spybot au redémarrage effectué" /> Scan Spybot effectué<br />au redémarrage du PC</span></label>
+						<?php
+						if ( (stripos($ligne['spybot'], 'Scan Spybot au redémarrage effectué') !== FALSE) ) { ?><label><span class="input-group-addon"><input type="checkbox" name="scan-redemarrage" value="Scan Spybot au redémarrage effectué" checked /> Scan Spybot effectué<br />au redémarrage du PC</span></label><?php } // FIN de condition 
+						else {?> <label><span class="input-group-addon"><input type="checkbox" name="scan-redemarrage" value="Scan Spybot au redémarrage effectué" /> Scan Spybot effectué<br />au redémarrage du PC</span></label> <?php } // FIN ELSE ?>
 					</div>
 				</td>
 				<td>
 					<div class="input-group">
-						<label><span class="input-group-addon"><input type="checkbox" name="ccleaner" value="CC effectué" /> <b>CCleaner</b></span></label>
+						<?php
+						if ( (stripos($ligne['antivirus'], 'CC effectué') !== FALSE) ) { ?><label><span class="input-group-addon"><input type="checkbox" name="ccleaner" value="CC effectué" checked /> <b>CCleaner</b></span></label><?php } // FIN de condition 
+						else {?> <label><span class="input-group-addon"><input type="checkbox" name="ccleaner" value="CC effectué" /> <b>CCleaner</b></span></label> <?php } // FIN ELSE ?>
 					</div>
 				</td>
 			</tr>
@@ -108,8 +181,9 @@ $codeClient = $_POST["codeClient"];
 				<td style="text-align:center; vertical-align:middle;">
 					<div class="input-group">
 						<label>
-							<span class="input-group-addon"><input type="checkbox" name="virus[]" value="Optimisation du démarrage" />
-							</span>
+							<?php
+							if ( (stripos($ligne['virus'], 'Optimisation du démarrage') !== FALSE) ) { ?><span class="input-group-addon"><input type="checkbox" name="virus[]" value="Optimisation du démarrage" checked /></span><?php } // FIN de condition 
+							else {?> <span class="input-group-addon"><input type="checkbox" name="virus[]" value="Optimisation du démarrage" /></span> <?php } // FIN ELSE ?>
 							<b>Optimisation</b> du démarrage
 						</label>
 					</div>
@@ -118,10 +192,10 @@ $codeClient = $_POST["codeClient"];
 				<td style="text-align:center; vertical-align:middle;">
 					<div class="input-group">
 						<label>
-							<span class="input-group-addon">
-								<input type="checkbox" name="virus[]" value="Réinitialisation des navigateurs web" />
-							</span>
-							<b>Réinitialisation</b><br />navigateurs web
+							<?php
+							if ( (stripos($ligne['virus'], 'Réinitialisation des navigateurs web') !== FALSE) ) { ?><span class="input-group-addon"><input type="checkbox" name="virus[]" value="Réinitialisation des navigateurs web" checked /></span><?php } // FIN de condition 
+							else {?> <span class="input-group-addon"><input type="checkbox" name="virus[]" value="Réinitialisation des navigateurs web" /></span> <?php } // FIN ELSE ?>
+							<b>Réinitialisation</b><br />navigateurs web.
 						</label>
 					</div>
 				</td>
@@ -129,9 +203,9 @@ $codeClient = $_POST["codeClient"];
 				<td style="text-align:center; vertical-align:middle;">
 					<div class="input-group">
 						<label>
-							<span class="input-group-addon">
-								<input type="checkbox" name="virus[]" value="PC infecté par des virus & spywares" />
-							</span>
+							<?php
+							if ( (stripos($ligne['virus'], 'PC infecté par des virus & spywares') !== FALSE) ) { ?><span class="input-group-addon"><input type="checkbox" name="virus[]" value="PC infecté par des virus & spywares" checked /></span><?php } // FIN de condition 
+							else {?> <span class="input-group-addon"><input type="checkbox" name="virus[]" value="PC infecté par des virus & spywares" /></span> <?php } // FIN ELSE ?>
 							<b>PC infecté</b><br />par des virus & spywares
 						</label>
 					</div>
@@ -140,9 +214,9 @@ $codeClient = $_POST["codeClient"];
 				<td style="text-align:center; vertical-align:middle;">
 					<div class="input-group">
 						<label>
-							<span class="input-group-addon">
-								<input type="checkbox" name="virus[]" value="PC TRES infecté par de nombreux virus & spywares" />
-							</span>
+							<?php
+							if ( (stripos($ligne['virus'], 'PC TRES infecté par de nombreux virus & spywares') !== FALSE) ) { ?><span class="input-group-addon"><input type="checkbox" name="virus[]" value="PC TRES infecté par de nombreux virus & spywares" checked /></span><?php } // FIN de condition 
+							else {?> <span class="input-group-addon"><input type="checkbox" name="virus[]" value="PC TRES infecté par de nombreux virus & spywares" /></span> <?php } // FIN ELSE ?>
 							<u><b>PC TRES infecté</b><br />par de nombreux virus & spywares</u>
 						</label>
 					</div>
@@ -151,9 +225,10 @@ $codeClient = $_POST["codeClient"];
 				<td style="text-align:center; vertical-align:middle;" >
 					<div class="input-group">
 						<label>
-							<span class="input-group-addon">
-								<input type="checkbox" name="virus[]" value="Présence de Toolbars" />
-							</span>
+							<?php
+							if ( (stripos($ligne['virus'], 'Présence de Toolbars') !== FALSE) ) { ?><span class="input-group-addon"><input type="checkbox" name="virus[]" value="Présence de Toolbars" checked /></span><?php } // FIN de condition 
+							else {?> <span class="input-group-addon"><input type="checkbox" name="virus[]" value="Présence de Toolbars" /></span> <?php } // FIN ELSE ?>
+							
 							Présence de<br /><b>Toolbars</b>
 						</label>
 					</div>
@@ -169,25 +244,30 @@ $codeClient = $_POST["codeClient"];
 			<h2>Partie 2 - Documents client</h2>
 		<br />
 		
+		<?php
+			$sauvegarde = $ligne['sauvegarde'];
+			list($sauvegarde_bureau, $sauvegarde_annexe, $serveur) = explode(", ",$sauvegarde);
+		?>
+		
+		
 		<div class="well">
 			<table class="table table-bordered">
 				<tr>
 					<td style='text-align:center; vertical-align:middle;'>
 						<b>Sauvegarde des dossiers "Mes documents" + Bureau</b><br />
-						<em><input type="text" name="sauvegarde[]" class="form-control" value="<?php echo $preInterv['dossierMesDocs']; ?>" /></em>
+						<em><input type="text" name="sauvegarde[]" class="form-control" value="<?php echo $sauvegarde_bureau; ?>" /></em>
 					</td>
 					
 					<td style='text-align:center; vertical-align:middle;'>
 						<b>Dossiers annexes</b><br />
-						<em><input type="text" name="sauvegarde[]" class="form-control" value="<?php echo $preInterv['dossierClt']; ?>" /></em>
+						<em><input type="text" name="sauvegarde[]" class="form-control" value="<?php echo $sauvegarde_annexe; ?>" /></em>
 					</td>
 				</tr>
 				
-				<?php if ( ($preInterv['dossierMesDocs'] != "Aucun document à sauvegarder - ACCORD CLIENT.") || ($preInterv['dossierClt'] != "Aucun document à sauvegarder - ACCORD CLIENT.") ) 
-				{ // Si il y a des dossiers à sauvegarder, on affiche une liste pour savoir sur quel serveur les fichiers sont sauvegardés ?>
 				<tr>
 					<td style='text-align:center; vertical-align:middle;'> <b>Serveur sur lequel les documents sont sauvgardés :</b><br />
 						<select name="sauvegarde[]" class="form-control">
+							<option name="<?php echo $serveur; ?>"><?php echo $serveur; ?></option>
 							<option></option>
 							<optgroup label="Serveurs AVRANCHES - ATELIER 1"></optgroup>
 								<option name="Fichiers sauvegardés sur Atelier 1.1 AVR - User MIS1">Atelier 1.1 AVR - User MIS1</option>
@@ -211,11 +291,9 @@ $codeClient = $_POST["codeClient"];
 					</td>
 					
 					<td style='text-align:center; vertical-align:middle;'><b>Poids total de la sauvegarde (en Go) :</b><br />
-						<input type="text" name="poidsSauvegarde" class="form-control" /> 
+						<input type="text" name="poidsSauvegarde" class="form-control" value="<?php echo $ligne['poidsSauvegarde']; ?>" /> 
 					</td>
 				</tr>
-				<?php
-				} ?>
 			</table>
 		</div>
 			
@@ -226,7 +304,7 @@ $codeClient = $_POST["codeClient"];
 		
 		<fieldset>
 			<h2>Partie 3 - Installation / Mise à jour logiciels</h2>
-				<br />
+			<br />
 		<div class="well">
 			<b>Suppresion</b> de l'ancien antivirus
 				<select name="suppression-ancien-antivirus" style="width:175px;" class="form-control">
@@ -251,7 +329,15 @@ $codeClient = $_POST["codeClient"];
 			<h3>Liste des logiciels à installer / mettre à jour</h3>
 
 			<table>
-					<?php
+				<tr>
+					<td colspan="3">
+						Logiciels précédements installés / mis à jour :<br />
+						<b><?php echo $ligne ["logiciels"]; ?></b>
+						<hr />
+					</td>
+				</tr>
+			
+				<?php
 				// Requête d'affichage des LOGICIELS
 					$logiciels = mysql_query ( "SELECT * FROM tlogiciels ;" ) or die ( mysql_error() ) ;
 				// Boucle d'affichage
@@ -276,7 +362,8 @@ $codeClient = $_POST["codeClient"];
 						</label>
 					</td>
 				</tr>
-					<?php } // FIN BOUCLE ?>
+				<?php 
+					} // FIN BOUCLE ?>
 			</table>			
 
 		</div>
@@ -289,7 +376,9 @@ $codeClient = $_POST["codeClient"];
 					<div class="input-group">
 						<label>
 							<span class="input-group-addon">
-								<input type='checkbox' name='maj[]' value='Mises à jour système' />
+								<?php
+								if ( (stripos($ligne["maj"], 'Mises à jour système') !== FALSE) ) { ?><input type='checkbox' name='maj[]' value='Mises à jour système' checked /><?php } // FIN de condition 
+								else {?> <input type='checkbox' name='maj[]' value='Mises à jour système' /> <?php } // FIN ELSE ?>
 							</span>
 							Installation des <b>mises à jour</b> du système
 						</label>
@@ -300,7 +389,9 @@ $codeClient = $_POST["codeClient"];
 					<div class="input-group">
 						<label>
 							<span class="input-group-addon">
-								<input type='checkbox' name='maj[]' value='Service Pack Windows installé(s)' />
+								<?php
+								if ( (stripos($ligne["maj"], 'Service Pack Windows installé(s)') !== FALSE) ) { ?><input type='checkbox' name='maj[]' value='Service Pack Windows installé(s)' checked /><?php } // FIN de condition 
+								else {?> <input type='checkbox' name='maj[]' value='Service Pack Windows installé(s)' /> <?php } // FIN ELSE ?>
 							</span>
 							<b>Service Pack</b> Windows installé(s)
 						</label>
@@ -311,7 +402,9 @@ $codeClient = $_POST["codeClient"];
 					<div class="input-group">
 						<label>
 							<span class="input-group-addon">
-								<input type='checkbox' name='maj[]' value='Activation Windows' />
+								<?php
+								if ( (stripos($ligne["maj"], 'Activation Windows') !== FALSE) ) { ?><input type='checkbox' name='maj[]' value='Activation Windows' checked /><?php } // FIN de condition 
+								else {?> <input type='checkbox' name='maj[]' value='Activation Windows' /> <?php } // FIN ELSE ?>
 							</span>
 							<b>Activation</b> Windows
 						</label>
@@ -335,7 +428,7 @@ $codeClient = $_POST["codeClient"];
 							<label>
 							Informations complémentaires relatives à la fiabilité de l'ordinateur :
 								<span class="input-group-addon">
-									<textarea name="fiabilite" class="form-control" style="width:500px; height:200px;"></textarea>
+									<textarea name="fiabilite" class="form-control" style="width:500px; height:200px;"><?php echo $ligne["fiabilite"]; ?></textarea>
 								</span>
 							</label>
 						</div>
@@ -345,7 +438,9 @@ $codeClient = $_POST["codeClient"];
 						<div class="input-group">
 							<label>
 								<span class="input-group-addon">
-									<input type="checkbox" name="virus[]" value="Fiabilité PC douteuse" />
+									<?php
+									if ( (stripos($ligne["virus"], 'Fiabilité PC douteuse') !== FALSE) ) { ?><input type="checkbox" name="virus[]" value="Fiabilité PC douteuse" checked /><?php } // FIN de condition 
+									else {?> <input type="checkbox" name="virus[]" value="Fiabilité PC douteuse" /> <?php } // FIN ELSE ?>
 								</span>
 								<b>Fiabilité PC douteuse</b>
 							</label>
@@ -355,7 +450,9 @@ $codeClient = $_POST["codeClient"];
 						<div class="input-group">
 							<label>
 								<span class="input-group-addon">
-									<input type="checkbox" name="virus[]" value="Fichiers croisés au démarrage - Fiabilité HDD à voir" />
+									<?php
+									if ( (stripos($ligne["virus"], 'Fichiers croisés au démarrage - Fiabilité HDD à voir') !== FALSE) ) { ?><input type="checkbox" name="virus[]" value="Fichiers croisés au démarrage - Fiabilité HDD à voir" checked /><?php } // FIN de condition 
+									else {?> <input type="checkbox" name="virus[]" value="Fichiers croisés au démarrage - Fiabilité HDD à voir" /> <?php } // FIN ELSE ?>
 								</span>
 								<b>Fichiers croisés</b> au démarrage - Fiabilité HDD à voir.
 							</label>
@@ -366,8 +463,8 @@ $codeClient = $_POST["codeClient"];
 			</table>
 		</div>
 
-			<b>Session utilisateur</b> <input type="text" name="session" class="form-control" style="width:250px;" value="<?php echo $preInterv['session'] ;?>" />
-			<b>Mot de passe PC</b> <input type="text" name="password" class="form-control" style="width:250px;" value="<?php echo $preInterv['password'] ;?>" />
+			<b>Session utilisateur</b> <input type="text" name="session" class="form-control" style="width:250px;" value="<?php echo $ligne['session'] ;?>" />
+			<b>Mot de passe PC</b> <input type="text" name="password" class="form-control" style="width:250px;" value="<?php echo $ligne['password'] ;?>" />
 			
 			<br />
 			
@@ -376,7 +473,8 @@ $codeClient = $_POST["codeClient"];
 					<td>
 						Type d'<b>intervention</b> : <span class="label label-danger">Champ obligatoire</span>
 						<select name="intervention" class="form-control" required>
-							<option selected value="<?php echo $preInterv['typeInterv']; ?>">[ Présélection ] - <?php echo $preInterv['typeInterv']; ?></option>
+							<option selected value="<?php echo $ligne['intervention']; ?>"><?php echo $ligne['intervention']; ?></option>
+							<option></option>
 							<?php $type_interv = mysql_query ( "SELECT * FROM ttypeinterv ;" ) or die ( mysql_error() ) ;
 
 								while ( $interv = mysql_fetch_array($type_interv) )
@@ -388,7 +486,8 @@ $codeClient = $_POST["codeClient"];
 					<td>
 						<b>Matériel</b> : <span class="label label-danger">Champ obligatoire</span>
 						<select name="materiel" class="form-control" required>
-							<option selected value="<?php echo $preInterv['materiel']; ?>">[ Présélection ] - <?php echo $preInterv['materiel']; ?></option>
+							<option selected value="<?php echo $ligne['materiel']; ?>"><?php echo $ligne['materiel']; ?></option>
+							<option></option>
 							<?php $req3 = mysql_query ( "SELECT * FROM ttypemateriel ;" )  or  die ( mysql_error() ) ;
 							
 							while ( $ligne33 = mysql_fetch_array($req3) ) // Boucle d'affichage
@@ -400,12 +499,13 @@ $codeClient = $_POST["codeClient"];
 			</table>
 			
 			<br />
-			<b>Observations</b> : <textarea name="observation" type="text" class="form-control" style="height:250px;"></textarea>
+			<b>Observations</b> : <textarea name="observation" type="text" class="form-control" style="height:250px;"><?php echo $ligne['observations'] ;?>"</textarea>
 			<br />
 			
 			<b>Technicien en charge du PC</b> : <span class="label label-danger">Champ obligatoire</span><br />
 			<select name="technicien" required class="form-control" style="width:300px;">
-				<option name="NULL" selected></option>
+				<option name="<?php echo $ligne['technicien'] ;?>" selected><?php echo $ligne['technicien'] ;?></option>
+				<option></option>
 				<?php $req2 = mysql_query ( "SELECT * FROM ttechniciens ;" ) or die ( mysql_error() ) ;
 
 				while ( $ligne22 = mysql_fetch_array($req2) )
@@ -422,7 +522,9 @@ $codeClient = $_POST["codeClient"];
 						<div class="input-group">
 							<label>
 								<span class="input-group-addon">
-									<input type="checkbox" name="ram[]" value="Ajout RAM nécessaire">
+									<?php
+									if ( (stripos($ligne["ram"], 'Ajout RAM nécessaire') !== FALSE) ) { ?><input type="checkbox" name="ram[]" value="Ajout RAM nécessaire" checked /><?php } // FIN de condition 
+									else {?> <input type="checkbox" name="ram[]" value="Ajout RAM nécessaire"> <?php } // FIN ELSE ?>
 								</span>
 								<b>Ajout de mémoire vive (RAM) nécessaire</b>
 							</label>
@@ -480,7 +582,9 @@ $codeClient = $_POST["codeClient"];
 				
 				<tr>
 					<td style="text-align:center; vertical-align:middle;">
-						<label><input type="checkbox" name="ram[]" value="RAM déjà installée dans le PC - Voir accord client"> <b>RAM <u>déjà installée</u> et <u>fonctionnelle</u> dans le PC.</b></label>
+						<?php
+						if ( (stripos($ligne["ram"], 'RAM déjà installée dans le PC - Voir accord client') !== FALSE) ) { ?><label><input type="checkbox" name="ram[]" value="RAM déjà installée dans le PC - Voir accord client" checked /> <b>RAM <u>déjà installée</u> et <u>fonctionnelle</u> dans le PC.</b></label><?php } // FIN de condition 
+						else {?> <label><input type="checkbox" name="ram[]" value="RAM déjà installée dans le PC - Voir accord client"> <b>RAM <u>déjà installée</u> et <u>fonctionnelle</u> dans le PC.</b></label> <?php } // FIN ELSE ?>
 					</td>
 				</tr>
 			</table>
@@ -494,7 +598,9 @@ $codeClient = $_POST["codeClient"];
 					<tr>
 						<td style="text-align:center; vertical-align:middle;">
 							<label>
-								<input name="cout-interv" type="checkbox" value="39" /> Mini-Nettoyage
+								<?php
+								if ( (stripos($ligne["prix"], '39') !== FALSE) ) { ?><input name="cout-interv" type="checkbox" value="39" checked /> Mini-Nettoyage<?php } // FIN de condition 
+								else {?> <input name="cout-interv" type="checkbox" value="39" /> Mini-Nettoyage <?php } // FIN ELSE ?>
 								<div class="input-group">
 									<input class="form-control" type="text" value="39,00" /><span class="input-group-addon">€</span>
 								</div>
@@ -502,7 +608,9 @@ $codeClient = $_POST["codeClient"];
 						</td>
 						<td style="text-align:center; vertical-align:middle;">
 							<label>
-								<input name="cout-interv" type="checkbox" value="59" /> Nettoyage
+								<?php
+								if ( (stripos($ligne["prix"], '59') !== FALSE) ) { ?><input name="cout-interv" type="checkbox" value="59" checked /> Nettoyage<?php } // FIN de condition 
+								else {?> <input name="cout-interv" type="checkbox" value="59" /> Nettoyage <?php } // FIN ELSE ?>
 								<div class="input-group">
 									<input class="form-control" type="text" value="59,00" /><span class="input-group-addon">€</span>
 								</div>
@@ -510,7 +618,9 @@ $codeClient = $_POST["codeClient"];
 						</td>
 						<td style="text-align:center; vertical-align:middle;">
 							<label>
-								<input name="cout-interv" type="checkbox" value="79" /> Formatage
+								<?php
+								if ( (stripos($ligne["prix"], '79') !== FALSE) ) { ?><input name="cout-interv" type="checkbox" value="79" checked /> Formatage<?php } // FIN de condition 
+								else {?> <input name="cout-interv" type="checkbox" value="79" /> Formatage <?php } // FIN ELSE ?>
 								<div class="input-group">
 									<input class="form-control" type="text" value="79,00" /><span class="input-group-addon">€</span>
 								</div>
@@ -632,12 +742,10 @@ $codeClient = $_POST["codeClient"];
 				<option name="En attente">En attente</option>
 			</select>
 		
-
 		<br />
-		
 		Magasin : <span class="label label-danger">Champ obligatoire</span><br />
 			<select name="magasin" style="width:250px;" required class="form-control">
-					<option value="<?php echo $ligne['magasin'] ; ?>">[ACTUELLEMENT] : <?php echo $ligne['magasin'] ; ?></option>				
+					<option value="<?php echo $clt['magasin'] ; ?>">[ACTUELLEMENT] : <?php echo $clt['magasin'] ; ?></option>				
 					<option value="Avranches">Avranches</option>				
 					<option value="Saint-James">Saint-James</option>
 			</select>

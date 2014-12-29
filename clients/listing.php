@@ -23,7 +23,7 @@ $tab = mysql_query ( "SELECT * FROM tclients ORDER BY nom" ) or die ( mysql_erro
 while ( $ligne = mysql_fetch_array($tab) )
 { ?>
 
-<table class='table'>
+<table class='table table-hover table-condensed'>
 	<?php if ( $ligne['magasin'] == "Saint-James" ) { echo '<tr> <td colspan="6" style="background-color:#FF9900";><center><h3><b>['.$ligne['nom'].' '.$ligne['prenom'].']</b></h3></center></td> </tr>'; }
 			else { echo '<tr> <td colspan="6"><center><h3><b>['.$ligne['nom'].' '.$ligne['prenom'].']</b></h3></center></td> </tr>'; } ?>
 	<tr> <th>N° de TÉLÉPHONE</th> <th>ADRESSES<br />(POSTALE & E-MAIL)</th> <th>MAGASIN</th> <th colspan="3"></th> </tr>

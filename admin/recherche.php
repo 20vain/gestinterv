@@ -17,35 +17,35 @@
 <center><h3> Rechercher un client</h3></center>
 
 <form class="form-search" action="" method="POST">
-	<input type="hidden" name="recherche" value="1" />
-<table class="table well">	
-	<tr>
-		<td>
-			<div class="input-group">
-				<span class="input-group-addon glyphicon glyphicon-phone"></span>
-				<input type="text" class="form-control" name="telPort" maxlength="10" placeholder="0634567890" />
-			</div>
-		</td>
+		<input type="hidden" name="recherche" value="1" />
+	<table class="table well">	
+		<tr>
+			<td>
+				<div class="input-group">
+					<span class="input-group-addon glyphicon glyphicon-phone"></span>
+					<input type="text" class="form-control" name="telPort" maxlength="10" placeholder="0634567890 - PORTABLE" />
+				</div>
+			</td>
+			
+			<td>
+				<div class="input-group">
+					<span class="input-group-addon glyphicon glyphicon-phone-alt"></span>
+					<input type="text" class="form-control" name="telFixe" maxlength="10" placeholder="0234567890 - FIXE" />
+				</div>
+			</td>
+			
+			<td>
+				<div class="input-group">
+					<span class="input-group-addon glyphicon glyphicon-user"></span>
+					<input type="text" class="form-control" name="nom" maxlength="50" placeholder="NOM client" />
+				</div>
+			</td>
+		</tr>
 		
-		<td>
-			<div class="input-group">
-				<span class="input-group-addon glyphicon glyphicon-phone-alt"></span>
-				<input type="text" class="form-control" name="telFixe" maxlength="10" placeholder="0234567890" />
-			</div>
-		</td>
-		
-		<td>
-			<div class="input-group">
-				<span class="input-group-addon glyphicon glyphicon-user"></span>
-				<input type="text" class="form-control" name="nom" maxlength="50" placeholder="NOM client" />
-			</div>
-		</td>
-	</tr>
-	
-	<tr>
-		<td colspan="3" align="center">
-			<button class="btn btn-primary btn-lg" type="submit"><span class="glyphicon glyphicon-search"></span><br />Lancer la recherche</button>
-		</td>
-	</tr>
-</table>
+		<tr>
+			<td colspan="3" align="center">
+				<button class="btn btn-primary btn-lg" type="submit"><span class="glyphicon glyphicon-search"></span><br />Lancer la recherche</button>
+			</td>
+		</tr>
+	</table>
 </form>

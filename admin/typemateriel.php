@@ -60,7 +60,7 @@ else { }
 ?>
 
 <center><h2>Liste des<br />matériels</h2></center>
-<table class="table table-condensed table-striped">
+<table class="table table-condensed table-striped table-hover">
 <tr> <th style="text-align:center;">Nom</th> <th colspan="2" style="text-align:center;">Opération</th> </tr>
 <?php 
 	$sql = mysql_query ( " SELECT * FROM ttypemateriel ; " ) or die ( mysql_error() ) ;
@@ -74,17 +74,17 @@ else { }
 		echo "</tr>" ;
 	}
 ?>
-
 </table>
 
 <hr />
 
 <!-- Formulaire de création de news -->
-<center><h2>Ajouter un nouveau materiel</h2>
 	<form method="POST" class="well">
+	<center><h4>Ajouter un nouveau materiel</h4>
+	<hr />
 		<input type="hidden" name="verif" value="ajout-materiel">
 		
 		Nom du materiel : <input name="materiel" type="text" required /><br />
-		<button class="btn btn-large btn-primary">Ajouter</button>
+		<button class="btn btn-large btn-success">Ajouter<br /><span class="glyphicon glyphicon-tag"></span></button>
 	</form>
 </center>

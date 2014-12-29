@@ -1,5 +1,5 @@
 <?php
-// SUPPRESSION LIGNE TABLEAU RECHERCHE
+// SUPPRESSION LIGNE DU TABLEAU DE RECHERCHE SEULEMENT
 if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="2") )
 {
 	$id = $_POST["id"];
@@ -15,7 +15,7 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="2") )
 
 
  
-// --- SUPPRESSION D'UNE LIGNE D'UN TABLEAU
+// --- SUPPRESSION D'UNE LIGNE D'UN TABLEAU QUELCONQUE
 function delete ($id,$table) {
 	$sql = mysql_query ( "DELETE FROM ".$table." WHERE id=".$id.";" ) or die ( mysql_error() ) ; // Exécution de la requête - Si pb, affichage erreur.	
 }

@@ -99,7 +99,7 @@
 			Date de <b>DÉPÔT</b> matériel <span class="label label-danger">Champ obligatoire</span>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-calendar"></span>
-				<input type="text" class="form-control calendrier" name="dateDepot" value="<?php echo date('d/m/Y'); ?>" required />
+				<input type="text" class="form-control calendrier" name="dateDepot" value="<?php echo date('d/m/Y'); ?>" style="width:200px;" required />
 			</div>		
 		</td>
 		<td>&nbsp;</td>
@@ -107,14 +107,14 @@
 			Date de <b>RESTITUTION</b> matériel <span class="label label-danger">Champ obligatoire</span>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-calendar"></span>
-				<input type="text" class="form-control calendrier" name="dateRestitution" required />
+				<input type="text" class="form-control calendrier" name="dateRestitution" style="width:200px;" required />
 			</div>
 		</td>
 	</tr>
 	
 	<tr>
 		<td colspan="3" align="center">
-			<input type="checkbox" name="rdv" value="1" /> <b>Rendez-vous pris avec le client</b>
+			<label class="form-control"><input type="checkbox" name="rdv" value="1" /> <b>Rendez-vous pris avec le client</b></label>
 		</td>
 	</tr>
 	
@@ -182,9 +182,25 @@
 	<tr>
 		<td colspan="3">
 			<b>Observations</b> :<br />
-			<textarea name="observations" class="form-control" placeholder="Saisie d'observations complémentaires. La touche 'entrée' permet de faire un retour à la ligne."></textarea>
+			<textarea name="observations" class="form-control" placeholder="Saisie d'observations complémentaires. La touche 'entrée' permet de faire un retour à la ligne." style="height:200px;"></textarea>
 		</td>
-	</tr>	
+	</tr>
+	
+	<tr>
+		<td style="vertical-align:middle; text-align:center;">
+			<b>Technicien</b> ayant pris la demande d'intervention <span class="label label-danger">Champ obligatoire</span>
+			<select name="technicien" required class="form-control" style="width:250px;">
+				<option value=""></option>
+				<?php
+					$technicien = mysql_query ( "SELECT * FROM ttechniciens ;" ) or die ( mysql_error() ) ;
+					
+					while ( $option = mysql_fetch_array($technicien) )
+					{ echo "<option value='" . $option['nom'] . "'>" . $option['nom'] . "</option>"; }
+				?>
+			</select>
+		</td>
+	</tr>
+	
 </table>
 </fieldset>
 
