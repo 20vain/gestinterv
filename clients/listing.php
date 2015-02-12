@@ -1,7 +1,7 @@
 <?php // --- SUPPRESSION D'UN CLIENT
 if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="3") )
 {
-	$id = $_POST["id"];
+	$id = htmlentities($_POST["id"]);
 	delete($id,"tclients");
 ?>
 	<div class="alert alert-warning">

@@ -1,6 +1,6 @@
 <?php
 // Récupération du code Client (grace à la redirection)
-	$codeClient = $_POST["codeClient"];
+	$codeClient = htmlentities($_POST["codeClient"]);
 
 // Affichage du client à modifier à partir de son code client
 	$req = mysql_query ( "SELECT * FROM tclients WHERE id='$codeClient';" ) or die ( mysql_error() ) ;
@@ -10,13 +10,13 @@
 	// --- MISE A JOUR FICHE CLIENT
 if ( (isset($_POST["modifFicheClient"])) && ($_POST["modifFicheClient"]=="1") )
 {
-	$nom		= addslashes($_POST["nom"]);
-	$prenom		= addslashes($_POST["prenom"]);
-	$telFixe	= addslashes($_POST["telFixe"]);
-	$telPort	= addslashes($_POST["telPort"]);
-	$adresse 	= addslashes($_POST["adresse"]);
-	$mail		= addslashes($_POST["mail"]);
-	$magasin 	= addslashes($_POST["magasin"]);
+	$nom		= htmlentities($_POST["nom"]);
+	$prenom		= htmlentities($_POST["prenom"]);
+	$telFixe	= htmlentities($_POST["telFixe"]);
+	$telPort	= htmlentities($_POST["telPort"]);
+	$adresse 	= htmlentities($_POST["adresse"]);
+	$mail		= htmlentities($_POST["mail"]);
+	$magasin 	= htmlentities($_POST["magasin"]);
 
 	if (isset($_POST["pro"])) { $pro = "1"; } else { $pro = "0"; }
 
