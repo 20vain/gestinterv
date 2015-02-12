@@ -42,9 +42,9 @@ while ( ($ligne = mysql_fetch_array($Resultat)) )
 		<h2><u>Coûts annexes</u> :<br /> <?php echo nl2br($ligne['coutAnnexe']); ?></h2>
 		<b>Technicien</b> : <?php echo $ligne['technicien']; ?><br /><br />
 		<?php
-		if ( (isset($_POST["winxp"]) ) )
-		{ $winxp = $_POST["winxp"];
-		echo "Donner brochure <b>Windows XP</b><br />" ; }
+		if ( (isset($_POST["orange"]) ) )
+		{ $winxp = $_POST["orange"];
+		echo "Donner brochure <b>Orange</b><br />" ; }
 
 		if ( (isset($_POST["win7"]) ) )
 		{ $win7 = $_POST["win7"]; 

@@ -188,6 +188,7 @@ $ligne1 = mysql_fetch_array ($sql2);
 <body align="center">
 
 <div class="alert alert-success">
+<center>
 	<h2>Modifications de la fiche d'intervention n° <?php echo $codeIntervention; ?> du client <u><?php echo $ligne1["nom"]; ?></u> - REUSSITE ! -</h2> <!-- TITRE -->
 
 	<form action ="../index.php?p=modifinterv" method="POST">
@@ -215,6 +216,21 @@ $ligne1 = mysql_fetch_array ($sql2);
 		Cliquez sur le bouton ci-dessous pour être <b>rediriger vers le récapitulatif des fiches d'intervention.</b><br /><br />
 		<center><button class="btn btn-large btn-primary"><span class="glyphicon glyphicon-list-alt"></span><br />Redirection vers<br />synthèse des fiches d'intervention</button></center>
 	</form>
+	
+	<hr />
+	
+	<?php if ($statut == "Terminé - OK")
+	{ ?>
+		<form action ="sms_interv.php" method="POST">
+			<input type="hidden" name="codeClient" value="<?php echo $codeClient; ?>">
+			<input type="hidden" name="codeIntervention" value="<?php echo $codeIntervention; ?>">
+			Pour envoyer un SMS au client,<br />
+			Cliquez sur le <b>bouton ci-dessous.</b><br /><br />
+			<center><button class="btn btn-large btn-success"><span class="glyphicon glyphicon-print"></span><br />Envoyer un SMS</button></center>
+		</form>
+	<?php // Fin condition pour SMS
+	} ?>
+	</center>
 </div>
 
 </body>

@@ -168,8 +168,8 @@ $req = mysql_query ( $add_interv ) or die ( mysql_error() ) ;
 	
 $codeIntervention = mysql_insert_id(); // Reprise du code de l'intervention pour la redirection
 
-if ( (isset($_POST["winxp"]) ) )
-{ $winxp = $_POST["winxp"]; }
+if ( (isset($_POST["orange"]) ) )
+{ $orange = $_POST["orange"]; }
 
 if ( (isset($_POST["win7"]) ) )
 { $win7 = $_POST["win7"]; }
@@ -197,7 +197,7 @@ $sql1 = mysql_query ( $update1 ) or die ( mysql_error() ) ;
 <body>
 
 <div class="alert alert-success">
-	<h2>Création de la fiche d'intervention n° <?php echo $codeIntervention; ?> - REUSSITE ! -</h2> <!-- TITRE -->
+	<h2>Création de la fiche d'intervention n° <?php echo $codeIntervention; ?> réussie !</h2> <!-- TITRE -->
 
 	<hr />
 
@@ -205,36 +205,47 @@ $sql1 = mysql_query ( $update1 ) or die ( mysql_error() ) ;
 		<form action ="../index.php?p=modifinterv" method="POST">
 			<input type="hidden" name="id" value="<?php echo $codeIntervention; ?>" /> <input type="hidden" name="codeClient" value="<?php echo $codeClient; ?>" /> 
 			<?php if ( isset($mo_atelier) && $mo_atelier == "1" ) { echo "<input type='hidden' name='mo-atelier' value='1' />"; } ?>
-			<?php if ( isset($winxp) ) {echo "<input type='hidden' name='winxp' value='1' />"; } ?>
+			<?php if ( isset($orange) ) {echo "<input type='hidden' name='orange' value='1' />"; } ?>
 			<?php if ( isset($win7) ) {echo "<input type='hidden' name='win7' value='1' />"; } ?>
 			<?php if ( isset($win8) ) {echo "<input type='hidden' name='win8' value='1' />"; } ?>
 			L'intervention a bien été a bien été ajoutée !<br />
 			Cliquez sur le <b>bouton ci-dessous pour être rediriger vers la fiche d'intervention en cours.</b><br /><br />
 			<button class="btn btn-lg btn-warning">Redirection vers la fiche d'intervention<br /><span class="glyphicon glyphicon-wrench"></span></button>
 		</form>
-	</center>
 
 	<hr />
 
-	<center>
 	<h4>Impression de la fiche</h4><br />
 		<form action="print_interv_pc.php" method="POST"> <input type="hidden" name="id" value="<?php echo $codeIntervention; ?>">
-			<?php if ( isset($winxp) ) {echo "<input type='hidden' name='winxp' value='1' />"; } ?>
+			<?php if ( isset($orange) ) {echo "<input type='hidden' name='orange' value='1' />"; } ?>
 			<?php if ( isset($win7) ) {echo "<input type='hidden' name='win7' value='1' />"; } ?>
 			<?php if ( isset($win8) ) {echo "<input type='hidden' name='win8' value='1' />"; } ?>
 		L'intervention a bien été a bien été créée !<br />
 		La fiche de pré-intervention a été <b>supprimée</b> !<br /><br />
 		<button class="btn btn-lg btn-success">Imprimer la fiche<br /><span class="glyphicon glyphicon-print"></span></button>
 		</form>
-	</center>
 	
 	<hr />
 
-	<center>
 		<form action ="../index.php?p=interv" method="POST">
 			Cliquez sur le bouton ci-dessous pour être rediriger vers le récapitulatif des fiches d'intervention.<br /><br />
 			<button class="btn btn-lg btn-primary">Redirection vers<br />récapitulatif des fiches d'intervention<br /><span class="glyphicon glyphicon-list-alt"></span></button>
 		</form>
+	
+	<hr />
+	
+		<?php if ($statut == "Terminé - OK")
+	{ ?>
+		<form action ="sms_interv.php" method="POST">
+			<input type="hidden" name="codeClient" value="<?php echo $codeClient; ?>">
+			<input type="hidden" name="codeIntervention" value="<?php echo $codeIntervention; ?>">
+			Pour envoyer un SMS au client,<br />
+			Cliquez sur le <b>bouton ci-dessous.</b><br /><br />
+			<center><button class="btn btn-large btn-success"><span class="glyphicon glyphicon-print"></span><br />Envoyer un SMS</button></center>
+		</form>
+	<?php // Fin condition pour SMS
+	} ?>
+		
 	</center>
 </div>
 
