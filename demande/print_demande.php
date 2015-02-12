@@ -129,7 +129,7 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 ?>
 
 <body onLoad="window.print()">
-	<center><h1>INTERVENTION à effectuer</h1></center>
+	<center><h1>Demande d'intervention</h1></center>
 
 	<?php
 		// Tant qu'il y a des interventions & des clients à côté... :
@@ -165,7 +165,9 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 				<tr>
 					<td>
 						Dépôt du matériel le : <?php echo $ligne['dateDepot'];?><br />
-						Date de restitution : <font size='5'><b><?php echo $ligne['dateRestitution'];?></b></font>
+					</td>
+					<td>
+						Date de restitution : <font size='6'><b><?php echo $ligne['dateRestitution'];?></b></font>
 					</td>
 				</tr>
 
@@ -205,7 +207,7 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 <hr />
 
 <table border="0" rules="all">
-	<tr> <th></th> <td>Analyse externe</th> <td>Analyse interne</th> <th align="center" colspan="2">Informations complémentaires</th></tr>
+	<tr> <th></th> <td>Analyse <b>externe</b></th> <td>Analyse <b>interne</b></th> <th align="center" colspan="2">Informations complémentaires</th></tr>
 	<tr>
 		<td>Virus</td> <td><input type="text" style="width:65px; height:35px;" /></td> <td></td> <td><input type="checkbox" />ADWC &nbsp; <input type="checkbox" />RK &nbsp; <input type="checkbox" />CC</td>
 	</tr>
@@ -216,8 +218,8 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 		<td>Spywares</td> <td></td> <td><input type="text" style="width:65px; height:35px;" /></td> <td><input type="checkbox" /> Scan redémarrage effectué</td>
 	</tr>
 	<tr> <td colspan="4">
-	<input type="checkbox" />Suppression de l'antivirus client =<br />
-		<input type="checkbox" />Install+MàJ Antivirus &nbsp; <input type="checkbox" />Install+MàJ Spybot</td>
+	<input type="checkbox" />Suppression de l'antivirus client =<br /><br />
+		<input type="checkbox" />Install Antivirus <input type="checkbox" /> MàJ Antivirus  <input type="checkbox" />Install Spybot <input type="checkbox" /> MàJ Spybot</td>
 	</tr>
 </table>
 
