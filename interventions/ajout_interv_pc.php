@@ -169,7 +169,11 @@ $req = mysql_query ( $add_interv ) or die ( mysql_error() ) ;
 $codeIntervention = mysql_insert_id(); // Reprise du code de l'intervention pour la redirection
 
 if ( (isset($_POST["orange"]) ) )
+<<<<<<< HEAD
 { $orange = htmlentities($_POST["orange"]); }
+=======
+{ $orange = $_POST["orange"]; }
+>>>>>>> origin/master
 
 if ( (isset($_POST["win7"]) ) )
 { $win7 = htmlentities($_POST["win7"]); }

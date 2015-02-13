@@ -43,7 +43,11 @@ while ( ($ligne = mysql_fetch_array($Resultat)) )
 		<b>Technicien</b> : <?php echo htmlentities($ligne['technicien']); ?><br /><br />
 		<?php
 		if ( (isset($_POST["orange"]) ) )
+<<<<<<< HEAD
 		{ $winxp = htmlentities($_POST["orange"]);
+=======
+		{ $winxp = $_POST["orange"];
+>>>>>>> origin/master
 		echo "Donner brochure <b>Orange</b><br />" ; }
 
 		if ( (isset($_POST["win7"]) ) )
