@@ -1,7 +1,7 @@
 ﻿<?php // --- AJOUT D'UN technicien ---
 if ( !empty($_POST) && (isset($_POST["verif"])) && (($_POST["verif"])=="ajout-technicien") )
 {
-	$technicien = addslashes($_POST["technicien"]);
+	$technicien = htmlentities($_POST["technicien"]);
 
 	$add = mysql_query ( " INSERT INTO ttechniciens VALUES ('','$technicien'); " ) or die ( mysql_error() ) ;
 ?>
@@ -15,7 +15,7 @@ if ( !empty($_POST) && (isset($_POST["verif"])) && (($_POST["verif"])=="ajout-te
 // --- SUPPRESSION D'UNE NEWS
 else if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="12") )
 {
-	$id	= $_POST["id"];	
+	$id	= htmlentities($_POST["id"]);
 	delete($id,"ttechniciens");
 ?>
 	<div class="alert alert-warning">
@@ -32,7 +32,7 @@ else if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="1
 // --- MODIFICATION
 else if ( (!empty($_POST)) && (isset($_POST["modif"])) && ($_POST["modif"]=="12") )
 {
-	$id	= $_POST["id"];
+	$id	= htmlentities($_POST["id"]);
 	$nom_modif	= $_POST["nom_modif"];
 ?>
 Modification du champ<br />
@@ -47,7 +47,7 @@ Ancienne valeur = [<b><?php echo $nom_modif; ?></b>]<br />
 // --- MODIFICATION DANS DB
 else if ( (!empty($_POST)) && (isset($_POST["update"])) && ($_POST["update"]=="12") )
 {
-	$id	= $_POST["id"];
+	$id	= htmlentities($_POST["id"]);
 	$modif_name_ok	= $_POST["modif_name_ok"];
 	$sql = mysql_query ( "UPDATE ttechniciens SET nom='$modif_name_ok' WHERE id='$id';" ) or die ( mysql_error() ) ;
 ?>

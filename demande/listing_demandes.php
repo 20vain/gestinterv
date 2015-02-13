@@ -6,7 +6,7 @@
 // --- SUPPRESSION DEMANDE
 if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="20") )
 {
-	$id	= $_POST["idPreinterv"];	
+	$id	= htmlentities($_POST["idPreinterv"]);	
 	delete($id,"tpreinterv");
 ?>
 	<div class="alert alert-warning">
@@ -34,7 +34,7 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="20") )
 		
 		while ( ($preInterv = mysql_fetch_array($query1)) )
 		{
-			$codeClient = $preInterv['codeClient'];
+			$codeClient = htmlentities($preInterv['codeClient']);
 			
 			// Affiche du nom à côté de la pré-intervention concernée
 				$nom_client = "SELECT tclients.nom, tclients.prenom, tclients.magasin, tclients.rdv, tclients.pro FROM tclients,tpreinterv WHERE tclients.id=tpreinterv.codeClient AND tpreinterv.codeClient = '$codeClient' ;" ;
@@ -54,28 +54,28 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="20") )
 
 			
 			// Type de matériel -- COLORISATION
-			if ( $preInterv['materiel'] == "PC FIXE" ) { echo "<td style='background-color:#FFFF71; text-align:center; vertical-align:middle;'><b>" . $preInterv['materiel'] . "</b></td>" ; }
-			else if ( $preInterv['materiel'] == "PC PORTABLE" ) { echo "<td style='background-color:#FFCCCC; text-align:center; vertical-align:middle;'><b>" . $preInterv['materiel'] . "</b></td>" ; }
-			else if ( $preInterv['materiel'] == "NETBOOK" ) { echo "<td style='background-color:#FFCCCC; text-align:center; vertical-align:middle;'><b>" . $preInterv['materiel'] . "</b></td>" ; }
-			else if ( $preInterv['materiel'] == "TOUT EN UN" ) { echo "<td  style='background-color:#FFFF71; text-align:center; vertical-align:middle;'><b>" . $preInterv['materiel'] . "</b></td>" ; }
-			else if ( $preInterv['materiel'] == "PC HYBRIDE" ) { echo "<td  style='background-color:#FFCCCC; text-align:center; vertical-align:middle;'><b>" . $preInterv['materiel'] . "</b></td>" ; }
-			else { echo "<td style='text-align:center; vertical-align:middle;'><b>" . $preInterv['materiel'] . "</b></td>" ; }
+			if ( htmlentities($preInterv['materiel']) == "PC FIXE" ) { echo "<td style='background-color:#FFFF71; text-align:center; vertical-align:middle;'><b>" . htmlentities($preInterv['materiel']) . "</b></td>" ; }
+			else if ( htmlentities($preInterv['materiel']) == "PC PORTABLE" ) { echo "<td style='background-color:#FFCCCC; text-align:center; vertical-align:middle;'><b>" . htmlentities($preInterv['materiel']) . "</b></td>" ; }
+			else if ( htmlentities($preInterv['materiel']) == "NETBOOK" ) { echo "<td style='background-color:#FFCCCC; text-align:center; vertical-align:middle;'><b>" . htmlentities($preInterv['materiel']) . "</b></td>" ; }
+			else if ( htmlentities($preInterv['materiel']) == "TOUT EN UN" ) { echo "<td  style='background-color:#FFFF71; text-align:center; vertical-align:middle;'><b>" . htmlentities($preInterv['materiel']) . "</b></td>" ; }
+			else if ( htmlentities($preInterv['materiel']) == "PC HYBRIDE" ) { echo "<td  style='background-color:#FFCCCC; text-align:center; vertical-align:middle;'><b>" . htmlentities($preInterv['materiel']) . "</b></td>" ; }
+			else { echo "<td style='text-align:center; vertical-align:middle;'><b>" . htmlentities($preInterv['materiel']) . "</b></td>" ; }
 			
 			// Type d'intervention -- COLORISATION
-			if ( $preInterv['typeInterv'] == "NETTOYAGE" ) { echo "<td style='background-color:#5797DB; text-align:center; vertical-align:middle;'><b>" . $preInterv['typeInterv'] . "</b></td>" ; }
-			else if ( $preInterv['typeInterv'] == "FORMATAGE" ) { echo "<td style='background-color:#333333; color:#FFFFFF; text-align:center; vertical-align:middle;'><b>" . $preInterv['typeInterv'] . "</b></td>" ; }
-			else if ( ( $preInterv['typeInterv'] == "AUTRES / DIVERS" ) OR ( $preInterv['typeInterv'] == "MO ATELIER" ) ) { echo "<td style='background-color:#87D86E; text-align:center; vertical-align:middle;'><b>" . $preInterv['typeInterv'] . "</b></td>" ; }
-			else { echo "<td style='text-align:center; vertical-align:middle;'><b>" . $preInterv['typeInterv'] . "</b></td>" ; }
+			if ( htmlentities($preInterv['typeInterv']) == "NETTOYAGE" ) { echo "<td style='background-color:#5797DB; text-align:center; vertical-align:middle;'><b>" . htmlentities($preInterv['typeInterv']) . "</b></td>" ; }
+			else if ( htmlentities($preInterv['typeInterv']) == "FORMATAGE" ) { echo "<td style='background-color:#333333; color:#FFFFFF; text-align:center; vertical-align:middle;'><b>" . htmlentities($preInterv['typeInterv']) . "</b></td>" ; }
+			else if ( ( htmlentities($preInterv['typeInterv']) == "AUTRES / DIVERS" ) OR ( htmlentities($preInterv['typeInterv']) == "MO ATELIER" ) ) { echo "<td style='background-color:#87D86E; text-align:center; vertical-align:middle;'><b>" . htmlentities($preInterv['typeInterv']) . "</b></td>" ; }
+			else { echo "<td style='text-align:center; vertical-align:middle;'><b>" . htmlentities($preInterv['typeInterv']) . "</b></td>" ; }
 			
-			echo "<td style='text-align:justify; vertical-align:middle;'>" . nl2br($preInterv['observations']) . "</td>" ;
+			echo "<td style='text-align:justify; vertical-align:middle;'>" . nl2br(htmlentities($preInterv['observations'])) . "</td>" ;
 			
 			// Sauvegarde des docs -- COLORISATION
 			if ( $preInterv['dossierMesDocs'] == "Sauvegarde du dossier Mes Documents et Bureau" ) { echo "<td style='background-color:#E03C3C; text-align:center; vertical-align:middle;'><b>Sauvegarder à effectuer</b></td>" ; }
 			else { echo "<td style='text-align:center; vertical-align:middle;'>Aucune sauvegarde à effectuer</td>" ; }
 			
-			echo "<td style='text-align:center; vertical-align:middle;'><form action='index.php?p=transfo-demande' method='POST'> <input type='hidden' name='idPreinterv' value='".$preInterv["id"]."' /> <input type='hidden' name='codeClient' value='" . $preInterv["codeClient"] . "'> <button class='btn btn-success'><span class='glyphicon glyphicon-wrench' aria-hidden='true'></span><br />Effectuer l'intervention</button> </form></td>
-			<td style='text-align:center; vertical-align:middle;'><form action='demande/print_demande.php' method='POST'> <input type='hidden' name='idPreinterv' value='" . $preInterv["id"] . "'> <input type='hidden' name='codeClient' value='" . $codeClient . "'> <input type='hidden' name='print_demande' value='1'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>
-			<td style='text-align:center; vertical-align:middle;'><form method='post' action='#'> <input type='hidden' name='idPreinterv' value='".$preInterv["id"]."'> <input type='hidden' name='delete' value='20' /> <button class='btn btn-danger'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span><br /> Suppression <br />de la demande</button> </form></td>";
+			echo "<td style='text-align:center; vertical-align:middle;'><form action='index.php?p=transfo-demande' method='POST'> <input type='hidden' name='idPreinterv' value='".htmlentities($preInterv["id"])."' /> <input type='hidden' name='codeClient' value='" . htmlentities($preInterv["codeClient"]) . "'> <button class='btn btn-success'><span class='glyphicon glyphicon-wrench' aria-hidden='true'></span><br />Effectuer l'intervention</button> </form></td>
+			<td style='text-align:center; vertical-align:middle;'><form action='demande/print_demande.php' method='POST'> <input type='hidden' name='idPreinterv' value='" . htmlentities($preInterv["id"]) . "'> <input type='hidden' name='codeClient' value='" . htmlentities($codeClient) . "'> <input type='hidden' name='print_demande' value='1'> <button class='btn btn-info'><span class='glyphicon glyphicon-print' aria-hidden='true'></span><br />Imprimer</button> </form></td>
+			<td style='text-align:center; vertical-align:middle;'><form method='post' action='#'> <input type='hidden' name='idPreinterv' value='".htmlentities($preInterv["id"])."'> <input type='hidden' name='delete' value='20' /> <button class='btn btn-danger'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span><br /> Suppression <br />de la demande</button> </form></td>";
 			echo "</tr>" ;
 		} 
 	?>

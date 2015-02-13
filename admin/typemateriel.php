@@ -1,9 +1,9 @@
 ﻿<?php // --- AJOUT D'UN MATERIEL ---
 if ( !empty($_POST) && (isset($_POST["verif"])) && (($_POST["verif"])=="ajout-materiel") )
 {
-	$materiel = addslashes($_POST["materiel"]);
+	$materiel = htmlentities($_POST["materiel"]);
 
-	$add = mysql_query ( " INSERT INTO ttypemateriel VALUES ('','$materiel'); " ) or die ( mysql_error() ) ;
+	$add = mysql_query ( "INSERT INTO ttypemateriel VALUES ('','$materiel');" ) or die ( mysql_error() ) ;
 ?>
 	<div class="alert alert-success">
 		L'ajout a bien été effectué !
@@ -14,7 +14,7 @@ if ( !empty($_POST) && (isset($_POST["verif"])) && (($_POST["verif"])=="ajout-ma
 // --- SUPPRESSION
 else if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="13") )
 {
-	$id	= $_POST["id"];	
+	$id	= htmlentities($_POST["id"]);
 	delete($id,"ttypemateriel");
 ?>
 	<div class="alert alert-warning">
@@ -31,7 +31,7 @@ else if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="1
 // --- MODIFICATION
 else if ( (!empty($_POST)) && (isset($_POST["modif"])) && ($_POST["modif"]=="13") )
 {
-	$id	= $_POST["id"];
+	$id	= htmlentities($_POST["id"]);
 	$nom_modif	= $_POST["nom_modif"];
 ?>
 Modification du champ<br />
@@ -46,7 +46,7 @@ Ancienne valeur = [<b><?php echo $nom_modif; ?></b>]<br />
 // --- MODIFICATION DANS DB
 else if ( (!empty($_POST)) && (isset($_POST["update"])) && ($_POST["update"]=="13") )
 {
-	$id	= $_POST["id"];
+	$id	= htmlentities($_POST["id"]);
 	$modif_name_ok	= $_POST["modif_name_ok"];
 	$sql = mysql_query ( "UPDATE ttypemateriel SET nom='$modif_name_ok' WHERE id='$id';" ) or die ( mysql_error() ) ;
 ?>

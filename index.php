@@ -3,7 +3,7 @@ include_once ("admin/auth_db.php");
 include_once ("admin/functions.php");
 
 // Si l'url ".../index.php?page=" est vide, alors on redirige sur la bonne url.
-if (empty($_GET["p"])) { header("Location: index.php?p=index"); }
+if (empty(htmlentities($_GET["p"]))) { header("Location: index.php?p=index"); }
 
 
 // --- AJOUT D'UNE NEWS
@@ -26,7 +26,7 @@ if ( (!empty($_POST)) && (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") )
 // --- SUPPRESSION D'UNE NEWS
 else if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="1") )
 {
-	$id	= $_POST["id"];	
+	$id	= htmlentities($_POST["id"]);
 	delete($id,"tnews");
 ?>
 	<div class="alert alert-warning">
@@ -61,7 +61,7 @@ else { } // Si il n'y a pas de suppression, on ne fait rien
 <div class="container">
 
 <?php // TITRES sur la page d'accueil
-switch ($_GET['p']) {
+switch (htmlentities(htmlentities($_GET['p']))) {
 	case 'accueil':
 		echo "<div class='page-header well'> <h1>Accueil - Gestion des interventions</h1> </div>";
 	break;
@@ -130,45 +130,45 @@ switch ($_GET['p']) {
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container">
 		<?php 
-		if ($_GET["p"] == "index") { 
+		if (htmlentities($_GET["p"]) == "index") { 
 			echo '<a href="index.php?p=index" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>';
 		}
 			else {
 				echo '<a href="index.php?p=index" class="btn btn-default"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>';
 			} 
 		
-		if ( ($_GET["p"] == "clients") OR ($_GET["p"] == "listing_clients") OR ($_GET["p"] == "add_client") OR ($_GET["p"] == "ficheclient") OR ($_GET["p"] == "modifclient") ) {
+		if ( (htmlentities($_GET["p"]) == "clients") OR (htmlentities($_GET["p"]) == "listing_clients") OR (htmlentities($_GET["p"]) == "add_client") OR (htmlentities($_GET["p"]) == "ficheclient") OR (htmlentities($_GET["p"]) == "modifclient") ) {
 			echo '<a href="index.php?p=clients" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <b>Gestion clientèle</b></a>';
 		} 
 			else { 
 				echo '<a href="index.php?p=clients" class="btn btn-default"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <b>Gestion clientèle</b></a>';
 			}
 		
-		if ( ($_GET["p"] == "demande") OR ($_GET["p"] == "ajoutdemande") ) {
+		if ( (htmlentities($_GET["p"]) == "demande") OR (htmlentities($_GET["p"]) == "ajoutdemande") ) {
 			echo '<a href="index.php?p=demande" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>';
 		}
 			else {
 				echo '<a href="index.php?p=demande" class="btn btn-default"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>';
 			}
 		
-		if ($_GET["p"] == "interv") {
+		if (htmlentities($_GET["p"]) == "interv") {
 			echo '<a href="index.php?p=interv" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>';
 		}
 			else {
 				echo '<a href="index.php?p=interv" class="btn btn-default"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>';
 			}
 		
-		if ($_GET["p"] == "administration") {
+		if (htmlentities($_GET["p"]) == "administration") {
 			echo '<a href="index.php?p=administration" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>';
 		} 
 			else {
 				echo '<a href="index.php?p=administration" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>';
 			}
-		if ($_GET["p"] == "transfo-demande") {
+		if (htmlentities($_GET["p"]) == "transfo-demande") {
 			echo '<a href="#" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>Transformation demande<br />en intervention</b></a>';
 		}
 	
-		if ($_GET["p"] == "modifinterv") {
+		if (htmlentities($_GET["p"]) == "modifinterv") {
 			echo '<a href="#" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>Modification<br />d\'une demande</b></a>';
 		}
 
@@ -179,7 +179,7 @@ switch ($_GET['p']) {
 </div>
 	
 <?php // CONTENU
-	switch ($_GET['p']) {
+	switch (htmlentities($_GET['p'])) {
 		case 'accueil':
 			include_once('index.php');
 		break;
@@ -246,7 +246,7 @@ switch ($_GET['p']) {
 ?>
 
 <?php
-if ($_GET["p"] == "index")
+if (htmlentities($_GET["p"]) == "index")
 	{ ?>
 <div class="container">
 

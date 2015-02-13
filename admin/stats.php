@@ -10,6 +10,16 @@
 // Nombre de demandes d'intervention
 	$sql3 = mysql_query ( "SELECT COUNT(*) AS NB_INTERV FROM tinterventions ;" ) or die ( mysql_error() ) ;
 	$r3 = mysql_fetch_array($sql3); // NB DEMANDES INTERVENTION
+
+// Nombre d'intervention par technicien
+	$sql_tech = mysql_query ( "SELECT * FROM `ttechniciens`;" ) or die ( mysql_error() ) ;
+	while ( $array_sql_tech = mysql_fetch_row($sql_tech) ) // Boucle de recherche / affichage
+	{ 
+		foreach (($array_sql_tech) as $v)
+		{
+			echo $v;
+		}
+	}
 ?>
 
 <h1>Statistiques</h1>
@@ -17,5 +27,7 @@ Nombre total de clients : <b><?php echo $r1["CLIENTS"]; ?></b> <br />
 Nombre total de demandes : <b><?php echo $r2["NB_DEMANDE_INTERV"]; ?></b> <br />
 Nombre total d'interventions : <b><?php echo $r3["NB_INTERV"]; ?></b> <br />
 
+<?php
 
+?>
 <br /> <br />

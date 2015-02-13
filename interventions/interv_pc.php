@@ -594,8 +594,8 @@ $codeClient = $_POST["codeClient"];
 						<td style="text-align:center; vertical-align:middle;">
 							<div class="input-group">
 								<label>
-									<span class="input-group-addon"><input type="checkbox" name="winxp" value="1" /></span>
-									Donner brochure <b>Windows XP</b>
+									<span class="input-group-addon"><input type="checkbox" name="orange" value="1" /></span>
+									Donner brochure <b>Windows orange</b>
 								</label>
 							</div>
 						</td>

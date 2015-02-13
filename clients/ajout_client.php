@@ -2,13 +2,13 @@
 //Création de la fiche client si les "_POST" ne sont pas vides
 if ( count($_POST) != 0 )
 {
-	$nom		= $_POST["nom"];
-	$prenom		= $_POST["prenom"];
-	$telFixe	= $_POST["telFixe"];
-	$telPort	= $_POST["telPort"];
-	$adresse	= $_POST["adresse"];
-	$mail		= $_POST["mail"];
-	$magasin	= $_POST["magasin"];
+	$nom		= htmlentities($_POST["nom"]);
+	$prenom		= htmlentities($_POST["prenom"]);
+	$telFixe	= htmlentities($_POST["telFixe"]);
+	$telPort	= htmlentities($_POST["telPort"]);
+	$adresse	= htmlentities($_POST["adresse"]);
+	$mail		= htmlentities($_POST["mail"]);
+	$magasin	= htmlentities($_POST["magasin"]);
 	
 	if (isset($_POST["rdv"])) { $rdv = 1; }
 	else { $rdv = 0; }

@@ -3,13 +3,13 @@
 // CONDITION = Création d'une demande et d'une nouvelle fiche client - FULL NEW
 if ( (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") && (count($_POST) != 0) )
 {
-	$nom		= addslashes($_POST["nom"]);
-	$prenom		= addslashes($_POST["prenom"]);
-	$telFixe	= addslashes($_POST["telFixe"]);
-	$telPort	= addslashes($_POST["telPort"]);
-	$adresse 	= addslashes($_POST["adresse"]);
-	$mail		= addslashes($_POST["mail"]);
-	$magasin 	= addslashes($_POST["magasin"]);
+	$nom		= htmlentities($_POST["nom"]);
+	$prenom		= htmlentities($_POST["prenom"]);
+	$telFixe	= htmlentities($_POST["telFixe"]);
+	$telPort	= htmlentities($_POST["telPort"]);
+	$adresse 	= htmlentities($_POST["adresse"]);
+	$mail		= htmlentities($_POST["mail"]);
+	$magasin 	= htmlentities($_POST["magasin"]);
 	
 	if (isset($_POST["rdv"])) { $rdv = "1"; } else { $rdv = "0"; }
 	if (isset($_POST["pro"])) { $pro = "1"; } else { $pro = "0"; }
@@ -19,14 +19,14 @@ if ( (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") && (count($_POST) != 0) 
 	$id_client	= $lastadd_client;
 			
 // PRE-INTERVENTION
-	$dateDepot = $_POST["dateDepot"];
-	$dateRestitution = $_POST["dateRestitution"];
-	$materiel = addslashes($_POST["materiel"]);
-	$session_user = addslashes($_POST["session_user"]);
-	$password = addslashes($_POST["password"]);
-	$typeInterv = addslashes($_POST["typeInterv"]);
-	$observations = addslashes($_POST["observations"]);
-	$technicien = addslashes($_POST["technicien"]);
+	$dateDepot = htmlentities($_POST["dateDepot"]);
+	$dateRestitution = htmlentities($_POST["dateRestitution"]);
+	$materiel = htmlentities($_POST["materiel"]);
+	$session_user = htmlentities($_POST["session_user"]);
+	$password = htmlentities($_POST["password"]);
+	$typeInterv = htmlentities($_POST["typeInterv"]);
+	$observations = htmlentities($_POST["observations"]);
+	$technicien = htmlentities($_POST["technicien"]);
 	
 	if ( isset($_POST["accessoires"]) ) { $accessoires = $_POST["accessoires"]; $observations = "$observations+$accessoires"; } // Si des accessoires ont été mit (pour les pc portables et autres), une indication sera mise dans la colonne observations
 	
@@ -35,7 +35,7 @@ if ( (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") && (count($_POST) != 0) 
 	else { $dossierMesDocs = "Aucune sauvegarde à effectuer - Accord client OK."; }
 	
 	if ( !empty($_POST['dossiersClt']) )
-	{ $dossiersClt = addslashes($_POST['dossiersClt']); }
+	{ $dossiersClt = htmlentities($_POST['dossiersClt']); }
 	else { $dossiersClt = ""; }
 	
 	if ( (empty($_POST['dossierMesDocs'])) && (empty($_POST['dossiersClt'])) )
@@ -58,15 +58,15 @@ if ( (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") && (count($_POST) != 0) 
 // AJOUT + IMPRESSION DE LA DEMANDE SI REDIRECTION DEPUIS FICHE CLIENT
 else if ( (isset($_POST["client-connu"])) && ($_POST["client-connu"]=="1") && (count($_POST) != 0) )
 {
-	$codeClient = $_POST["idClient"];
+	$codeClient = htmlentities($_POST["idClient"]);
 	
-	$nom		= addslashes($_POST["nom"]);
-	$prenom		= addslashes($_POST["prenom"]);
-	$telFixe	= addslashes($_POST["telFixe"]);
-	$telPort	= addslashes($_POST["telPort"]);
-	$adresse 	= addslashes($_POST["adresse"]);
-	$mail		= addslashes($_POST["mail"]);
-	$magasin 	= addslashes($_POST["magasin"]);
+	$nom		= htmlentities($_POST["nom"]);
+	$prenom		= htmlentities($_POST["prenom"]);
+	$telFixe	= htmlentities($_POST["telFixe"]);
+	$telPort	= htmlentities($_POST["telPort"]);
+	$adresse 	= htmlentities($_POST["adresse"]);
+	$mail		= htmlentities($_POST["mail"]);
+	$magasin 	= htmlentities($_POST["magasin"]);
 	
 	if (isset($_POST["rdv"])) { $rdv = "1"; } else { $rdv = "0"; }
 	if (isset($_POST["pro"])) { $pro = "1"; } else { $pro = "0"; }
@@ -75,14 +75,14 @@ else if ( (isset($_POST["client-connu"])) && ($_POST["client-connu"]=="1") && (c
 	$sql = mysql_query ( $maj_client ) or die( mysql_error() ) ;
 	
 	// PRE-INTERVENTION
-	$dateDepot = $_POST["dateDepot"];
-	$dateRestitution = $_POST["dateRestitution"];
-	$materiel = addslashes($_POST["materiel"]);
-	$session_user = addslashes($_POST["session_user"]);
-	$password = addslashes($_POST["password"]);
-	$typeInterv = addslashes($_POST["typeInterv"]);
-	$observations = addslashes($_POST["observations"]);
-	$technicien = addslashes($_POST["technicien"]);
+	$dateDepot = htmlentities($_POST["dateDepot"]);
+	$dateRestitution = htmlentities($_POST["dateRestitution"]);
+	$materiel = htmlentities($_POST["materiel"]);
+	$session_user = htmlentities($_POST["session_user"]);
+	$password = htmlentities($_POST["password"]);
+	$typeInterv = htmlentities($_POST["typeInterv"]);
+	$observations = htmlentities($_POST["observations"]);
+	$technicien = htmlentities($_POST["technicien"]);
 	
 	if ( isset($_POST["accessoires"]) ) { $accessoires = $_POST["accessoires"]; $observations = "$observations+$accessoires"; } // Si des accessoires ont été mit (pour les pc portables et autres), une indication sera mise dans la colonne observations
 	
@@ -91,7 +91,7 @@ else if ( (isset($_POST["client-connu"])) && ($_POST["client-connu"]=="1") && (c
 	else { $dossierMesDocs = "Aucune sauvegarde à effectuer - Accord client OK."; }
 	
 	if ( !empty($_POST['dossiersClt']) )
-	{ $dossiersClt = addslashes($_POST['dossiersClt']); }
+	{ $dossiersClt = htmlentities($_POST['dossiersClt']); }
 	else { $dossiersClt = ""; }
 	
 	if ( (empty($_POST['dossierMesDocs'])) && (empty($_POST['dossiersClt'])) )
@@ -113,7 +113,7 @@ else if ( (isset($_POST["client-connu"])) && ($_POST["client-connu"]=="1") && (c
 // -- CONDITION : impression de la demande à partir du tableau d'affichage des demandes
 else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && (count($_POST) != 0) )
 {
-	$codeClient = $_POST["codeClient"];
+	$codeClient = htmlentities($_POST["codeClient"]);
 
 	$client = "SELECT * FROM tclients WHERE id = '$codeClient';" ;
 	$resultat1 = mysql_query ( $client ) or die ( mysql_error() ) ;
@@ -121,7 +121,7 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 	if (isset($_POST["rdv"])) { $rdv = "1"; } else { $rdv = "0"; }
 	if (isset($_POST["pro"])) { $pro = "1"; } else { $pro = "0"; }
 
-	$idInterv = $_POST["idPreinterv"];
+	$idInterv = htmlentities($_POST["idPreinterv"]);
 
 	$interv = "SELECT * FROM tpreinterv WHERE id = '$idInterv';" ;
 	$resultat = mysql_query ( $interv ) or die ( mysql_error() ) ;
@@ -129,7 +129,7 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 ?>
 
 <body onLoad="window.print()">
-	<center><h1>INTERVENTION à effectuer</h1></center>
+	<center><h1>Demande d'intervention</h1></center>
 
 	<?php
 		// Tant qu'il y a des interventions & des clients à côté... :
@@ -165,7 +165,9 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 				<tr>
 					<td>
 						Dépôt du matériel le : <?php echo $ligne['dateDepot'];?><br />
-						Date de restitution : <font size='5'><b><?php echo $ligne['dateRestitution'];?></b></font>
+					</td>
+					<td>
+						Date de restitution : <font size='6'><b><?php echo $ligne['dateRestitution'];?></b></font>
 					</td>
 				</tr>
 
@@ -205,7 +207,7 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 <hr />
 
 <table border="0" rules="all">
-	<tr> <th></th> <td>Analyse externe</th> <td>Analyse interne</th> <th align="center" colspan="2">Informations complémentaires</th></tr>
+	<tr> <th></th> <td>Analyse <b>externe</b></th> <td>Analyse <b>interne</b></th> <th align="center" colspan="2">Informations complémentaires</th></tr>
 	<tr>
 		<td>Virus</td> <td><input type="text" style="width:65px; height:35px;" /></td> <td></td> <td><input type="checkbox" />ADWC &nbsp; <input type="checkbox" />RK &nbsp; <input type="checkbox" />CC</td>
 	</tr>
@@ -216,8 +218,8 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 		<td>Spywares</td> <td></td> <td><input type="text" style="width:65px; height:35px;" /></td> <td><input type="checkbox" /> Scan redémarrage effectué</td>
 	</tr>
 	<tr> <td colspan="4">
-	<input type="checkbox" />Suppression de l'antivirus client =<br />
-		<input type="checkbox" />Install+MàJ Antivirus &nbsp; <input type="checkbox" />Install+MàJ Spybot</td>
+	<input type="checkbox" />Suppression de l'antivirus client =<br /><br />
+		<input type="checkbox" />Install Antivirus <input type="checkbox" /> MàJ Antivirus  <input type="checkbox" />Install Spybot <input type="checkbox" /> MàJ Spybot</td>
 	</tr>
 </table>
 

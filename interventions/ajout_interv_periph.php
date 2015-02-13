@@ -1,9 +1,9 @@
 ﻿<?php include_once ("../admin/auth_db.php");
 
 // Récupération des données
-$codePreInterv = $_POST["idPreinterv"];
-$codeClient = $_POST["codeClient"];
-$dateInterv = $_POST["dateInterv"];
+$codePreInterv = htmlentities($_POST["idPreinterv"]);
+$codeClient = htmlentities($_POST["codeClient"]);
+$dateInterv = htmlentities($_POST["dateInterv"]);
 
 $strLogiciels = " ";
 $strMaj = " ";
@@ -17,35 +17,35 @@ $antivirus = " ";
 $malwares = " ";
 $spywares = " ";
 
-$intervention = $_POST["intervention"];
-$materiel = $_POST["materiel"];
+$intervention = htmlentities($_POST["intervention"]);
+$materiel = htmlentities($_POST["materiel"]);
 
-$observation = addslashes($_POST["observation"]);
+$observation = htmlentities($_POST["observation"]);
 
-$technicien = $_POST["technicien"];
+$technicien = htmlentities($_POST["technicien"]);
 
 if (isset($_POST["cout-interv"])) 
-	{ $prix = $_POST["cout-interv"]; } 
+	{ $prix = htmlentities($_POST["cout-interv"]); } 
 else if ( (isset($_POST["mo-atelier"])) && ($_POST["mo-atelier"] == "1") ) 
-	{ $prix = $_POST["cout-mo"]; $mo_atelier = "1"; }
+	{ $prix = htmlentities($_POST["cout-mo"]); $mo_atelier = "1"; }
 else { $prix = ""; }
 
 
 	if (isset($_POST["coutcomp1"]))
-	{$coutcomp1 = $_POST["prix-coutcomp1"];
-	$namecoutcomp1 = $_POST["name-coutcomp1"];}
+	{$coutcomp1 = htmlentities($_POST["prix-coutcomp1"]);
+	$namecoutcomp1 = htmlentities($_POST["name-coutcomp1"]);}
 
 	if (isset($_POST["coutcomp2"]))
-	{$coutcomp2 = $_POST["prix-coutcomp2"];
-	$namecoutcomp2 = $_POST["name-coutcomp2"];}
+	{$coutcomp2 = htmlentities($_POST["prix-coutcomp2"]);
+	$namecoutcomp2 = htmlentities($_POST["name-coutcomp2"]);}
 	
 	if (isset($_POST["coutcomp3"]))
-	{$coutcomp3 = $_POST["prix-coutcomp3"];
-	$namecoutcomp3 = $_POST["name-coutcomp3"];}
+	{$coutcomp3 = htmlentities($_POST["prix-coutcomp3"]);
+	$namecoutcomp3 = htmlentities($_POST["name-coutcomp3"]);}
 	
 	if (isset($_POST["coutcomp4"]))
-	{$coutcomp4 = $_POST["prix-coutcomp4"];
-	$namecoutcomp4 = $_POST["name-coutcomp4"];}
+	{$coutcomp4 = htmlentities($_POST["prix-coutcomp4"]);
+	$namecoutcomp4 = htmlentities($_POST["name-coutcomp4"]);}
 
 	if ( (isset($coutcomp1)) && (empty($coutcomp2)) && (empty($coutcomp3)) && (empty($coutcomp4)) )
 	{$cout_complementaire = $coutcomp1." € --> ".$namecoutcomp1;}
@@ -57,7 +57,7 @@ else { $prix = ""; }
 	{$cout_complementaire = $coutcomp1+$coutcomp2+$coutcomp3+$coutcomp4." € --> ".$namecoutcomp1." + ".$namecoutcomp2." + ".$namecoutcomp3." + ".$namecoutcomp4;}
 	else {$cout_complementaire = "";}
 	
-$statut = $_POST["statut"];
+$statut = htmlentities($_POST["statut"]);
 
 $session = " ";
 $password = " ";
@@ -75,7 +75,7 @@ $del = "DELETE FROM tpreinterv WHERE id='$codePreInterv';";
 $req = mysql_query ( $del ) or die ( mysql_error() ) ;
 
 // MàJ magasin (emplacement du PC)
-$magasin = $_POST["magasin"];
+$magasin = htmlentities($_POST["magasin"]);
 $update1 = "UPDATE tclients SET magasin='$magasin' WHERE id='$codeClient' ;";
 $sql1 = mysql_query ( $update1 ) or die ( mysql_error() ) ;
 ?>
