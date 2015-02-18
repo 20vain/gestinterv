@@ -75,67 +75,57 @@ else { } // Si il n'y a pas de suppression, on ne fait rien
 
 <?php // TITRES sur la page d'accueil
 switch ($page) {
-	case 'accueil': echo "<div class='page-header well'> <h1>Accueil - Gestion des interventions</h1> </div>"; break;
+	case 'accueil': $titre="Accueil - Gestion des interventions"; break;
 	
 	// CLIENTS
-	case 'clients':	echo "<div class='page-header well'> <h1>Gestion de la clientèle</h1> </div>"; break;
-	
-	case 'listing_clients':	echo "<div class='page-header well'> <h1>Liste des clients</h1> </div>"; break;
-	
-	case 'ficheclient':	echo "<div class='page-header well'> <h1>Fiche client - Affichage et opérations</h1> </div>"; break;
-	
-	case 'add_client': echo "<div class='page-header well'> <h1>Ajout d'une nouvelle fiche client</h1> </div>"; break;
-	
-	case 'recherche': echo "<div class='page-header well'> <h1>Recherche d'un client<h1> </div>"; break;
-	
-	case 'modifclient': echo "<div class='page-header well'> <h1>Modification d'une fiche client<h1> </div>"; break;
-	
+	case 'clients':	$titre="Gestion de la clientèle"; break;
+	case 'listing_clients':	$titre="Liste des clients"; break;
+	case 'ficheclient':	$titre="Fiche client - Affichage et opérations"; break;
+	case 'add_client': $titre="Ajout d'une nouvelle fiche client"; break;
+	case 'recherche': $titre="Recherche d'un client"; break;
+	case 'modifclient': $titre="Modification d'une fiche client"; break;
 	
 	
 	// INTERVENTION
-	case 'demande': echo "<div class='page-header well'> <h1>Ajouter une demande d'intervention<h1> </div>"; break;
-	
-	case 'ajoutdemande': echo "<div class='page-header well'> <h1>Ajouter une demande d'intervention<h1> </div>"; break;
-	
-	case 'interv': echo "<div class='page-header well'> <h1>Affichage des différents tableaux d'interventions<h1> </div>"; break;
-	
-	case 'transfo-demande':	echo "<div class='page-header well'> <h1>Transformation d'une demande en intervention<h1> </div>"; break;
-	
-	case 'modifinterv':	echo "<div class='page-header well'> <h1>Modification d'une intervention<h1> </div>"; break;
-	
-	
+	case 'demande': $titre="Ajouter une demande d'intervention"; break;
+	case 'ajoutdemande': $titre="Ajouter une demande d'intervention"; break;
+	case 'interv': $titre="Affichage des différents tableaux d'interventions"; break;
+	case 'transfo-demande':	$titre="Transformation d'une demande en intervention"; break;
+	case 'modifinterv':	$titre="Modification d'une intervention"; break;
+
+
 	// ADMINISTRATION	
-	case 'administration': echo "<div class='page-header well'> <h1>Administration générale du système</h1> </div>"; break;
+	case 'administration': $titre="Administration générale du système"; break;
 	
-	default: echo "<div class='page-header well'> <h1>Accueil - Gestion des interventions</h1> </div>"; break;
-	
+	default: $titre="Accueil - Gestion des interventions"; break;
 	}
+	echo "<div class='page-header well'> <h1>". $titre."</h1> </div>";
 ?>
 
-<nav class="navbar navbar-default" role="navigation">
-	<div class="container">
-		<?php 
-		if ($page == "accueil") { echo '<a href="index.php?p=accueil" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>'; }
-			else { echo '<a href="index.php?p=accueil" class="btn btn-default"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>'; } 
-		
-		if ( ($page == "clients") OR ($page == "listing_clients") OR ($page == "add_client") OR ($page == "ficheclient") OR ($page == "modifclient") ) { echo '<a href="index.php?p=clients" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <b>Gestion clientèle</b></a>'; } 
-			else { echo '<a href="index.php?p=clients" class="btn btn-default"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <b>Gestion clientèle</b></a>'; }
-		
-		if ( ($page == "demande") OR ($page == "ajoutdemande") ) { echo '<a href="index.php?p=demande" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>'; }
-			else { echo '<a href="index.php?p=demande" class="btn btn-default"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>'; }
-		
-		if ($page == "interv") { echo '<a href="index.php?p=interv" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>'; }
-			else { echo '<a href="index.php?p=interv" class="btn btn-default"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>'; }
-		
-		if ($page == "administration") { echo '<a href="index.php?p=administration" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>'; } 
-			else { echo '<a href="index.php?p=administration" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>'; }
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<?php 
+			if ($page == "accueil") { echo '<a href="index.php?p=accueil" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>'; }
+				else { echo '<a href="index.php?p=accueil" class="btn btn-default"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>'; } 
 			
-		if ($page == "transfo-demande") { echo '<a href="#" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>Transformation demande<br />en intervention</b></a>'; }
-	
-		if ($page == "modifinterv") { echo '<a href="#" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>Modification<br />d\'une demande</b></a>'; }
-		?>
-	</div>
-</nav>
+			if ( ($page == "clients") OR ($page == "listing_clients") OR ($page == "add_client") OR ($page == "ficheclient") OR ($page == "modifclient") ) { echo '<a href="index.php?p=clients" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <b>Gestion clientèle</b></a>'; } 
+				else { echo '<a href="index.php?p=clients" class="btn btn-default"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <b>Gestion clientèle</b></a>'; }
+			
+			if ( ($page == "demande") OR ($page == "ajoutdemande") ) { echo '<a href="index.php?p=demande" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>'; }
+				else { echo '<a href="index.php?p=demande" class="btn btn-default"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>'; }
+			
+			if ($page == "interv") { echo '<a href="index.php?p=interv" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>'; }
+				else { echo '<a href="index.php?p=interv" class="btn btn-default"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>'; }
+			
+			if ($page == "administration") { echo '<a href="index.php?p=administration" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>'; } 
+				else { echo '<a href="index.php?p=administration" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>'; }
+				
+			if ($page == "transfo-demande") { echo '<a href="#" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>Transformation demande<br />en intervention</b></a>'; }
+		
+			if ($page == "modifinterv") { echo '<a href="#" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>Modification<br />d\'une demande</b></a>'; }
+			?>
+		</div>
+	</nav>
 
 </div>
 	
@@ -145,27 +135,18 @@ switch ($page) {
 		
 		// CLIENTS
 		case 'clients':	include_once('clients/index.php'); break;
-		
 		case 'listing_clients':	include_once('clients/listing.php'); break;
-		
 		case 'ficheclient':	include_once('clients/ficheclient.php'); break;
-		
 		case 'add_client': include_once('clients/ajout_client.php'); break;
-		
 		case 'recherche': include_once('admin/recherche.php'); break;
-		
 		case 'modifclient': include_once('clients/modifclient.php'); break;
 		
 		
 		// INTERVENTIONS
 		case 'demande': include_once('demande/formulaire_interv.php'); break;
-		
 		case 'ajoutdemande': include_once('demande/ajout_interv_fiche.php'); break;
-		
 		case 'interv': include_once('interventions/index.php');	break;
-		
 		case 'transfo-demande':	include_once('interventions/transfo_demande_interv.php'); break;
-		
 		case 'modifinterv':	include_once('interventions/index_modif.php');	break;
 		
 
