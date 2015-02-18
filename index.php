@@ -111,7 +111,7 @@ switch ($page) {
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container">
 		<?php 
-		if ($page) == "index") { echo '<a href="index.php?p=index" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>'; }
+		if ($page == "index") { echo '<a href="index.php?p=index" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>'; }
 			else { echo '<a href="index.php?p=index" class="btn btn-default"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>'; } 
 		
 		if ( ($page == "clients") OR ($page == "listing_clients") OR ($page == "add_client") OR ($page == "ficheclient") OR ($page == "modifclient") ) { echo '<a href="index.php?p=clients" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <b>Gestion clientèle</b></a>'; } 
@@ -120,10 +120,10 @@ switch ($page) {
 		if ( ($page == "demande") OR ($page == "ajoutdemande") ) { echo '<a href="index.php?p=demande" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>'; }
 			else { echo '<a href="index.php?p=demande" class="btn btn-default"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>'; }
 		
-		if ($page) == "interv") { echo '<a href="index.php?p=interv" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>'; }
+		if ($page == "interv") { echo '<a href="index.php?p=interv" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>'; }
 			else { echo '<a href="index.php?p=interv" class="btn btn-default"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>'; }
 		
-		if ($page) == "administration") { echo '<a href="index.php?p=administration" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>'; } 
+		if ($page == "administration") { echo '<a href="index.php?p=administration" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>'; } 
 			else { echo '<a href="index.php?p=administration" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>'; }
 			
 		if ($page == "transfo-demande") { echo '<a href="#" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>Transformation demande<br />en intervention</b></a>'; }
@@ -205,7 +205,7 @@ if (htmlentities($_GET["p"]) == "index")
 	
 	<div id="panel">
 		<center>
-		<form class="well" method="POST" style="width:450px;"> <input type="hidden" name="ajout" value="1" />
+		<form class="well" method="POST" style="width:450px;" onSubmit="check();"> <input type="hidden" name="ajout" value="1" />
 		<h3>Ajouter un message</h3>			
 			<b>Date</b><br />
 			<input name="dateNews" type="text" class="form-control calendrier" value="<?php echo date("d/m/Y"); ?>" required /><br /> <!-- Champ de saisie OBLIGATOIRE - DATE -->
