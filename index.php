@@ -54,6 +54,14 @@ else { } // Si il n'y a pas de suppression, on ne fait rien
 	<script src="js/jquery.min.js" type="text/javascript"></script> <!-- jQuery 2.1.3 -->
 	<script src="bootstrap/js/bootstrap.js"></script> <!-- BOOTSTRAP JS 3.3.1 -->
 
+	<script> 
+	$(document).ready(function(){
+		$("#flip").click(function(){
+			$("#panel").slideToggle("slow");
+		});
+	});
+	</script>
+	
 </head>
 
 <body id="top">
@@ -251,7 +259,6 @@ if (htmlentities($_GET["p"]) == "index")
 <div class="container">
 
 	<legend>Informations & messages - Nous sommes aujourd'hui le <b><?php echo date("d/m/y"); ?></b></legend>
-		<a href="#formNews" class="btn btn-lg btn-default">Ecrire un message</a>
 	<br /><br />
 	<fieldset>
 		<table class="table table-striped table-condensed">
@@ -272,28 +279,35 @@ if (htmlentities($_GET["p"]) == "index")
 
 	<hr />
 
-	<center>
-	<form class="well" method="POST" style="width:450px;" id="formNews"> <input type="hidden" name="ajout" value="1" />
-	<h3>Ajouter un mot</h3>			
-		<b>Date</b><br />
-		<input name="dateNews" type="text" class="form-control calendrier" value="<?php echo date("d/m/Y"); ?>" required /><br /> <!-- Champ de saisie OBLIGATOIRE - DATE -->
-
-		<b>Message</b><br />
-		<textarea name="news" class="form-control" style="height:200px;" required ></textarea><br /> <!-- Champ de saisie OBLIGATOIRE - NEWS -->
-
-		<b>Auteur</b><br />
-		<select name="auteur" class="form-control" > <!-- Liste déroulante - Affichage de tous les techniciens -->
-		<?php
-			$sql2 = mysql_query ( "SELECT * FROM ttechniciens;" ) or die ( mysql_error() ) ; // Affichage de tous les techniciens présents dans la BDD - Si pb, affichage d'une erreur
-									
-			while ( $ligne2 = mysql_fetch_array($sql2) ) // Boucle de recherche / affichage
-			{ echo '<option value="'.$ligne2["nom"].'">'.$ligne2["nom"].'</option>'; } // Création d'une ligne à chaque technicien trouvé "dans la boucle"
-		?>
-		</select> <!-- Fin de la liste déroulante -->
-	<br />
-		<button class="btn btn-large btn-success"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><br />Publier</button>
-	</form>
+	<center><div id="flip"><button class="btn btn-lg btn-success"><span class="glyphicon glyphicon-pencil"></span><br />Ecrire un message</button></div><br />
+	<em>Cliquez sur le bouton pour afficher ou cacher le formulaire.</em>
 	</center>
+	<br />
+	
+	<div id="panel">
+		<center>
+		<form class="well" method="POST" style="width:450px;"> <input type="hidden" name="ajout" value="1" />
+		<h3>Ajouter un message</h3>			
+			<b>Date</b><br />
+			<input name="dateNews" type="text" class="form-control calendrier" value="<?php echo date("d/m/Y"); ?>" required /><br /> <!-- Champ de saisie OBLIGATOIRE - DATE -->
+
+			<b>Message</b><br />
+			<textarea name="news" class="form-control" style="height:200px;" required ></textarea><br /> <!-- Champ de saisie OBLIGATOIRE - NEWS -->
+
+			<b>Auteur</b><br />
+			<select name="auteur" class="form-control" > <!-- Liste déroulante - Affichage de tous les techniciens -->
+			<?php
+				$sql2 = mysql_query ( "SELECT * FROM ttechniciens;" ) or die ( mysql_error() ) ; // Affichage de tous les techniciens présents dans la BDD - Si pb, affichage d'une erreur
+										
+				while ( $ligne2 = mysql_fetch_array($sql2) ) // Boucle de recherche / affichage
+				{ echo '<option value="'.$ligne2["nom"].'">'.$ligne2["nom"].'</option>'; } // Création d'une ligne à chaque technicien trouvé "dans la boucle"
+			?>
+			</select> <!-- Fin de la liste déroulante -->
+		<br />
+			<button class="btn btn-large btn-success"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><br />Publier</button>
+		</form>
+		</center>
+	</div>
 
 	<p align="right"><a href="#top" class="btn btn-info"><span class="glyphicon glyphicon-plane"></span> Remonter <span class="glyphicon glyphicon-plane"></span></a></p>
 	
