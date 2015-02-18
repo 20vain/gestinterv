@@ -3,8 +3,12 @@ include_once ("admin/auth_db.php");
 include_once ("admin/functions.php");
 
 // Si l'url ".../index.php?page=" est vide, alors on redirige sur la bonne url.
-$page = htmlentities($_GET["p"]); // Récupération de la variable "page"
-if (empty($page)) { header("Location: index.php?p=accueil"); }
+if (empty($page)) { $page = 'accueil'; }
+
+if ( (!empty($_GET)) ) {
+	$page = htmlentities($_GET["p"]); // Récupération de la variable "page"
+	}
+
 
 
 // --- AJOUT D'UNE NEWS
@@ -111,8 +115,8 @@ switch ($page) {
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container">
 		<?php 
-		if ($page == "index") { echo '<a href="index.php?p=index" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>'; }
-			else { echo '<a href="index.php?p=index" class="btn btn-default"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>'; } 
+		if ($page == "accueil") { echo '<a href="index.php?p=accueil" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>'; }
+			else { echo '<a href="index.php?p=accueil" class="btn btn-default"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>'; } 
 		
 		if ( ($page == "clients") OR ($page == "listing_clients") OR ($page == "add_client") OR ($page == "ficheclient") OR ($page == "modifclient") ) { echo '<a href="index.php?p=clients" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <b>Gestion clientèle</b></a>'; } 
 			else { echo '<a href="index.php?p=clients" class="btn btn-default"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <b>Gestion clientèle</b></a>'; }
@@ -173,7 +177,7 @@ switch ($page) {
 ?>
 
 <?php
-if (htmlentities($_GET["p"]) == "index")
+if ($page == "accueil")
 	{ ?>
 <div class="container">
 
