@@ -3,7 +3,8 @@ include_once ("admin/auth_db.php");
 include_once ("admin/functions.php");
 
 // Si l'url ".../index.php?page=" est vide, alors on redirige sur la bonne url.
-if (empty(htmlentities($_GET["p"]))) { header("Location: index.php?p=index"); }
+$page = htmlentities($_GET["p"]); // Récupération de la variable "page"
+if (empty($page)) { header("Location: index.php?p=accueil"); }
 
 
 // --- AJOUT D'UNE NEWS
@@ -69,68 +70,40 @@ else { } // Si il n'y a pas de suppression, on ne fait rien
 <div class="container">
 
 <?php // TITRES sur la page d'accueil
-switch (htmlentities(htmlentities($_GET['p']))) {
-	case 'accueil':
-		echo "<div class='page-header well'> <h1>Accueil - Gestion des interventions</h1> </div>";
-	break;
+switch ($page) {
+	case 'accueil': echo "<div class='page-header well'> <h1>Accueil - Gestion des interventions</h1> </div>"; break;
 	
 	// CLIENTS
-	case 'clients':
-		echo "<div class='page-header well'> <h1>Gestion de la clientèle</h1> </div>";
-	break;
+	case 'clients':	echo "<div class='page-header well'> <h1>Gestion de la clientèle</h1> </div>"; break;
 	
-	case 'listing_clients':
-		echo "<div class='page-header well'> <h1>Liste des clients</h1> </div>";
-	break;
+	case 'listing_clients':	echo "<div class='page-header well'> <h1>Liste des clients</h1> </div>"; break;
 	
-	case 'ficheclient':
-		echo "<div class='page-header well'> <h1>Fiche client - Affichage et opérations</h1> </div>";
-	break;
+	case 'ficheclient':	echo "<div class='page-header well'> <h1>Fiche client - Affichage et opérations</h1> </div>"; break;
 	
-	case 'add_client':
-		echo "<div class='page-header well'> <h1>Ajout d'une nouvelle fiche client</h1> </div>";
-	break;
+	case 'add_client': echo "<div class='page-header well'> <h1>Ajout d'une nouvelle fiche client</h1> </div>"; break;
 	
-	case 'recherche':
-		echo "<div class='page-header well'> <h1>Recherche d'un client<h1> </div>";
-	break;
+	case 'recherche': echo "<div class='page-header well'> <h1>Recherche d'un client<h1> </div>"; break;
 	
-	case 'modifclient':
-		echo "<div class='page-header well'> <h1>Modification d'une fiche client<h1> </div>";
-	break;
+	case 'modifclient': echo "<div class='page-header well'> <h1>Modification d'une fiche client<h1> </div>"; break;
 	
 	
 	
 	// INTERVENTION
-	case 'demande':
-		echo "<div class='page-header well'> <h1>Ajouter une demande d'intervention<h1> </div>";
-	break;
+	case 'demande': echo "<div class='page-header well'> <h1>Ajouter une demande d'intervention<h1> </div>"; break;
 	
-	case 'ajoutdemande':
-		echo "<div class='page-header well'> <h1>Ajouter une demande d'intervention<h1> </div>";
-	break;
+	case 'ajoutdemande': echo "<div class='page-header well'> <h1>Ajouter une demande d'intervention<h1> </div>"; break;
 	
-	case 'interv':
-		echo "<div class='page-header well'> <h1>Affichage des différents tableaux d'interventions<h1> </div>";
-	break;
+	case 'interv': echo "<div class='page-header well'> <h1>Affichage des différents tableaux d'interventions<h1> </div>"; break;
 	
-	case 'transfo-demande':
-		echo "<div class='page-header well'> <h1>Transformation d'une demande en intervention<h1> </div>";
-	break;
+	case 'transfo-demande':	echo "<div class='page-header well'> <h1>Transformation d'une demande en intervention<h1> </div>"; break;
 	
-	case 'modifinterv':
-		echo "<div class='page-header well'> <h1>Modification d'une intervention<h1> </div>";
-	break;
+	case 'modifinterv':	echo "<div class='page-header well'> <h1>Modification d'une intervention<h1> </div>"; break;
 	
 	
 	// ADMINISTRATION	
-	case 'administration':
-		echo "<div class='page-header well'> <h1>Administration générale du système</h1> </div>";
-	break;
+	case 'administration': echo "<div class='page-header well'> <h1>Administration générale du système</h1> </div>"; break;
 	
-	default:
-		echo "<div class='page-header well'> <h1>Accueil - Gestion des interventions</h1> </div>";
-	break;
+	default: echo "<div class='page-header well'> <h1>Accueil - Gestion des interventions</h1> </div>"; break;
 	
 	}
 ?>
@@ -138,48 +111,24 @@ switch (htmlentities(htmlentities($_GET['p']))) {
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container">
 		<?php 
-		if (htmlentities($_GET["p"]) == "index") { 
-			echo '<a href="index.php?p=index" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>';
-		}
-			else {
-				echo '<a href="index.php?p=index" class="btn btn-default"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>';
-			} 
+		if ($page) == "index") { echo '<a href="index.php?p=index" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>'; }
+			else { echo '<a href="index.php?p=index" class="btn btn-default"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Accueil</b></a>'; } 
 		
-		if ( (htmlentities($_GET["p"]) == "clients") OR (htmlentities($_GET["p"]) == "listing_clients") OR (htmlentities($_GET["p"]) == "add_client") OR (htmlentities($_GET["p"]) == "ficheclient") OR (htmlentities($_GET["p"]) == "modifclient") ) {
-			echo '<a href="index.php?p=clients" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <b>Gestion clientèle</b></a>';
-		} 
-			else { 
-				echo '<a href="index.php?p=clients" class="btn btn-default"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <b>Gestion clientèle</b></a>';
-			}
+		if ( ($page == "clients") OR ($page == "listing_clients") OR ($page == "add_client") OR ($page == "ficheclient") OR ($page == "modifclient") ) { echo '<a href="index.php?p=clients" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <b>Gestion clientèle</b></a>'; } 
+			else { echo '<a href="index.php?p=clients" class="btn btn-default"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <b>Gestion clientèle</b></a>'; }
 		
-		if ( (htmlentities($_GET["p"]) == "demande") OR (htmlentities($_GET["p"]) == "ajoutdemande") ) {
-			echo '<a href="index.php?p=demande" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>';
-		}
-			else {
-				echo '<a href="index.php?p=demande" class="btn btn-default"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>';
-			}
+		if ( ($page == "demande") OR ($page == "ajoutdemande") ) { echo '<a href="index.php?p=demande" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>'; }
+			else { echo '<a href="index.php?p=demande" class="btn btn-default"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <b>Ajouter une demande</b></a>'; }
 		
-		if (htmlentities($_GET["p"]) == "interv") {
-			echo '<a href="index.php?p=interv" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>';
-		}
-			else {
-				echo '<a href="index.php?p=interv" class="btn btn-default"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>';
-			}
+		if ($page) == "interv") { echo '<a href="index.php?p=interv" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>'; }
+			else { echo '<a href="index.php?p=interv" class="btn btn-default"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <b>Liste des interventions</b></a>'; }
 		
-		if (htmlentities($_GET["p"]) == "administration") {
-			echo '<a href="index.php?p=administration" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>';
-		} 
-			else {
-				echo '<a href="index.php?p=administration" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>';
-			}
-		if (htmlentities($_GET["p"]) == "transfo-demande") {
-			echo '<a href="#" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>Transformation demande<br />en intervention</b></a>';
-		}
+		if ($page) == "administration") { echo '<a href="index.php?p=administration" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>'; } 
+			else { echo '<a href="index.php?p=administration" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <b>Administration</b></a>'; }
+			
+		if ($page == "transfo-demande") { echo '<a href="#" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>Transformation demande<br />en intervention</b></a>'; }
 	
-		if (htmlentities($_GET["p"]) == "modifinterv") {
-			echo '<a href="#" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>Modification<br />d\'une demande</b></a>';
-		}
-
+		if ($page == "modifinterv") { echo '<a href="#" class="btn btn-default btn-lg active"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <b>Modification<br />d\'une demande</b></a>'; }
 		?>
 	</div>
 </nav>
@@ -187,69 +136,39 @@ switch (htmlentities(htmlentities($_GET['p']))) {
 </div>
 	
 <?php // CONTENU
-	switch (htmlentities($_GET['p'])) {
-		case 'accueil':
-			include_once('index.php');
-		break;
-		
+	switch ($page) {
+		case 'accueil':	include_once('index.php'); break;
 		
 		// CLIENTS
-		case 'clients':
-			include_once('clients/index.php');
-		break;
+		case 'clients':	include_once('clients/index.php'); break;
 		
-		case 'listing_clients':
-			include_once('clients/listing.php');
-		break;
+		case 'listing_clients':	include_once('clients/listing.php'); break;
 		
-		case 'ficheclient':
-			include_once('clients/ficheclient.php');
-		break;
+		case 'ficheclient':	include_once('clients/ficheclient.php'); break;
 		
-		case 'add_client':
-			include_once('clients/ajout_client.php');
-		break;
+		case 'add_client': include_once('clients/ajout_client.php'); break;
 		
-		case 'recherche':
-			include_once('admin/recherche.php');
-		break;
+		case 'recherche': include_once('admin/recherche.php'); break;
 		
-		case 'modifclient':
-			include_once('clients/modifclient.php');
-		break;
+		case 'modifclient': include_once('clients/modifclient.php'); break;
 		
 		
 		// INTERVENTIONS
-		case 'demande':
-			include_once('demande/formulaire_interv.php');
-		break;
+		case 'demande': include_once('demande/formulaire_interv.php'); break;
 		
-		case 'ajoutdemande':
-			include_once('demande/ajout_interv_fiche.php');
-		break;
+		case 'ajoutdemande': include_once('demande/ajout_interv_fiche.php'); break;
 		
-		case 'interv':
-			include_once('interventions/index.php');
-		break;
+		case 'interv': include_once('interventions/index.php');	break;
 		
-		case 'transfo-demande':
-			include_once('interventions/transfo_demande_interv.php');
-		break;
+		case 'transfo-demande':	include_once('interventions/transfo_demande_interv.php'); break;
 		
-		case 'modifinterv':
-			include_once('interventions/index_modif.php');
-		break;
+		case 'modifinterv':	include_once('interventions/index_modif.php');	break;
 		
-		
-		// ADMINISTRATION PORTAIL
-		case 'administration':
-			include_once('admin/index.php');
-		break;
 
+		// ADMINISTRATION PORTAIL
+		case 'administration': include_once('admin/index.php'); break;
 			
-		default:
-			include_once('index.php');
-		break;
+		default: include_once('index.php');	break;
 		}
 ?>
 
