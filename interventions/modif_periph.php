@@ -14,6 +14,8 @@ $sql = mysql_query ( "SELECT * FROM tclients WHERE id = '$codeClient' ;" ) or di
 	$nom_client = htmlentities($clt['nom']);
 ?>
 
+	<a href="#top" class="btn btn-info" style="position:fixed; margin:5px;"><span class="glyphicon glyphicon-plane"></span><br />Remonter</a>
+
 <div class="container">
 
 	<form action="interventions/update_interv_periph.php" method="POST">

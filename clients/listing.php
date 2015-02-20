@@ -11,6 +11,8 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="3") )
 } // FIN FONCTION SUPPRESSION
 ?>
 
+<a href="#top" class="btn btn-info" style="position:fixed; margin:5px;"><span class="glyphicon glyphicon-plane"></span><br />Remonter</a>
+
 <div class="container">
 
 	<?php include_once ("admin/recherche.php"); ?>
@@ -41,8 +43,6 @@ while ( $ligne = mysql_fetch_array($tab) )
 </table>
 <?php 
 } ?>
-<hr />
-	<p align="right"><a href="#top" class="btn btn-info"><span class="glyphicon glyphicon-plane"></span> Remonter <span class="glyphicon glyphicon-plane"></span></a></p>
 </div>
 
 <center><a href="index.php?p=clients" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-repeat"></span><br />Retour</a></center>

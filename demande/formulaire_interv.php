@@ -1,9 +1,12 @@
+	<a href="#top" class="btn btn-info" style="position:fixed; margin:5px;"><span class="glyphicon glyphicon-plane"></span><br />Remonter</a>
+
 <div class="container">
 
 <?php include_once ("admin/recherche.php"); ?>
 <hr />
 <h1>Ajout d'une demande d'intervention</h1>
 <hr />
+
 <center><h2>Création de la fiche client</h2></center>
 
 <hr />

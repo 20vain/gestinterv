@@ -15,8 +15,8 @@ if ( (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") && (count($_POST) != 0) 
 	if (isset($_POST["pro"])) { $pro = "1"; } else { $pro = "0"; }
 
 	$ajout_nouveau_client = mysql_query( "INSERT INTO tclients VALUES ('','$nom','$prenom','$telFixe','$telPort','$adresse','$mail','$magasin','$rdv','$pro');" ) or die ( mysql_error() ) ;
-	$lastadd_client = mysql_insert_id();
-	$id_client	= $lastadd_client;
+	$lastadd_client = mysql_insert_id(); // Récupération du dernier ID ajouté dans la base de données - table "TCLIENTS"
+	$id_client	= $lastadd_client; // Stockage de l'ID dans une variable
 			
 // PRE-INTERVENTION
 	$dateDepot = htmlentities($_POST["dateDepot"]);

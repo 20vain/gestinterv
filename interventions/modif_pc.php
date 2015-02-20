@@ -15,6 +15,8 @@ $sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idInterve
 
 ?>
 
+	<a href="#top" class="btn btn-info" style="position:fixed; margin:5px;"><span class="glyphicon glyphicon-plane"></span><br />Remonter</a>
+
 <div class="container">
 
 	<form action="interventions/update_interv_pc.php" method="POST">

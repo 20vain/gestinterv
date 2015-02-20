@@ -13,6 +13,8 @@ $codeClient = htmlentities($_POST["codeClient"]);
 
 <hr />
 
+	<a href="#top" class="btn btn-info" style="position:fixed; margin:5px;"><span class="glyphicon glyphicon-plane"></span><br />Remonter</a>
+
 <center>
 	<div class="container">
 

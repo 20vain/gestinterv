@@ -3,6 +3,8 @@ $idPreinterv = $_POST["idPreinterv"];
 $codeClient = $_POST["codeClient"];
 ?>
 
+	<a href="#top" class="btn btn-info" style="position:fixed; margin:5px;"><span class="glyphicon glyphicon-plane"></span><br />Remonter</a>
+
 <div class="container">
 
 	<form action="interventions/ajout_interv_periph.php" method="POST">

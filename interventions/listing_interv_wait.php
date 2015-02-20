@@ -1,9 +1,4 @@
-<head> 
-	<!--<meta http-equiv ="refresh" content="120;URL=index.php?p=interv">--> <!-- Rafraichissement automatique de la page toutes les deux minutes -->
-</head>
-
-<?php	
-// --- SUPPRESSION DEMANDE
+<?php // --- SUPPRESSION DEMANDE
 if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="22") )
 {
 	$id	= $_POST["idInterv"];	
@@ -29,7 +24,8 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="22") )
 	$query4 = mysql_query ( $interv_autres ) or die ( mysql_error() ) ;
 	$totalQuery4 = mysql_num_rows($query4);
 	
-	echo "<tr> <th style='text-align:center; vertical-align:middle;'> DATE </th> <th style='text-align:center; vertical-align:middle;'> CLIENT </th> <th style='text-align:center; vertical-align:middle;'>MATERIEL</th> <th style='text-align:center; vertical-align:middle;'> INTERVENTION </th> <th style='text-align:center; vertical-align:middle;'> MAGASIN </th> <th style='text-align:center; vertical-align:middle;'>OBSERVATIONS</th> <th style='text-align:center; vertical-align:middle;'> COÛT </th> <th style='text-align:center; vertical-align:middle;'> TECHNICIEN </th> <th colspan='3'  style='text-align:center; vertical-align:middle;'><center>ADMINISTRATION</center></th> </tr>";		
+	echo "<tr><td colspan='11' style='text-align:center; vertical-align:middle';><h4>Nombre total d'interventions en attente = ".$totalQuery4."</h4></td></tr>";
+	echo "<tr style='background-color:#C8C8C8;'> <th style='text-align:center; vertical-align:middle;'> DATE </th> <th style='text-align:center; vertical-align:middle;'> CLIENT </th> <th style='text-align:center; vertical-align:middle;'>MATERIEL</th> <th style='text-align:center; vertical-align:middle;'> INTERVENTION </th> <th style='text-align:center; vertical-align:middle;'> MAGASIN </th> <th style='text-align:center; vertical-align:middle;'>OBSERVATIONS</th> <th style='text-align:center; vertical-align:middle;'> COÛT </th> <th style='text-align:center; vertical-align:middle;'> TECHNICIEN </th> <th colspan='3'  style='text-align:center; vertical-align:middle;'><center>ADMINISTRATION</center></th> </tr>";		
 		
 		while (  ($ligne0 = mysql_fetch_array($query4)) )
 		{
