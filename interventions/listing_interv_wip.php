@@ -66,7 +66,7 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="21") )
 			echo "<td style='text-align:justify; vertical-align:middle;'>" . nl2br($ligne0['observations']) . "</td>" ;
 			echo "<td style='text-align:center; vertical-align:middle;'>" . $ligne0['prix'] . " €</td>" ;
 			echo "<td style='text-align:center; vertical-align:middle;'>" . $ligne0['technicien'] . "</td>" ;
-			echo "<td style='text-align:center; vertical-align:middle;'> <form action='index.php?p=modifinterv' method='post'> <input type='hidden' name='id' value='" . $ligne0["id"] . "'> <input type='hidden' name='codeClient' value='" . $ligne0["codeClient"] . "'> <button class='btn btn-primary'><span class='glyphicon glyphicon-wrench' aria-hidden='true'></span> Modification<br />intervention</button> </form></td>";
+			echo "<td style='text-align:center; vertical-align:middle;'> <form action='index.php?p=modifinterv' method='post'> <input type='hidden' name='id' value='" . $ligne0["id"] . "'> <input type='hidden' name='codeClient' value='" . $ligne0["codeClient"] . "'> <button class='btn btn-primary'><span class='glyphicon glyphicon-wrench' aria-hidden='true'></span><br />Modification<br />intervention</button> </form></td>";
 			
 			$materiel = $ligne0['materiel']	;
 			switch ($materiel) { // Selon le matériel qui a été sélectionné, la page ne sera pas la même.
