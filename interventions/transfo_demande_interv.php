@@ -1,6 +1,6 @@
-<?php
-$id = htmlentities($_POST["idPreinterv"]); // Code PRE-INTERVENTION
-$codeClient = htmlentities($_POST["codeClient"]);
+﻿<?php
+$id = $_POST["idPreinterv"]; // Code PRE-INTERVENTION
+$codeClient = $_POST["codeClient"];
 
 // Affichage de la pré-intervention voulue
 	$preInterv = "SELECT * FROM tpreinterv WHERE id='$id';" ;
@@ -31,18 +31,18 @@ $codeClient = htmlentities($_POST["codeClient"]);
 				<tr>
 					<td><u>MAGASIN</u></td>
 					<?php
-					if ( $ligne['magasin'] == "Saint-James" ) { echo "<td style='background-color:#FF9900'><b>" . htmlentities($ligne['magasin']) . "</b></td>" ; }
-					else if ( $ligne['magasin'] == "Avranches" ) { echo "<td><b>" . htmlentities($ligne['magasin']) . "</b></td>" ; }
+					if ( $ligne['magasin'] == "Saint-James" ) { echo "<td style='background-color:#FF9900'><b>" . $ligne['magasin']. "</b></td>" ; }
+					else if ( $ligne['magasin'] == "Avranches" ) { echo "<td><b>" . $ligne['magasin']. "</b></td>" ; }
 					?>	
 				</tr>
 				<tr>
 					<td>Adresse postale</td>
-					<td><?php echo htmlentities($ligne['adresse']);?></td>
+					<td><?php echo $ligne['adresse'];?></td>
 				</tr>
 				<?php if ( !empty($ligne["mail"]) ) { ?>
 				<tr>
 					<td>Adresse e-mail</td>
-					<td><em><?php echo htmlentities($ligne['mail']); ?></em></td>
+					<td><em><?php echo $ligne['mail']; ?></em></td>
 				</tr>
 				<?php } // FIN DE CONDITION POUR L'AFFICHAGE DE L'ADRESSE EMAIL ?>
 			</table>
@@ -54,12 +54,12 @@ $codeClient = htmlentities($_POST["codeClient"]);
 				while ($preInterv = mysql_fetch_array($Resultat))
 				{
 					echo "<tr>" ;
-					echo "<td style='text-align:center; vertical-align:middle;'><b>" . htmlentities($preInterv['dateRestitution']) . "</b></td>" ;
-					echo "<td style='text-align:center; vertical-align:middle;'>" . htmlentities($preInterv['materiel']) . "</td>" ;
-					echo "<td style='text-align:center; vertical-align:middle;'><b>" . htmlentities($preInterv['typeInterv']) . "</b></td>" ;
-					echo "<td>" . nl2br(htmlentities($preInterv['observations'])) . "</td>" ;
-					echo "<td style='text-align:center; vertical-align:middle;'>" . htmlentities($preInterv['dossierMesDocs']) . "</td>" ;
-					echo "<td style='text-align:center; vertical-align:middle;'>" . htmlentities($preInterv['dossierClt']) . "</td>" ;
+					echo "<td style='text-align:center; vertical-align:middle;'><b>" . $preInterv['dateRestitution']. "</b></td>" ;
+					echo "<td style='text-align:center; vertical-align:middle;'>" . $preInterv['materiel']. "</td>" ;
+					echo "<td style='text-align:center; vertical-align:middle;'><b>" . $preInterv['typeInterv']. "</b></td>" ;
+					echo "<td>" . nl2br($preInterv['observations']). "</td>" ;
+					echo "<td style='text-align:center; vertical-align:middle;'>" . $preInterv['dossierMesDocs']. "</td>" ;
+					echo "<td style='text-align:center; vertical-align:middle;'>" . $preInterv['dossierClt']. "</td>" ;
 					echo "</tr>" ;
 
 				$materiel = $preInterv['materiel']; // Variable reprenant le nom du matériel pour le switch
@@ -105,7 +105,7 @@ $codeClient = htmlentities($_POST["codeClient"]);
 		include_once ('interv_periph.php');
 	break;
 		
-	case 'AUTRE':
+	case 'AUTRES':
 		include_once ('interv_periph.php');
 	break;
 	}

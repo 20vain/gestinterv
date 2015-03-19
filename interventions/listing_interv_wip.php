@@ -1,4 +1,4 @@
-<?php // --- SUPPRESSION DEMANDE
+﻿<?php // --- SUPPRESSION DEMANDE
 if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="21") )
 {
 	$id	= htmlentities($_POST["idInterv"]);	
@@ -37,13 +37,13 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="21") )
 				$clt = mysql_fetch_array($Resultat1);
 			
 			// RDV - Date de restitution
-			if ( $clt['rdv'] == "1" ) { echo "<td style='background-color:#9b59b6; text-align:center; color:white; vertical-align:middle;'><b>". htmlentities($ligne0['dateInterv']) ."</b></td>" ; }
-			else echo "<td style='text-align:center; vertical-align:middle;'><b>" . htmlentities($ligne0['dateInterv']) . "</b></td>" ;
+			if ( $clt['rdv'] == "1" ) { echo "<td style='background-color:#9b59b6; text-align:center; color:white; vertical-align:middle;'><b>". $ligne0['dateInterv'] ."</b></td>" ; }
+			else echo "<td style='text-align:center; vertical-align:middle;'><b>" . $ligne0['dateInterv'] . "</b></td>" ;
 			
 			// Emplacement du PC / client (Avranches ou Saint-James) -- COLORISATION
-			if ( $clt['magasin'] == "Avranches" ) { echo "<td style='text-align:center; vertical-align:middle;'><b>" . htmlentities($clt['nom']) ."<br />". htmlentities($clt['prenom']) . "</b></td>" ; }
-			else if ( $clt['magasin'] == "Saint-James" ) { echo "<td  style='background-color:#FF9900; text-align:center; vertical-align:middle;'><b>" . htmlentities($clt['nom']) . "</b></td>" ; }
-			else { echo "<td style='text-align:center; vertical-align:middle;'><b>" . htmlentities($clt['nom']) . "</b></td>" ; }
+			if ( $clt['magasin'] == "Avranches" ) { echo "<td style='text-align:center; vertical-align:middle;'><b>" . $clt['nom'] ."<br />". $clt['prenom'] . "</b></td>" ; }
+			else if ( $clt['magasin'] == "Saint-James" ) { echo "<td  style='background-color:#FF9900; text-align:center; vertical-align:middle;'><b>" . $clt['nom'] . "</b></td>" ; }
+			else { echo "<td style='text-align:center; vertical-align:middle;'><b>" . $clt['nom'] . "</b></td>" ; }
 			
 			// Type de matériel -- COLORISATION
 			if ( $ligne0['materiel'] == "PC FIXE" ) { echo "<td  style='background-color:#FFFF71; text-align:center; vertical-align:middle;'><b>" . $ligne0['materiel'] . "</b></td>" ; }

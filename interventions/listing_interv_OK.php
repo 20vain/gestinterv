@@ -1,4 +1,4 @@
-<?php // --- SUPPRESSION DEMANDE
+﻿<?php // --- SUPPRESSION DEMANDE
 if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="22") )
 {
 	$id	= $_POST["idInterv"];	

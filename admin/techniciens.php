@@ -61,7 +61,7 @@ else { }
 ?>
 
 
-<center><h2>Liste des<br />technicien</h2></center>
+<center><h2>Liste des<br />techniciens</h2></center>
 <table class="table table-condensed table-striped table-hover">
 <tr> <th style="text-align:center;">Nom</th> <th colspan="2" style="text-align:center;">Opération</th> </tr>
 <?php 

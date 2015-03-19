@@ -1,7 +1,7 @@
 <?php // --- SUPPRESSION D'UN CLIENT
 if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="3") )
 {
-	$id = htmlentities($_POST["id"]);
+	$id = $_POST["id"];
 	delete($id,"tclients");
 ?>
 	<div class="alert alert-warning">
@@ -28,10 +28,10 @@ while ( $ligne = mysql_fetch_array($tab) )
 <table class='table table-hover table-condensed'>
 	<?php if ( $ligne['magasin'] == "Saint-James" ) { echo '<tr> <td colspan="6" style="background-color:#FF9900";><center><h3><b>['.$ligne['nom'].' '.$ligne['prenom'].']</b></h3></center></td> </tr>'; }
 			else { echo '<tr> <td colspan="6"><center><h3><b>['.$ligne['nom'].' '.$ligne['prenom'].']</b></h3></center></td> </tr>'; } ?>
-	<tr> <th>N° de TÉLÉPHONE</th> <th>ADRESSES<br />(POSTALE & E-MAIL)</th> <th>MAGASIN</th> <th colspan="3"></th> </tr>
+
 	<tr>
-		<td style='text-align:left; vertical-align:middle;'><em>Portable</em> = <b><?php echo $ligne['telPort']; ?></b><br /><em>Tél. Fixe</em> = <b><?php echo $ligne['telFixe']; ?></b></td>
-		<td style='text-align:left; vertical-align:middle;'><em>Adresse postale</em> = <?php echo $ligne['adresse']; ?><br /><em>Adresse e-mail</em> = <?php echo $ligne['mail']; ?></td>
+		<?php if ($ligne["telPort"] !=0) {?><td style='text-align:left; vertical-align:middle;'><em>Portable</em> = <b><?php echo $ligne['telPort']; ?></b><?php }?><br /><?php if ($ligne["telFixe"] !=0) {?><em>Tél. Fixe</em> = <b><?php echo $ligne['telFixe']; ?></b></td><?php }?>
+		<?php if ($ligne["adresse"] !=0) {?><td style='text-align:left; vertical-align:middle;'><em>Adresse postale</em> = <?php echo $ligne['adresse']; ?><?php }?><br /><?php if ($ligne["mail"] !=0) {?><em>Adresse e-mail</em> = <?php echo $ligne['mail']; ?></td><?php }?>
 
 		<?php if ( $ligne['magasin'] == "Saint-James" ) { echo "<td style='background-color:#FF9900; text-align:center; vertical-align:middle;'>" . $ligne['magasin']. "</td>" ; }
 				else { echo "<td style='text-align:center; vertical-align:middle;'>" . $ligne['magasin'] . "</td>" ; } ?>

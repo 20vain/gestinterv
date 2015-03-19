@@ -14,8 +14,8 @@ if ( (!empty($_GET)) ) {
 // --- AJOUT D'UNE NEWS
 if ( (!empty($_POST)) && (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") )
 {
-	$news 		= htmlentities($_POST["news"]); // Récupération de la news + Sécurité caractères spéciaux
-	$dateNews 	= htmlentities($_POST["dateNews"]); // Récupération de la date
+	$news 		= addslashes($_POST["news"]); // Récupération de la news + Sécurité caractères spéciaux
+	$dateNews 	= ($_POST["dateNews"]); // Récupération de la date
 	$auteur 	= htmlentities($_POST["auteur"]); // Récupération auteur de la news + Sécurité caractères spéciaux
 
 	$add 		= mysql_query ( "INSERT INTO tnews VALUES ('','$news','$dateNews','$auteur');" ) or die ( mysql_error() ) ; // Insertion des données dans la BDD - Si pb, affichage d'une erreur

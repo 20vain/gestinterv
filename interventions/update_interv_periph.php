@@ -3,9 +3,9 @@ include('../admin/auth_db.php');
 
 
 // Récupération des données
-$codeIntervention = htmlentities($_POST["id"]);
-$codeClient = htmlentities($_POST["codeClient"]);
-$dateInterv = htmlentities($_POST["dateInterv"]);
+$codeIntervention = $_POST["id"];
+$codeClient = $_POST["codeClient"];
+$dateInterv = $_POST["dateInterv"];
 
 
 $strLogiciels = " ";
@@ -21,30 +21,30 @@ $malwares = " ";
 $spywares = " ";
 
 
-$intervention = htmlentities($_POST["intervention"]);
-$materiel = htmlentities($_POST["materiel"]);
+$intervention = $_POST["intervention"];
+$materiel = $_POST["materiel"];
 
-$observation = htmlentities($_POST["observation"]);
+$observation = $_POST["observation"];
 
-$technicien = htmlentities($_POST["technicien"]);
+$technicien = $_POST["technicien"];
 
 if (isset($_POST["cout-interv"])) 
-	{ $prix = htmlentities($_POST["cout-interv"]); } 
+	{ $prix = $_POST["cout-interv"]; } 
 else if ( (isset($_POST["mo-atelier"])) && ($_POST["mo-atelier"] == "1") ) 
-	{ $prix = htmlentities($_POST["cout-mo"]); $mo_atelier = "1"; }
+	{ $prix = $_POST["cout-mo"]; $mo_atelier = "1"; }
 else { $prix = ""; }
 
 if (isset($_POST["coutcomp1"]))
-	{$coutcomp1 = htmlentities($_POST["prix-coutcomp1"]);
-	$namecoutcomp1 = htmlentities($_POST["name-coutcomp1"]);}
+	{$coutcomp1 = $_POST["prix-coutcomp1"];
+	$namecoutcomp1 = $_POST["name-coutcomp1"];}
 
 	if (isset($_POST["coutcomp2"]))
-	{$coutcomp2 = htmlentities($_POST["prix-coutcomp2"]);
-	$namecoutcomp2 = htmlentities($_POST["name-coutcomp2"]);}
+	{$coutcomp2 = $_POST["prix-coutcomp2"];
+	$namecoutcomp2 = $_POST["name-coutcomp2"];}
 	
 	if (isset($_POST["coutcomp3"]))
-	{$coutcomp3 = htmlentities($_POST["prix-coutcomp3"]);
-	$namecoutcomp3 = htmlentities($_POST["name-coutcomp3"]);}
+	{$coutcomp3 = $_POST["prix-coutcomp3"];
+	$namecoutcomp3 = $_POST["name-coutcomp3"];}
 
 	if ( (isset($coutcomp1)) && (empty($coutcomp2)) && (empty($coutcomp3)) )
 	{$cout_complementaire = $coutcomp1." € --> ".$namecoutcomp1;}

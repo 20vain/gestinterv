@@ -1,16 +1,11 @@
-<?php
-// ID Intervention
-$id = $_POST["id"];
+﻿<?php
+$id = $_POST["id"]; // ID Intervention
 $codeClient = $_POST["codeClient"];
 	
 // Affichage du client à modifier à partir de son code client
 $interv = mysql_query ( "SELECT * FROM tinterventions WHERE id='$id';" ) or die ( mysql_error() );
 $ligne = mysql_fetch_array($interv);
-$materiel = $ligne["materiel"];
-
-// Affiche du nom dans l'onglet de la fiche
-	$nom_client = mysql_query ( "SELECT * FROM tclients WHERE id = '$codeClient' ;" ) or die ( mysql_error() ) ;
-	$ligne1 = mysql_fetch_array($nom_client);
+$materiel = $ligne["materiel"];	
 
 switch ($materiel) { // Selon le matériel qui a été sélectionné, la page ne sera pas la même.
 	case "PC FIXE":

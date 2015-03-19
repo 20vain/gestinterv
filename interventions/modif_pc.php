@@ -1,17 +1,17 @@
-<?php // Récupération variables d'identification pour redirections
-$idIntervention = htmlentities($_POST["id"]);
-$codeClient = htmlentities($_POST["codeClient"]);
+﻿<?php // Récupération variables d'identification pour redirections
+$idIntervention = $_POST["id"];
+$codeClient = $_POST["codeClient"];
 
 // intervention
 $sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idIntervention' ;" ) or die ( mysql_error() ) ;		
 	$ligne = mysql_fetch_array($sql_interv);
  
 // Affiche de la fiche client
-	$codeClient = htmlentities($_POST["codeClient"]);
+	$codeClient = $_POST["codeClient"];
 	
 	$sql = mysql_query ( "SELECT * FROM tclients WHERE id = '$codeClient' ;" ) or die ( mysql_error() ) ;		
 	$clt = mysql_fetch_array($sql);
-	$nom_client = htmlentities($clt['nom']);
+	$nom_client = $clt['nom'];
 
 ?>
 
@@ -21,38 +21,38 @@ $sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idInterve
 
 	<form action="interventions/update_interv_pc.php" method="POST">
 	
-	<input type="hidden" name="idIntervention" value="<?php echo htmlentities($idIntervention); ?>" /> <!-- Code intervention -->
-	<input type="hidden" name="codeClient" value="<?php echo htmlentities($codeClient); ?>" /> <!-- Code Client -->
+	<input type="hidden" name="idIntervention" value="<?php echo $idIntervention; ?>" /> <!-- Code intervention -->
+	<input type="hidden" name="codeClient" value="<?php echo $codeClient; ?>" /> <!-- Code Client -->
 
-	<center><h1>Modification de l'intervention n°<?php echo htmlentities($idIntervention); ?></h1></center>
+	<center><h1>Modification de l'intervention n°<?php echo $idIntervention; ?></h1></center>
 	
 		<fieldset class="well">
 		<center>
-		<h2>Client [<u><?php echo htmlentities($clt['nom']).' '.htmlentities($clt['prenom']); ?></u>]</h2>
+		<h2>Client [<u><?php echo $clt['nom'].' '.$clt['prenom']; ?></u>]</h2>
 			<table class="table table-condensed" style="width:500px;">
 				<tr>
 					<td>Téléphone <u>PORTABLE</u></td>
-					<td><b><?php echo htmlentities($clt['telPort']); ?></b></td>
+					<td><b><?php echo $clt['telPort']; ?></b></td>
 				</tr>
 				<tr>
 					<td>Téléphone <u>FIXE</u></td>
-					<td><?php echo htmlentities($clt['telFixe']); ?></td>
+					<td><?php echo $clt['telFixe']; ?></td>
 				</tr>
 				<tr>
 					<td><u>MAGASIN</u></td>
 					<?php
-					if ( $clt['magasin'] == "Saint-James" ) { echo "<td style='background-color:#FF9900'><b>" . htmlentities($clt['magasin']) . "</b></td>" ; }
-					else if ( $clt['magasin'] == "Avranches" ) { echo "<td><b>" . htmlentities($clt['magasin']) . "</b></td>" ; }
+					if ( $clt['magasin'] == "Saint-James" ) { echo "<td style='background-color:#FF9900'><b>" . $clt['magasin'] . "</b></td>" ; }
+					else if ( $clt['magasin'] == "Avranches" ) { echo "<td><b>" . $clt['magasin'] . "</b></td>" ; }
 					?>	
 				</tr>
 				<tr>
 					<td>Adresse postale</td>
-					<td><?php echo htmlentities($clt['adresse']);?></td>
+					<td><?php echo $clt['adresse'];?></td>
 				</tr>
 				<?php if ( !empty($clt["mail"]) ) { ?>
 				<tr>
 					<td>Adresse e-mail</td>
-					<td><em><?php htmlentities(echo $clt['mail']); ?></em></td>
+					<td><em><?php echo $clt['mail']; ?></em></td>
 				</tr>
 				<?php } // FIN DE CONDITION POUR L'AFFICHAGE DE L'ADRESSE EMAIL ?>
 			</table>
@@ -293,7 +293,7 @@ $sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idInterve
 					</td>
 					
 					<td style='text-align:center; vertical-align:middle;'><b>Poids total de la sauvegarde (en Go) :</b><br />
-						<input type="text" name="poidsSauvegarde" class="form-control" value="<?php echo htmlentities($ligne['poidsSauvegarde']); ?>" /> 
+						<input type="text" name="poidsSauvegarde" class="form-control" value="<?php echo $ligne['poidsSauvegarde']; ?>" /> 
 					</td>
 				</tr>
 			</table>
@@ -334,7 +334,7 @@ $sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idInterve
 				<tr>
 					<td colspan="3">
 						Logiciels précédements installés / mis à jour :<br />
-						<b><?php echo htmlentities($ligne ["logiciels"]); ?></b>
+						<b><?php echo $ligne ["logiciels"]; ?></b>
 						<hr />
 					</td>
 				</tr>
@@ -347,19 +347,19 @@ $sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idInterve
 					{ ?>
 				<tr>
 					<td>
-						<label><b><?php echo htmlentities($logiciel_affichage["nom"]); ?></b></label>
+						<label><b><?php echo $logiciel_affichage["nom"]; ?></b></label>
 					</td>
 					<td>
 						<label>
 							<span class="input-group-addon">
-								<input type="checkbox" name="logiciels[]" value="Installation <?php echo htmlentities($logiciel_affichage["nom"]); ?>" /> Installation
+								<input type="checkbox" name="logiciels[]" value="Installation <?php echo $logiciel_affichage["nom"]; ?>" /> Installation
 							</span>
 						</label>
 					</td>
 					<td>
 						<label>
 							<span class="input-group-addon">
-								<input type="checkbox" name="logiciels[]" value="MàJ <?php echo htmlentities($logiciel_affichage["nom"]); ?>" /> Mise à Jour
+								<input type="checkbox" name="logiciels[]" value="MàJ <?php echo $logiciel_affichage["nom"]; ?>" /> Mise à Jour
 							</span>
 						</label>
 					</td>
@@ -430,7 +430,7 @@ $sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idInterve
 							<label>
 							Informations complémentaires relatives à la fiabilité de l'ordinateur :
 								<span class="input-group-addon">
-									<textarea name="fiabilite" class="form-control" style="width:500px; height:200px;"><?php echo htmlentities($ligne["fiabilite"]); ?></textarea>
+									<textarea name="fiabilite" class="form-control" style="width:500px; height:200px;"><?php echo $ligne["fiabilite"]; ?></textarea>
 								</span>
 							</label>
 						</div>
@@ -465,8 +465,8 @@ $sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idInterve
 			</table>
 		</div>
 
-			<b>Session utilisateur</b> <input type="text" name="session" class="form-control" style="width:250px;" value="<?php echo htmlentities($ligne['session']) ;?>" />
-			<b>Mot de passe PC</b> <input type="text" name="password" class="form-control" style="width:250px;" value="<?php echo htmlentities($ligne['password']) ;?>" />
+			<b>Session utilisateur</b> <input type="text" name="session" class="form-control" style="width:250px;" value="<?php echo $ligne['session'] ;?>" />
+			<b>Mot de passe PC</b> <input type="text" name="password" class="form-control" style="width:250px;" value="<?php echo $ligne['password'] ;?>" />
 			
 			<br />
 			
@@ -475,12 +475,12 @@ $sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idInterve
 					<td>
 						Type d'<b>intervention</b> : <span class="label label-danger">Champ obligatoire</span>
 						<select name="intervention" class="form-control" required>
-							<option selected value="<?php echo htmlentities($ligne['intervention']); ?>"><?php echo htmlentities($ligne['intervention']); ?></option>
+							<option selected value="<?php echo $ligne['intervention']; ?>"><?php echo $ligne['intervention']; ?></option>
 							<option></option>
 							<?php $type_interv = mysql_query ( "SELECT * FROM ttypeinterv ;" ) or die ( mysql_error() ) ;
 
 								while ( $interv = mysql_fetch_array($type_interv) )
-								{ echo "<option value='" . htmlentities($interv['nom']) . "'>" . htmlentities($interv['nom']) . "</option>"; }
+								{ echo "<option value='" . $interv['nom'] . "'>" . $interv['nom'] . "</option>"; }
 							?>
 						</select>
 					</td>
@@ -493,7 +493,7 @@ $sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idInterve
 							<?php $req3 = mysql_query ( "SELECT * FROM ttypemateriel ;" )  or  die ( mysql_error() ) ;
 							
 							while ( $ligne33 = mysql_fetch_array($req3) ) // Boucle d'affichage
-							{ echo "<option value='" . htmlentities($ligne33['nom']) . "'>" . htmlentities($ligne33['nom']) . "</option>"; }
+							{ echo "<option value='" . $ligne33['nom'] . "'>" . $ligne33['nom'] . "</option>"; }
 							?>
 						</select>
 					</td>
@@ -501,17 +501,17 @@ $sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idInterve
 			</table>
 			
 			<br />
-			<b>Observations</b> : <textarea name="observation" type="text" class="form-control" style="height:250px;"><?php echo htmlentities($ligne['observations']) ;?>"</textarea>
+			<b>Observations</b> : <textarea name="observation" type="text" class="form-control" style="height:250px;"><?php echo $ligne['observations'] ;?>"</textarea>
 			<br />
 			
 			<b>Technicien en charge du PC</b> : <span class="label label-danger">Champ obligatoire</span><br />
 			<select name="technicien" required class="form-control" style="width:300px;">
-				<option name="<?php echo htmlentities($ligne['technicien']) ;?>" selected><?php echo htmlentities($ligne['technicien']) ;?></option>
+				<option name="<?php echo $ligne['technicien'] ;?>" selected><?php echo $ligne['technicien'] ;?></option>
 				<option></option>
 				<?php $req2 = mysql_query ( "SELECT * FROM ttechniciens ;" ) or die ( mysql_error() ) ;
 
 				while ( $ligne22 = mysql_fetch_array($req2) )
-				{ echo "<option value='" . htmlentities($ligne22['nom']) . "'>" . htmlentities($ligne22['nom']) . "</option>"; } ?>
+				{ echo "<option value='" . $ligne22['nom'] . "'>" . $ligne22['nom'] . "</option>"; } ?>
 			</select>
 			
 			<hr />
@@ -747,7 +747,7 @@ $sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idInterve
 		<br />
 		Magasin : <span class="label label-danger">Champ obligatoire</span><br />
 			<select name="magasin" style="width:250px;" required class="form-control">
-					<option value="<?php echo $clt['magasin'] ; ?>">[ACTUELLEMENT] : <?php echo htmlentities($clt['magasin']) ; ?></option>				
+					<option value="<?php echo $clt['magasin'] ; ?>">[ACTUELLEMENT] : <?php echo $clt['magasin'] ; ?></option>				
 					<option value="Avranches">Avranches</option>				
 					<option value="Saint-James">Saint-James</option>
 			</select>

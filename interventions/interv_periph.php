@@ -1,4 +1,4 @@
-<?php // Récupération variables d'identification pour redirections
+﻿<?php // Récupération variables d'identification pour redirections
 $idPreinterv = $_POST["idPreinterv"];
 $codeClient = $_POST["codeClient"];
 ?>

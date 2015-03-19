@@ -1,5 +1,4 @@
-﻿<?php
-include('../admin/auth_db.php');
+﻿<?php include('../admin/auth_db.php');
 
 // Récupération des cases cochées - LOGICIELS
 if ( isset($_POST['logiciels']) && (!empty($_POST['logiciels'])) ) // Si les POST_Logiciels existent & ne sont pas vides
@@ -8,7 +7,7 @@ if ( isset($_POST['logiciels']) && (!empty($_POST['logiciels'])) ) // Si les POS
 		{ $tabLogiciels[] = $logiciels; } // Remplissage d'un tableau contenant les POST_logiciels
 
 			// Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
-			$strLogiciels = htmlentities( (implode(", ", $tabLogiciels)) );
+			$strLogiciels = (implode(", ", $tabLogiciels));
 }
 else 
 { $strLogiciels = " "; } // Aucun statut de coché
@@ -22,7 +21,7 @@ if ( isset($_POST['maj']) && (!empty($_POST['maj'])) ) // Si les POST_Logiciels 
 		{ $tabMaj[] = $maj; }// Remplissage d'un tableau contenant les POST_logiciels
 
 			// Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
-			$strMaj = htmlentities( (implode(", ", $tabMaj)) );
+			$strMaj = (implode(", ", $tabMaj));
 }
 else 
 { $strMaj = " "; } // Aucun statut de coché
@@ -36,7 +35,7 @@ if ( isset($_POST['virus']) && (!empty($_POST['virus'])) ) // Si les POST_Logici
 		{ $tabVirus[] = $virus; }// Remplissage d'un tableau contenant les POST_logiciels
 
 			// Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
-			$strVirus = htmlentities( (implode(", ", $tabVirus)) );
+			$strVirus = (implode(", ", $tabVirus));
 }
 else 
 { $strVirus = " "; } // Aucun statut de coché
@@ -49,7 +48,7 @@ if ( isset($_POST['sauvegarde']) && (!empty($_POST['sauvegarde'])) ) // Si les P
 		{ $tabSauvegarde[] = $sauvegarde; }// Remplissage d'un tableau contenant les POST_logiciels
 
 			// Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
-			$strSauvegarde = htmlentities( (implode(", ", $tabSauvegarde)) );
+			$strSauvegarde = (implode(", ", $tabSauvegarde));
 			}
 else 
 { $strSauvegarde = " "; } // Aucun statut de coché
@@ -61,94 +60,92 @@ if ( isset($_POST['ram']) && (!empty($_POST['ram'])) ) // Si les POST_Logiciels 
 		{ $tabRam[] = $ram; }// Remplissage d'un tableau contenant les POST_logiciels
 
 			// Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
-			$strRam = htmlentities( (implode(", ", $tabRam)) );
+			$strRam = (implode(", ", $tabRam));
 			}
 else 
 { $strRam = " "; } // Aucun statut de coché
 
 // Récupération des données
-$codeIntervention = htmlentities($_POST["idIntervention"]);
-$codeClient = htmlentities($_POST["codeClient"]);
-$dateInterv = htmlentities($_POST["dateInterv"]);
+$codeIntervention = $_POST["idIntervention"];
+$codeClient = $_POST["codeClient"];
+$dateInterv = $_POST["dateInterv"];
 
-$antivirusexterne = htmlentities($_POST["antivirus-externe"]);
-	$antivirusinterne = htmlentities($_POST["antivirus-interne"]);
+$antivirusexterne = $_POST["antivirus-externe"];
+	$antivirusinterne = $_POST["antivirus-interne"];
 $antivirus = "$antivirusexterne+$antivirusinterne";
 
 if ( isset($_POST["cookies"]) ) 
-{ $cookies = htmlentities($_POST["cookies"]); $antivirus = "$antivirus+$cookies"; } // Si la case cookies a été cochée, une indication sera mise dans la colonne antivirus
+{ $cookies = $_POST["cookies"]; $antivirus = "$antivirus+$cookies"; } // Si la case cookies a été cochée, une indication sera mise dans la colonne antivirus
 
 if ( isset($_POST["adwcleaner"]) ) 
 { 
-	$adwcleaner = htmlentities($_POST["adwcleaner"]); 
+	$adwcleaner = $_POST["adwcleaner"]; 
 	$antivirus = "$antivirus+$adwcleaner"; 
 } // Si la case adwcleaner a été cochée, une indication sera mise dans la colonne antivirus
 
 if ( isset($_POST["ccleaner"]) ) 
 { 
-	$ccleaner = htmlentities($_POST["ccleaner"]);
+	$ccleaner = $_POST["ccleaner"];
 	$antivirus = "$antivirus+$ccleaner"; 
 } // Si la case ccleaner a été cochée, une indication sera mise dans la colonne antivirus
 
 
-if ( isset($_POST["malwaresbytes-mode"]) ) { htmlentities($malwaresbytes_mode = $_POST["malwaresbytes-mode"]); } // Si le mode malwaresbytes a été choisi, alors on le récupère.
+if ( isset($_POST["malwaresbytes-mode"]) ) { $malwaresbytes_mode = $_POST["malwaresbytes-mode"]; } // Si le mode malwaresbytes a été choisi, alors on le récupère.
 
-$malwaresexterne = htmlentities($_POST["malwares-externe"]);
-	$malwaresinterne = htmlentities($_POST["malwares-interne"]);
+$malwaresexterne = $_POST["malwares-externe"];
+	$malwaresinterne = $_POST["malwares-interne"];
 $malwares = "$malwaresexterne+$malwaresinterne";
 
 		
-$spywares = htmlentities($_POST["spywares"]); // Récupération du nombre de spywares
+$spywares = $_POST["spywares"]; // Récupération du nombre de spywares
 if ( isset($_POST["scan-redemarrage"]) ) // Si la case "Scan au redémarrage" a été cochée, alors on récupère le choix
-{ $scan_redemarrage = htmlentities($_POST["scan-redemarrage"]); $spywares = "$spywares+$scan_redemarrage"; } // et on ajoute l'information au nombre total de spywares détectés
+{ $scan_redemarrage = $_POST["scan-redemarrage"]; $spywares = "$spywares+$scan_redemarrage"; } // et on ajoute l'information au nombre total de spywares détectés
 
-$intervention = htmlentities($_POST["intervention"]);
-$materiel = htmlentities($_POST["materiel"]);
-$fiabilite = htmlentities($_POST['fiabilite']);
+$intervention = $_POST["intervention"];
+$materiel = $_POST["materiel"];
+$fiabilite = $_POST['fiabilite'];
 
-$observation = htmlentities($_POST["observation"]);
+$observation = $_POST["observation"];
 
 	if ( isset($_POST["serveur"]) ) // Si une information complémentaire quant aux nettoyages a été saisie, alors on la saisie dans la case observations
 	{ 
-		$nom_serveur = htmlentities($_POST["serveur"]);
+		$nom_serveur = $_POST["serveur"];
 		$sauvegarde = "Les fichiers sont sauvegardés sur le serveur ".$nom_serveur;
 		$observation = "$observation | $sauvegarde";
-		$observation = htmlentities($observation);
 	}
 	
 	if ( isset($_POST["poidsSauvegarde"]) )
-	{ $poidsSauvegarde = htmlentities($_POST["poidsSauvegarde"]); }
+	{ $poidsSauvegarde = $_POST["poidsSauvegarde"]; }
 	
 	if ( isset($_POST["suppression-ancien-antivirus"]) ) // Si une information complémentaire quant aux nettoyages a été saisie, alors on la saisie dans la case observations
 	{ 
 		if ( ($_POST["suppression-ancien-antivirus"]) != "Non nécessaire" )
 		{
-			$nom_ancien_antivirus = htmlentities($_POST["suppression-ancien-antivirus"]);
+			$nom_ancien_antivirus = $_POST["suppression-ancien-antivirus"];
 			$ancien_antivirus = "| L\'ancien antivirus ".$nom_ancien_antivirus." a été supprimé et remplacé par MSE.";
 			$observation = "$observation | $ancien_antivirus";
-			$observation = htmlentities($observation);
 		}
 	}
 
-$technicien = htmlentities($_POST["technicien"]);
+$technicien = $_POST["technicien"];
 
 if (isset($_POST["cout-interv"])) 
-	{ $prix = htmlentities($_POST["cout-interv"]); } 
+	{ $prix = $_POST["cout-interv"]; } 
 else if ( (isset($_POST["mo-atelier"])) && ($_POST["mo-atelier"] == "1") ) 
-	{ $prix = htmlentities($_POST["cout-mo"]); $mo_atelier = "1"; }
+	{ $prix = $_POST["cout-mo"]; $mo_atelier = "1"; }
 else { $prix = ""; }
 
 if (isset($_POST["coutcomp1"]))
-	{$coutcomp1 = htmlentities($_POST["prix-coutcomp1"]);
-	$namecoutcomp1 = htmlentities($_POST["name-coutcomp1"]);}
+	{$coutcomp1 = $_POST["prix-coutcomp1"];
+	$namecoutcomp1 = $_POST["name-coutcomp1"];}
 
 	if (isset($_POST["coutcomp2"]))
-	{$coutcomp2 = htmlentities($_POST["prix-coutcomp2"]);
-	$namecoutcomp2 = htmlentities($_POST["name-coutcomp2"]);}
+	{$coutcomp2 = $_POST["prix-coutcomp2"];
+	$namecoutcomp2 = $_POST["name-coutcomp2"];}
 	
 	if (isset($_POST["coutcomp3"]))
-	{$coutcomp3 = htmlentities($_POST["prix-coutcomp3"]);
-	$namecoutcomp3 = htmlentities($_POST["name-coutcomp3"]);}
+	{$coutcomp3 = $_POST["prix-coutcomp3"];
+	$namecoutcomp3 = $_POST["name-coutcomp3"];}
 
 	if ( (isset($coutcomp1)) && (empty($coutcomp2)) && (empty($coutcomp3)) )
 	{$cout_complementaire = $coutcomp1." € --> ".$namecoutcomp1;}
@@ -158,14 +155,15 @@ if (isset($_POST["coutcomp1"]))
 	{$cout_complementaire = $coutcomp1+$coutcomp2+$coutcomp3." € --> ".$namecoutcomp1." + ".$namecoutcomp2." + ".$namecoutcomp3;}
 	else {$cout_complementaire = "";}
 
-$statut = htmlentities($_POST["statut"]);
-$password = htmlentities($_POST["password"]);
+$statut = $_POST["statut"];
+$password = $_POST["password"];
 
 $update = "UPDATE tinterventions SET dateInterv='$dateInterv', antivirus='$antivirus', malwares='$malwares', spybot='$spywares', logiciels='$strLogiciels', maj='$strMaj', virus='$strVirus', sauvegarde='$strSauvegarde', poidsSauvegarde='$poidsSauvegarde', ram='$strRam', intervention='$intervention', materiel='$materiel', observations='$observation', technicien='$technicien', prix='$prix', coutAnnexe='$cout_complementaire', statut='$statut', password='$password', fiabilite='$fiabilite' WHERE id='$codeIntervention' ;";
+
 $sql = mysql_query ( $update ) or die ( mysql_error() ) ;
 
 // MàJ magasin (emplacement du PC)
-$magasin = htmlentities($_POST["magasin"]);
+$magasin = $_POST["magasin"];
 $update1 = "UPDATE tclients SET magasin='$magasin' WHERE id='$codeClient' ;";
 $sql1 = mysql_query ( $update1 ) or die ( mysql_error() ) ;
 

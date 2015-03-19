@@ -1,15 +1,15 @@
-<?php include_once ("../admin/auth_db.php");
+﻿<?php include_once ("../admin/auth_db.php");
 
 // CONDITION = Création d'une demande et d'une nouvelle fiche client - FULL NEW
 if ( (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") && (count($_POST) != 0) )
 {
-	$nom		= htmlentities($_POST["nom"]);
-	$prenom		= htmlentities($_POST["prenom"]);
-	$telFixe	= htmlentities($_POST["telFixe"]);
-	$telPort	= htmlentities($_POST["telPort"]);
-	$adresse 	= htmlentities($_POST["adresse"]);
-	$mail		= htmlentities($_POST["mail"]);
-	$magasin 	= htmlentities($_POST["magasin"]);
+	$nom		= $_POST["nom"];
+	$prenom		= $_POST["prenom"];
+	$telFixe	= $_POST["telFixe"];
+	$telPort	= $_POST["telPort"];
+	$adresse 	= $_POST["adresse"];
+	$mail		= $_POST["mail"];
+	$magasin 	= $_POST["magasin"];
 	
 	if (isset($_POST["rdv"])) { $rdv = "1"; } else { $rdv = "0"; }
 	if (isset($_POST["pro"])) { $pro = "1"; } else { $pro = "0"; }
@@ -19,14 +19,14 @@ if ( (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") && (count($_POST) != 0) 
 	$id_client	= $lastadd_client; // Stockage de l'ID dans une variable
 			
 // PRE-INTERVENTION
-	$dateDepot = htmlentities($_POST["dateDepot"]);
-	$dateRestitution = htmlentities($_POST["dateRestitution"]);
-	$materiel = htmlentities($_POST["materiel"]);
-	$session_user = htmlentities($_POST["session_user"]);
-	$password = htmlentities($_POST["password"]);
-	$typeInterv = htmlentities($_POST["typeInterv"]);
-	$observations = htmlentities($_POST["observations"]);
-	$technicien = htmlentities($_POST["technicien"]);
+	$dateDepot = $_POST["dateDepot"];
+	$dateRestitution = $_POST["dateRestitution"];
+	$materiel = $_POST["materiel"];
+	$session_user = $_POST["session_user"];
+	$password = $_POST["password"];
+	$typeInterv = $_POST["typeInterv"];
+	$observations = addslashes($_POST["observations"]);
+	$technicien = $_POST["technicien"];
 	
 	if ( isset($_POST["accessoires"]) ) { $accessoires = $_POST["accessoires"]; $observations = "$observations+$accessoires"; } // Si des accessoires ont été mit (pour les pc portables et autres), une indication sera mise dans la colonne observations
 	
@@ -35,7 +35,7 @@ if ( (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") && (count($_POST) != 0) 
 	else { $dossierMesDocs = "Aucune sauvegarde à effectuer - Accord client OK."; }
 	
 	if ( !empty($_POST['dossiersClt']) )
-	{ $dossiersClt = htmlentities($_POST['dossiersClt']); }
+	{ $dossiersClt = $_POST['dossiersClt']; }
 	else { $dossiersClt = ""; }
 	
 	if ( (empty($_POST['dossierMesDocs'])) && (empty($_POST['dossiersClt'])) )
@@ -58,15 +58,15 @@ if ( (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") && (count($_POST) != 0) 
 // AJOUT + IMPRESSION DE LA DEMANDE SI REDIRECTION DEPUIS FICHE CLIENT
 else if ( (isset($_POST["client-connu"])) && ($_POST["client-connu"]=="1") && (count($_POST) != 0) )
 {
-	$codeClient = htmlentities($_POST["idClient"]);
+	$codeClient = $_POST["idClient"];
 	
-	$nom		= htmlentities($_POST["nom"]);
-	$prenom		= htmlentities($_POST["prenom"]);
-	$telFixe	= htmlentities($_POST["telFixe"]);
-	$telPort	= htmlentities($_POST["telPort"]);
-	$adresse 	= htmlentities($_POST["adresse"]);
-	$mail		= htmlentities($_POST["mail"]);
-	$magasin 	= htmlentities($_POST["magasin"]);
+	$nom		= $_POST["nom"];
+	$prenom		= $_POST["prenom"];
+	$telFixe	= $_POST["telFixe"];
+	$telPort	= $_POST["telPort"];
+	$adresse 	= $_POST["adresse"];
+	$mail		= $_POST["mail"];
+	$magasin 	= $_POST["magasin"];
 	
 	if (isset($_POST["rdv"])) { $rdv = "1"; } else { $rdv = "0"; }
 	if (isset($_POST["pro"])) { $pro = "1"; } else { $pro = "0"; }
@@ -75,14 +75,14 @@ else if ( (isset($_POST["client-connu"])) && ($_POST["client-connu"]=="1") && (c
 	$sql = mysql_query ( $maj_client ) or die( mysql_error() ) ;
 	
 	// PRE-INTERVENTION
-	$dateDepot = htmlentities($_POST["dateDepot"]);
-	$dateRestitution = htmlentities($_POST["dateRestitution"]);
-	$materiel = htmlentities($_POST["materiel"]);
-	$session_user = htmlentities($_POST["session_user"]);
-	$password = htmlentities($_POST["password"]);
-	$typeInterv = htmlentities($_POST["typeInterv"]);
-	$observations = htmlentities($_POST["observations"]);
-	$technicien = htmlentities($_POST["technicien"]);
+	$dateDepot = $_POST["dateDepot"];
+	$dateRestitution = $_POST["dateRestitution"];
+	$materiel = $_POST["materiel"];
+	$session_user = $_POST["session_user"];
+	$password = $_POST["password"];
+	$typeInterv = $_POST["typeInterv"];
+	$observations = addslashes($_POST["observations"]);
+	$technicien = $_POST["technicien"];
 	
 	if ( isset($_POST["accessoires"]) ) { $accessoires = $_POST["accessoires"]; $observations = "$observations+$accessoires"; } // Si des accessoires ont été mit (pour les pc portables et autres), une indication sera mise dans la colonne observations
 	
@@ -91,7 +91,7 @@ else if ( (isset($_POST["client-connu"])) && ($_POST["client-connu"]=="1") && (c
 	else { $dossierMesDocs = "Aucune sauvegarde à effectuer - Accord client OK."; }
 	
 	if ( !empty($_POST['dossiersClt']) )
-	{ $dossiersClt = htmlentities($_POST['dossiersClt']); }
+	{ $dossiersClt = $_POST['dossiersClt']; }
 	else { $dossiersClt = ""; }
 	
 	if ( (empty($_POST['dossierMesDocs'])) && (empty($_POST['dossiersClt'])) )
@@ -113,7 +113,7 @@ else if ( (isset($_POST["client-connu"])) && ($_POST["client-connu"]=="1") && (c
 // -- CONDITION : impression de la demande à partir du tableau d'affichage des demandes
 else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && (count($_POST) != 0) )
 {
-	$codeClient = htmlentities($_POST["codeClient"]);
+	$codeClient = $_POST["codeClient"];
 
 	$client = "SELECT * FROM tclients WHERE id = '$codeClient';" ;
 	$resultat1 = mysql_query ( $client ) or die ( mysql_error() ) ;
@@ -121,7 +121,7 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 	if (isset($_POST["rdv"])) { $rdv = "1"; } else { $rdv = "0"; }
 	if (isset($_POST["pro"])) { $pro = "1"; } else { $pro = "0"; }
 
-	$idInterv = htmlentities($_POST["idPreinterv"]);
+	$idInterv = $_POST["idPreinterv"];
 
 	$interv = "SELECT * FROM tpreinterv WHERE id = '$idInterv';" ;
 	$resultat = mysql_query ( $interv ) or die ( mysql_error() ) ;

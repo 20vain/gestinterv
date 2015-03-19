@@ -1,17 +1,17 @@
-<?php // Récupération variables d'identification pour redirections
-$idIntervention = htmlentities($_POST["id"]);
-$codeClient = htmlentities($_POST["codeClient"]);
+﻿<?php // Récupération variables d'identification pour redirections
+$idIntervention = $_POST["id"];
+$codeClient = $_POST["codeClient"];
 
 // intervention
 $sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idIntervention' ;" ) or die ( mysql_error() ) ;		
 	$ligne = mysql_fetch_array($sql_interv);
  
 // Affiche de la fiche client
-	$codeClient = htmlentities($_POST["codeClient"]);
+	$codeClient = $_POST["codeClient"];
 	
 $sql = mysql_query ( "SELECT * FROM tclients WHERE id = '$codeClient' ;" ) or die ( mysql_error() ) ;		
 	$clt = mysql_fetch_array($sql);
-	$nom_client = htmlentities($clt['nom']);
+	$nom_client = $clt['nom'];
 ?>
 
 	<a href="#top" class="btn btn-info" style="position:fixed; margin:5px;"><span class="glyphicon glyphicon-plane"></span><br />Remonter</a>
@@ -27,31 +27,31 @@ $sql = mysql_query ( "SELECT * FROM tclients WHERE id = '$codeClient' ;" ) or di
 	
 	<fieldset class="well">
 		<center>
-		<h2>Client [<u><?php echo htmlentities($clt['nom']).' '.htmlentities($clt['prenom']); ?></u>]</h2>
+		<h2>Client [<u><?php echo $clt['nom'].' '.$clt['prenom']; ?></u>]</h2>
 			<table class="table table-condensed" style="width:500px;">
 				<tr>
 					<td>Téléphone <u>PORTABLE</u></td>
-					<td><b><?php echo htmlentities($clt['telPort']); ?></b></td>
+					<td><b><?php echo $clt['telPort']; ?></b></td>
 				</tr>
 				<tr>
 					<td>Téléphone <u>FIXE</u></td>
-					<td><?php echo htmlentities($clt['telFixe']); ?></td>
+					<td><?php echo $clt['telFixe']; ?></td>
 				</tr>
 				<tr>
 					<td><u>MAGASIN</u></td>
 					<?php
-					if ( $clt['magasin'] == "Saint-James" ) { echo "<td style='background-color:#FF9900'><b>" . htmlentities($clt['magasin']) . "</b></td>" ; }
-					else if ( $clt['magasin'] == "Avranches" ) { echo "<td><b>" . htmlentities($clt['magasin']) . "</b></td>" ; }
+					if ( $clt['magasin'] == "Saint-James" ) { echo "<td style='background-color:#FF9900'><b>" . $clt['magasin'] . "</b></td>" ; }
+					else if ( $clt['magasin'] == "Avranches" ) { echo "<td><b>" . $clt['magasin'] . "</b></td>" ; }
 					?>	
 				</tr>
 				<tr>
 					<td>Adresse postale</td>
-					<td><?php echo htmlentities($clt['adresse']);?></td>
+					<td><?php echo $clt['adresse'];?></td>
 				</tr>
 				<?php if ( !empty($clt["mail"]) ) { ?>
 				<tr>
 					<td>Adresse e-mail</td>
-					<td><em><?php echo htmlentities($clt['mail']); ?></em></td>
+					<td><em><?php echo $clt['mail']; ?></em></td>
 				</tr>
 				<?php } // FIN DE CONDITION POUR L'AFFICHAGE DE L'ADRESSE EMAIL ?>
 			</table>
@@ -75,7 +75,7 @@ $sql = mysql_query ( "SELECT * FROM tclients WHERE id = '$codeClient' ;" ) or di
 							<?php $type_interv = mysql_query ( "SELECT * FROM ttypeinterv ;" ) or die ( mysql_error() ) ;
 
 								while ( $interv = mysql_fetch_array($type_interv) )
-								{ echo "<option value='" . htmlentities($interv['nom']) . "'>" . htmlentities($interv['nom']) . "</option>"; }
+								{ echo "<option value='" . $interv['nom'] . "'>" . $interv['nom'] . "</option>"; }
 							?>
 						</select>
 					</td>
@@ -87,7 +87,7 @@ $sql = mysql_query ( "SELECT * FROM tclients WHERE id = '$codeClient' ;" ) or di
 							<?php $req3 = mysql_query ( "SELECT * FROM ttypemateriel ;" )  or  die ( mysql_error() ) ;
 							
 							while ( $ligne33 = mysql_fetch_array($req3) ) // Boucle d'affichage
-							{ echo "<option value='" . htmlentities($ligne33['nom']) . "'>" . htmlentities($ligne33['nom']) . "</option>"; }
+							{ echo "<option value='" . $ligne33['nom'] . "'>" . $ligne33['nom'] . "</option>"; }
 							?>
 						</select>
 					</td>
@@ -105,7 +105,7 @@ $sql = mysql_query ( "SELECT * FROM tclients WHERE id = '$codeClient' ;" ) or di
 				<?php $req2 = mysql_query ( "SELECT * FROM ttechniciens ;" ) or die ( mysql_error() ) ;
 
 				while ( $ligne22 = mysql_fetch_array($req2) )
-				{ echo "<option value='" . htmlentities($ligne22['nom']) . "'>" . htmlentities($ligne22['nom']) . "</option>"; } ?>
+				{ echo "<option value='" . $ligne22['nom'] . "'>" . $ligne22['nom'] . "</option>"; } ?>
 			</select>
 			
 			<hr />
@@ -202,7 +202,7 @@ $sql = mysql_query ( "SELECT * FROM tclients WHERE id = '$codeClient' ;" ) or di
 		
 		Magasin : <span class="label label-danger">Champ obligatoire</span><br />
 			<select name="magasin" style="width:250px;" required class="form-control">
-					<option value="<?php echo htmlentities($clt['magasin']) ; ?>">[ACTUELLEMENT] : <?php echo htmlentities($clt['magasin']) ; ?></option>				
+					<option value="<?php echo $clt['magasin'] ; ?>">[ACTUELLEMENT] : <?php echo $clt['magasin'] ; ?></option>				
 					<option value="Avranches">Avranches</option>				
 					<option value="Saint-James">Saint-James</option>
 			</select>
