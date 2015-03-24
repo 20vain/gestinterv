@@ -10,6 +10,9 @@
 			<td><?php include ("techniciens.php"); ?></td>
 			<td><?php include ("logiciels.php"); ?></td>
 		</tr>
+		<tr>
+			<td><?php include ("serveurs.php"); ?></td>
+		</tr>
 	</table>
 
 <hr />

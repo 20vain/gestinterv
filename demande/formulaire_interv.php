@@ -193,6 +193,9 @@
 		<td style="vertical-align:middle; text-align:center;">
 			<b>Technicien</b> ayant pris la demande d'intervention <span class="label label-danger">Champ obligatoire</span>
 			<select name="technicien" required class="form-control" style="width:250px;">
+				<option value="" selected></option>
+				<option value="ISABELLE">ISABELLE</option>
+				<option value="NICOLAS">NICOLAS</option>
 				<option value=""></option>
 				<?php
 					$technicien = mysql_query ( "SELECT * FROM ttechniciens ;" ) or die ( mysql_error() ) ;
