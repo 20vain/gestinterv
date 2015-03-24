@@ -19,30 +19,48 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="3") )
 
 <hr />
 
-<?php
-$tab = mysql_query ( "SELECT * FROM tclients ORDER BY nom" ) or die ( mysql_error() ) ;
-
-while ( $ligne = mysql_fetch_array($tab) )
-{ ?>
-
-<table class='table table-hover table-condensed'>
-	<?php if ( $ligne['magasin'] == "Saint-James" ) { echo '<tr> <td colspan="6" style="background-color:#FF9900";><center><h3><b>['.$ligne['nom'].' '.$ligne['prenom'].']</b></h3></center></td> </tr>'; }
-			else { echo '<tr> <td colspan="6"><center><h3><b>['.$ligne['nom'].' '.$ligne['prenom'].']</b></h3></center></td> </tr>'; } ?>
-
-	<tr>
-		<?php if ($ligne["telPort"] !=0) {?><td style='text-align:left; vertical-align:middle;'><em>Portable</em> = <b><?php echo $ligne['telPort']; ?></b><?php }?><br /><?php if ($ligne["telFixe"] !=0) {?><em>Tél. Fixe</em> = <b><?php echo $ligne['telFixe']; ?></b></td><?php }?>
-		<?php if ($ligne["adresse"] !=0) {?><td style='text-align:left; vertical-align:middle;'><em>Adresse postale</em> = <?php echo $ligne['adresse']; ?><?php }?><br /><?php if ($ligne["mail"] !=0) {?><em>Adresse e-mail</em> = <?php echo $ligne['mail']; ?></td><?php }?>
-
-		<?php if ( $ligne['magasin'] == "Saint-James" ) { echo "<td style='background-color:#FF9900; text-align:center; vertical-align:middle;'>" . $ligne['magasin']. "</td>" ; }
-				else { echo "<td style='text-align:center; vertical-align:middle;'>" . $ligne['magasin'] . "</td>" ; } ?>
+<center>
+	<table>
+		<tr>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="A" /><button class="btn btn-default">A</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="B" /><button class="btn btn-default">B</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="C" /><button class="btn btn-default">C</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="D" /><button class="btn btn-default">D</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="E" /><button class="btn btn-default">E</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="F" /><button class="btn btn-default">F</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="G" /><button class="btn btn-default">G</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="H" /><button class="btn btn-default">H</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="I" /><button class="btn btn-default">I</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="J" /><button class="btn btn-default">J</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="K" /><button class="btn btn-default">K</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="L" /><button class="btn btn-default">L</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="M" /><button class="btn btn-default">M</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="N" /><button class="btn btn-default">N</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="O" /><button class="btn btn-default">O</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="P" /><button class="btn btn-default">P</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="Q" /><button class="btn btn-default">Q</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="R" /><button class="btn btn-default">R</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="S" /><button class="btn btn-default">S</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="T" /><button class="btn btn-default">T</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="U" /><button class="btn btn-default">U</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="V" /><button class="btn btn-default">V</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="W" /><button class="btn btn-default">W</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="X" /><button class="btn btn-default">X</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="Y" /><button class="btn btn-default">Y</button></form></td>
+			<td><form action="index.php?p=listing_clients" method="POST"><input type="hidden" name="liste" value="1" /><input type="hidden" name="lettre" value="Z" /><button class="btn btn-default">Z</button></form></td>
+		</tr>
+	</table>
+</center>
 	
-		<td style='text-align:center; vertical-align:middle;'> <form action="index.php?p=ajoutdemande" method='POST'> <input type='hidden' name='codeClient' value="<?php echo $ligne["id"]; ?>" /> <input type='hidden' name='ficheClient' value='1' /> <center><button class='btn btn-success'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span><br />Ajouter une demande<br />d'intervention</button></center> </form></td>
-		<td style='text-align:center; vertical-align:middle;'> <form action="index.php?p=ficheclient" method='POST'> <input type='hidden' name='codeClient' value="<?php echo $ligne["id"]; ?>" /> <center><button class='btn btn-info'><span class='glyphicon glyphicon-user' aria-hidden='true'></span><br />Fiche client<br /><b><?php echo $ligne['nom']; ?></b></button></center> </form> </td>
-		<td style='text-align:center; vertical-align:middle;'> <form method='post' action='#'> <input type='hidden' name='id' value='<?php echo $ligne["id"]; ?>'> <input type='hidden' name='delete' value='3' /> <button class='btn btn-danger'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span><br /> Suppression <br />fiche client</button> </form></td>
-	</tr>
-</table>
-<?php 
-} ?>
+<hr />
+<?php // Affichage liste client selon lettre
+if ( (!empty($_POST)) && (isset($_POST["liste"])) && ($_POST["liste"]=="1") )
+{
+	$lettre=$_POST["lettre"];
+	listing_clients($lettre);
+}
+?>
+
 </div>
 
 <center><a href="index.php?p=clients" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-repeat"></span><br />Retour</a></center>
