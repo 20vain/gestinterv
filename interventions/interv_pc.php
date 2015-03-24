@@ -191,27 +191,16 @@ $codeClient = $_POST["codeClient"];
 					<td style='text-align:center; vertical-align:middle;'> <b>Serveur sur lequel les documents sont sauvgardés :</b><br />
 						<select name="sauvegarde[]" class="form-control">
 							<option></option>
-							<optgroup label="Serveurs AVRANCHES - ATELIER 1"></optgroup>
-								<option name="Fichiers sauvegardés sur Atelier 1.1 AVR - User MIS1">Atelier 1.1 AVR - User MIS1</option>
-								<option name="Fichiers sauvegardés sur Atelier 1.1 AVR - User MIS2">Atelier 1.1 AVR - User MIS2</option>
-								<option>&nbsp;</option>
-								<option name="Fichiers sauvegardés sur Atelier 1.2 AVR - User MIS1">Atelier 1.2 AVR - User MIS1</option>
-								<option name="Fichiers sauvegardés sur Atelier 1.2 AVR - User MIS2">Atelier 1.2 AVR - User MIS2</option>
-							<option></option>
-							<optgroup label="Serveurs AVRANCHES - ATELIER 2"></optgroup>
-								<option name="Fichiers sauvegardés sur Atelier 2.1 AVR - User MIS1">Atelier 2.1 AVR - User MIS1</option>
-								<option name="Fichiers sauvegardés sur Atelier 2.1 AVR - User MIS2">Atelier 2.1 AVR - User MIS2</option>
-								<option name="Fichiers sauvegardés sur Atelier 2.2 AVR">Atelier 2.2 AVR</option>
-								<option name="Fichiers sauvegardés sur Atelier 2.3 AVR">Atelier 2.3 AVR</option>
-								<option name="Fichiers sauvegardés sur Atelier 2.4 AVR - User MIS1">Atelier 2.4 AVR - User MIS1</option>			
-								<option name="Fichiers sauvegardés sur Atelier 2.4 AVR - User MIS2">Atelier 2.4 AVR - User MIS2</option>
-							<option></option>					
-							<optgroup label="Serveurs SAINT-JAMES"></optgroup>
-								<option name="Fichiers sauvegardés sur Atelier 1 STJ">Atelier 1 STJ</option>	
-								<option name="Fichiers sauvegardés sur Atelier 2 STJ">Atelier 2 STJ</option>
+							<?php
+							// Requête d'affichage des SERVEURS
+								$serveurs = mysql_query ( "SELECT * FROM tserveurs ;" ) or die ( mysql_error() ) ;
+							// Boucle d'affichage
+								while ( $serveurs_liste = mysql_fetch_array($serveurs) )
+								{ ?>
+								<option name="<?php echo $serveurs_liste["nom"]; ?>"><?php echo $serveurs_liste["nom"]; ?></option>
+							<?php } // FIN BOUCLE ?>
 						</select>
 					</td>
-					
 					<td style='text-align:center; vertical-align:middle;'><b>Poids total de la sauvegarde (en Go) :</b><br />
 						<input type="text" name="poidsSauvegarde" class="form-control" /> 
 					</td>
