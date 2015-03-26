@@ -3,7 +3,6 @@
 	<hr />
 	
 	<div class="container">
-
 		<table class="table">
 			<tr>
 					<td width="250px;">&nbsp;</td>
@@ -20,6 +19,5 @@
 		<hr />
 		<?php include_once ("admin/recherche.php"); ?>
 		<hr />
-		
 	</div>
 </center>

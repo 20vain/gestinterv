@@ -4,9 +4,7 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="3") )
 	$id = $_POST["id"];
 	delete($id,"tclients");
 ?>
-	<div class="alert alert-warning">
-		La fiche client n° <?php echo $id; ?> vient d'être <strong>supprimée</strong> !
-	</div>
+	<div class="alert alert-warning">La fiche client n° <?php echo $id; ?> vient d'être <strong>supprimée</strong> !</div>
 <?php
 } // FIN FONCTION SUPPRESSION
 ?>
@@ -14,7 +12,6 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="3") )
 <a href="#top" class="btn btn-info" style="position:fixed; margin:5px;"><span class="glyphicon glyphicon-plane"></span><br />Remonter</a>
 
 <div class="container">
-
 	<?php include_once ("admin/recherche.php"); ?>
 
 <hr />
