@@ -6,12 +6,10 @@
 // --- SUPPRESSION DEMANDE
 if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="20") )
 {
-	$id	= intval($_POST["idPreinterv"]);
+	$id	= $_POST["idPreinterv"];
 	delete($id,"tpreinterv");
 ?>
-	<div class="alert alert-warning">
-		La demande d'intervention n° <?php echo $id; ?> vient d'être <strong>supprimée</strong> !
-	</div>
+	<div class="alert alert-warning">La demande d'intervention n° <?php echo $id; ?> vient d'être <strong>supprimée</strong> !</div>
 <?php
 } // FIN FONCTION SUPPRESSION ?>
 
@@ -30,7 +28,7 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="20") )
 		
 		while ( ($preInterv = mysql_fetch_array($query1)) )
 		{
-			$codeClient = intval($preInterv['codeClient']);
+			$codeClient = $preInterv['codeClient'];
 			
 			// Affiche du nom à côté de la pré-intervention concernée
 				$nom_client = "SELECT tclients.nom, tclients.prenom, tclients.magasin, tclients.rdv, tclients.pro FROM tclients,tpreinterv WHERE tclients.id=tpreinterv.codeClient AND tpreinterv.codeClient = '$codeClient' ;" ;
