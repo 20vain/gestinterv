@@ -1,7 +1,7 @@
 ﻿<?php // --- SUPPRESSION DEMANDE
 if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="21") )
 {
-	$id	= htmlentities($_POST["idInterv"]);	
+	$id	= $_POST["idInterv"];	
 	delete($id,"tinterventions");
 ?>
 	<div class="alert alert-warning">
@@ -29,7 +29,7 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="21") )
 
 		while (  ($ligne0 = mysql_fetch_array($query2)) )
 		{
-			$codeClient = htmlentities($ligne0['codeClient']);
+			$codeClient = $ligne0['codeClient'];
 			
 			// Affiche du nom à côté de la pré-intervention concernée
 				$infos_client = "SELECT tclients.nom, tclients.prenom, tclients.magasin, tclients.rdv FROM tclients,tinterventions WHERE tclients.id=tinterventions.codeClient AND tinterventions.codeClient = '$codeClient' ;" ;

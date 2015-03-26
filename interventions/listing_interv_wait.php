@@ -4,15 +4,11 @@ if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="22") )
 	$id	= $_POST["idInterv"];	
 	delete($id,"tinterventions");
 ?>
-	<div class="alert alert-warning">
-		L'intervention n° <?php echo $id; ?> vient d'être <strong>supprimée</strong> !
-	</div>
+	<div class="alert alert-warning">L'intervention n° <?php echo $id; ?> vient d'être <strong>supprimée</strong> !</div>
 <?php
 } // FIN FONCTION SUPPRESSION ?>
 
-<div class="container">
-<?php include_once ("admin/recherche.php"); ?>
-</div>
+<div class="container"><?php include_once ("admin/recherche.php"); ?></div>
 
 
 <div class="container1">

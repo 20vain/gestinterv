@@ -1,9 +1,9 @@
 ﻿<?php // Récupération variables d'identification pour redirections
-$idIntervention = $_POST["id"];
-$codeClient = $_POST["codeClient"];
+	$idIntervention = $_POST["id"];
+	$codeClient = $_POST["codeClient"];
 
 // intervention
-$sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idIntervention' ;" ) or die ( mysql_error() ) ;		
+	$sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idIntervention' ;" ) or die ( mysql_error() ) ;		
 	$ligne = mysql_fetch_array($sql_interv);
  
 // Affiche de la fiche client
@@ -12,7 +12,6 @@ $sql_interv = mysql_query ( "SELECT * FROM tinterventions WHERE id = '$idInterve
 	$sql = mysql_query ( "SELECT * FROM tclients WHERE id = '$codeClient' ;" ) or die ( mysql_error() ) ;		
 	$clt = mysql_fetch_array($sql);
 	$nom_client = $clt['nom'];
-
 ?>
 
 	<a href="#top" class="btn btn-info" style="position:fixed; margin:5px;"><span class="glyphicon glyphicon-plane"></span><br />Remonter</a>
