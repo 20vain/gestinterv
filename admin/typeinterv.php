@@ -1,29 +1,20 @@
-﻿<?php // --- AJOUT D'UN typeinterv ---
+﻿<?php // --- AJOUT
 if ( !empty($_POST) && (isset($_POST["verif"])) && (($_POST["verif"])=="ajout-typeinterv") )
 {
-	$typeinterv = htmlentities($_POST["typeinterv"]);
-
+	$typeinterv = $_POST["typeinterv"];
 	$add = mysql_query ( " INSERT INTO ttypeinterv VALUES ('','$typeinterv'); " ) or die ( mysql_error() ) ;
 ?>
-	<div class="alert alert-success">
-		L'ajout a bien été effectué !
-	</div>
+	<div class="alert alert-success">L'ajout a bien été effectué !</div>
 <?php
 }
 
-// --- SUPPRESSION D'UNE NEWS
+// --- SUPPRESSION
 else if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="11") )
 {
-	$id	= htmlentities($_POST["id"]);
+	$id	= $_POST["id"];
 	delete($id,"ttypeinterv");
 ?>
-	<div class="alert alert-warning">
-		La suppression a bien été effectuée !
-		<button type="button" class="close" data-dismiss="alert">
-			<span aria-hidden="true">&times;</span>
-			<span class="sr-only">Fermer</span>
-		</button>
-	</div>
+	<div class="alert alert-warning">La suppression a bien été effectuée !</div>
 <?php
 } // FIN FONCTION SUPPRESSION
 
@@ -31,7 +22,7 @@ else if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="1
 // --- MODIFICATION
 else if ( (!empty($_POST)) && (isset($_POST["modif"])) && ($_POST["modif"]=="11") )
 {
-	$id	= htmlentities($_POST["id"]);
+	$id	= $_POST["id"];
 	$nom_modif	= $_POST["nom_modif"];
 ?>
 Modification du champ<br />
@@ -46,8 +37,8 @@ Ancienne valeur = [<b><?php echo $nom_modif; ?></b>]<br />
 // --- MODIFICATION DANS DB
 else if ( (!empty($_POST)) && (isset($_POST["update"])) && ($_POST["update"]=="11") )
 {
-	$id	= htmlentities($_POST["id"]);
-	$modif_name_ok	= $_POST["modif_name_ok"];
+	$id	= $_POST["id"];
+	$modif_name_ok = $_POST["modif_name_ok"];
 	$sql = mysql_query ( "UPDATE ttypeinterv SET nom='$modif_name_ok' WHERE id='$id';" ) or die ( mysql_error() ) ;
 ?>
 	<div class="alert alert-info">
@@ -69,7 +60,7 @@ else { }
 	while ( $ligne = mysql_fetch_array($sql) )
 	{
 		echo "<tr>" ;
-		echo "<td style='text-align:center; vertical-align:middle;'>" . $ligne['nom'] . "</td>" ; // Nom du logiciel
+		echo "<td style='text-align:center; vertical-align:middle;'>" . $ligne['nom'] . "</td>" ;
 		echo "<td style='text-align:center; vertical-align:middle;'><form method='POST'> <input type='hidden' name='id' value='" . $ligne["id"] . "'> <input type='hidden' name='nom_modif' value='" . $ligne["nom"] . "'> <input type='hidden' name='modif' value='11' /> <button class='btn btn-primary'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span><br />Modifier</button> </form></td>";
 		echo "<td style='text-align:center; vertical-align:middle;'><form action ='' method='POST'> <input type='hidden' name='id' value='".$ligne["id"]."' /> <input type='hidden' name='delete' value='11' /> <button class='btn btn-danger';><span class='glyphicon glyphicon-trash' aria-hidden='true'></span><br />Supprimer</button> </form></td>" ;
 		echo "</tr>" ;
@@ -80,7 +71,6 @@ else { }
 
 <hr />
 
-<!-- Formulaire de création de news -->
 	<form method="POST" class="well">
 	<center><h4>Ajouter un nouveau type d'intervention</h4>
 	<hr />
@@ -88,5 +78,5 @@ else { }
 		
 		Nom de l'intervention : <input name="typeinterv" type="text" required /><br />
 		<button class="btn btn-large btn-success">Ajouter<br /><span class="glyphicon glyphicon-tag"></span></button>
+	</center>
 	</form>
-</center>

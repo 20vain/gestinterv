@@ -1,7 +1,7 @@
-﻿<?php // --- AJOUT D'UN logiciel ---
+﻿<?php // --- AJOUT
 if ( !empty($_POST) && (isset($_POST["verif"])) && (($_POST["verif"])=="ajout-logiciel") )
 {
-	$logiciel = htmlentities($_POST["logiciel"]);
+	$logiciel = $_POST["logiciel"];
 
 	$add = mysql_query ( " INSERT INTO tlogiciels VALUES ('','$logiciel'); " ) or die ( mysql_error() ) ;
 ?>
@@ -14,23 +14,17 @@ if ( !empty($_POST) && (isset($_POST["verif"])) && (($_POST["verif"])=="ajout-lo
 // --- SUPPRESSION D'UNE NEWS
 else if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="10") )
 {
-	$id	= htmlentities($_POST["id"]);
+	$id	= $_POST["id"];
 	delete($id,"tlogiciels");
 ?>
-	<div class="alert alert-warning">
-		La suppression a bien été effectuée !
-		<button type="button" class="close" data-dismiss="alert">
-			<span aria-hidden="true">&times;</span>
-			<span class="sr-only">Fermer</span>
-		</button>
-	</div>
+	<div class="alert alert-warning">La suppression a bien été effectuée !</div>
 <?php
 } // FIN FONCTION SUPPRESSION
 
 // --- MODIFICATION
 else if ( (!empty($_POST)) && (isset($_POST["modif"])) && ($_POST["modif"]=="10") )
 {
-	$id	= htmlentities($_POST["id"]);
+	$id	= $_POST["id"];
 	$nom_modif	= $_POST["nom_modif"];
 ?>
 Modification du champ<br />
@@ -45,7 +39,7 @@ Ancienne valeur = [<b><?php echo $nom_modif; ?></b>]<br />
 // --- MODIFICATION DANS DB
 else if ( (!empty($_POST)) && (isset($_POST["update"])) && ($_POST["update"]=="10") )
 {
-	$id	= htmlentities($_POST["id"]);
+	$id	= $_POST["id"];
 	$modif_name_ok	= $_POST["modif_name_ok"];
 	$sql = mysql_query ( "UPDATE tlogiciels SET nom='$modif_name_ok' WHERE id='$id';" ) or die ( mysql_error() ) ;
 ?>
@@ -78,7 +72,6 @@ else if ( (!empty($_POST)) && (isset($_POST["update"])) && ($_POST["update"]=="1
 
 <hr />
 
-<!-- Formulaire de création de news -->
 	<form method="POST" class="well">
 	<center><h4>Ajouter un nouveau logiciel</h4>
 	<hr />
@@ -86,5 +79,5 @@ else if ( (!empty($_POST)) && (isset($_POST["update"])) && ($_POST["update"]=="1
 		
 		Nom du logiciel : <input name="logiciel" type="text" required /><br />
 		<button class="btn btn-large btn-success">Ajouter<br /><span class="glyphicon glyphicon-tag"></span></button>
+	</center>
 	</form>
-</center>

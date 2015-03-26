@@ -1,18 +1,15 @@
-﻿<?php // --- AJOUT d'un serveur ---
+﻿<?php // --- AJOUT
 if ( !empty($_POST) && (isset($_POST["verif"])) && (($_POST["verif"])=="ajout-serveur") )
 {
-	$serveur = htmlentities($_POST["serveur"]);
-
+	$serveur = $_POST["serveur"];
 	$add = mysql_query ( " INSERT INTO tserveurs VALUES ('','$serveur'); " ) or die ( mysql_error() ) ;
 ?>
-	<div class="alert alert-success">
-		L'ajout a bien été effectué !
-	</div>
+	<div class="alert alert-success">L'ajout a bien été effectué !</div>
 <?php
 }
 
 
-// --- SUPPRESSION D'UN SERVEUR
+// --- SUPPRESSION
 else if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="15") )
 {
 	$id	= $_POST["id"];
@@ -27,7 +24,7 @@ else if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="1
 else if ( (!empty($_POST)) && (isset($_POST["modif"])) && ($_POST["modif"]=="15") )
 {
 	$id	= $_POST["id"];
-	$nom_modif	= $_POST["nom_modif"];
+	$nom_modif = $_POST["nom_modif"];
 ?>
 Modification du champ<br />
 Ancienne valeur = [<b><?php echo $nom_modif; ?></b>]<br />
@@ -75,7 +72,6 @@ else { }
 
 <hr />
 
-<!-- Formulaire de création de news -->
 	<form method="POST" class="well">
 	<center><h4>Ajouter un nouveau serveur</h4>
 	<hr />
@@ -83,5 +79,5 @@ else { }
 		
 		Nom du serveur : <input name="serveur" type="text" required /><br />
 		<button class="btn btn-large btn-success">Ajouter<br /><span class="glyphicon glyphicon-tag"></span></button>
+	</center>
 	</form>
-</center>

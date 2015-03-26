@@ -1,8 +1,9 @@
 <?php
+
 // SUPPRESSION LIGNE DU TABLEAU DE RECHERCHE SEULEMENT
 if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="2") )
 {
-	$id	= htmlentities($_POST["id"]);
+	$id	= $_POST["id"];
 	
 	delete($id,"tclients");
 ?>

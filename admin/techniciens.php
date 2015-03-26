@@ -1,8 +1,7 @@
-﻿<?php // --- AJOUT D'UN technicien ---
+﻿<?php // --- AJOUT
 if ( !empty($_POST) && (isset($_POST["verif"])) && (($_POST["verif"])=="ajout-technicien") )
 {
-	$technicien = htmlentities($_POST["technicien"]);
-
+	$technicien = $_POST["technicien"];
 	$add = mysql_query ( " INSERT INTO ttechniciens VALUES ('','$technicien'); " ) or die ( mysql_error() ) ;
 ?>
 	<div class="alert alert-success">
@@ -12,18 +11,14 @@ if ( !empty($_POST) && (isset($_POST["verif"])) && (($_POST["verif"])=="ajout-te
 }
 
 
-// --- SUPPRESSION D'UNE NEWS
+// --- SUPPRESSION
 else if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="12") )
 {
-	$id	= htmlentities($_POST["id"]);
+	$id	= $_POST["id"];
 	delete($id,"ttechniciens");
 ?>
 	<div class="alert alert-warning">
 		La suppression a bien été effectuée !
-		<button type="button" class="close" data-dismiss="alert">
-			<span aria-hidden="true">&times;</span>
-			<span class="sr-only">Fermer</span>
-		</button>
 	</div>
 <?php
 } // FIN FONCTION SUPPRESSION
@@ -32,7 +27,7 @@ else if ( (!empty($_POST)) && (isset($_POST["delete"])) && ($_POST["delete"]=="1
 // --- MODIFICATION
 else if ( (!empty($_POST)) && (isset($_POST["modif"])) && ($_POST["modif"]=="12") )
 {
-	$id	= htmlentities($_POST["id"]);
+	$id	= $_POST["id"];
 	$nom_modif	= $_POST["nom_modif"];
 ?>
 Modification du champ<br />
@@ -47,7 +42,7 @@ Ancienne valeur = [<b><?php echo $nom_modif; ?></b>]<br />
 // --- MODIFICATION DANS DB
 else if ( (!empty($_POST)) && (isset($_POST["update"])) && ($_POST["update"]=="12") )
 {
-	$id	= htmlentities($_POST["id"]);
+	$id	= $_POST["id"];
 	$modif_name_ok	= $_POST["modif_name_ok"];
 	$sql = mysql_query ( "UPDATE ttechniciens SET nom='$modif_name_ok' WHERE id='$id';" ) or die ( mysql_error() ) ;
 ?>
@@ -70,7 +65,7 @@ else { }
 	while ( $ligne = mysql_fetch_array($sql) )
 	{
 		echo "<tr>" ;
-		echo "<td style='text-align:center; vertical-align:middle;'>" . $ligne['nom'] . "</td>" ; // Nom du logiciel
+		echo "<td style='text-align:center; vertical-align:middle;'>" . $ligne['nom'] . "</td>" ;
 		echo "<td style='text-align:center; vertical-align:middle;'><form method='POST'> <input type='hidden' name='id' value='" . $ligne["id"] . "'> <input type='hidden' name='nom_modif' value='" . $ligne["nom"] . "'> <input type='hidden' name='modif' value='12' /> <button class='btn btn-primary'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span><br />Modifier</button> </form></td>";
 		echo "<td style='text-align:center; vertical-align:middle;'><form action ='' method='POST'> <input type='hidden' name='id' value='".$ligne["id"]."' /> <input type='hidden' name='delete' value='12' /> <button class='btn btn-danger';><span class='glyphicon glyphicon-trash' aria-hidden='true'></span><br />Supprimer</button> </form></td>" ;
 		echo "</tr>" ; 
@@ -81,7 +76,6 @@ else { }
 
 <hr />
 
-<!-- Formulaire de création de news -->
 	<form method="POST" class="well">
 	<center><h4>Ajouter un nouveau technicien</h4>
 	<hr />
@@ -89,5 +83,5 @@ else { }
 		
 		Nom du technicien : <input name="technicien" type="text" required /><br />
 		<button class="btn btn-large btn-success">Ajouter<br /><span class="glyphicon glyphicon-tag"></span></button>
+	</center>
 	</form>
-</center>

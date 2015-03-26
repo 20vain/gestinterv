@@ -2,13 +2,13 @@
 	if ( (isset($_POST)) && (!empty($_POST)) )
 	{
 		if (isset($_POST["nom"])) 
-		{ $nom=htmlentities($_POST["nom"]); } else { $nom=""; }
+		{ $nom=$_POST["nom"]; } else { $nom=""; }
 		
 		if (isset($_POST["telFixe"])) 
-		{ $telFixe=htmlentities($_POST["telFixe"]); } else { $telFixe=""; }
+		{ $telFixe=$_POST["telFixe"]; } else { $telFixe=""; }
 	
 		if (isset($_POST["telPort"])) 
-		{ $telPort=htmlentities($_POST["telPort"]); } else { $telPort=""; }
+		{ $telPort=$_POST["telPort"]; } else { $telPort=""; }
 
 		search_client ($nom,$telFixe,$telPort);
 	}
