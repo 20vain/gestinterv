@@ -167,7 +167,7 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 
 				<tr>
 					<td colspan="2">
-						Type de matériel : <b><font size='5'><?php echo $ligne['materiel']; ?></font/></b> - <font size='4'><b><?php echo $os; ?></b></font>
+						Type de matériel : <b><font size='5'><?php echo $ligne['materiel']; ?></font/></b> - <?php if (isset($_POST["os"])) { ?><font size='4'><b><?php echo $os; ?></b></font> <?php } ?>
 						<br />
 						Type d'intervention à effectuer : <b><font size='5'><?php echo $ligne['typeInterv']; ?></font/></b>
 					</td>
