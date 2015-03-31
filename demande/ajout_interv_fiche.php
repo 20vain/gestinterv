@@ -141,6 +141,7 @@
 		<td colspan="3">
 			<b>Système d'exploitation du PC</b> <span class="label label-danger">Champ obligatoire</span>
 			<select name="os" required class="form-control">
+				<option value="" selected></option>
 				<option value="Windows XP">Windows XP</option>
 				<option value="Windows Vista">Windows Vista</option>
 				<option value="Windows 7">Windows 7</option>
