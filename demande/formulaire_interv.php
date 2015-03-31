@@ -19,7 +19,7 @@
 			<b>NOM</b> <span class="label label-danger">Champ obligatoire</span>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-user"></span>
-				<input type="text" class="form-control" name="nom" maxlength="50" placeholder="NOM client" required />
+				<input type="text" class="form-control" name="nom" maxlength="50" required />
 			</div>		
 		</td>
 		<td>&nbsp;</td>
@@ -27,7 +27,7 @@
 			<b>PRENOM</b>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-user"></span>
-				<input type="text" class="form-control" name="prenom" maxlength="50" placeholder="PRENOM client" />
+				<input type="text" class="form-control" name="prenom" maxlength="50" />
 			</div>
 		</td>
 	</tr>
@@ -37,7 +37,7 @@
 			<b>TÉL. PORTABLE</b> <span class="label label-danger">Champ obligatoire</span>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-phone"></span>
-				<input type="text" class="form-control" name="telPort" maxlength="10" placeholder="0634567890" required />
+				<input type="text" class="form-control" name="telPort" maxlength="20" required />
 			</div>
 		</td>
 		<td>&nbsp;</td>
@@ -45,7 +45,7 @@
 			<b>TÉL. FIXE</b>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-phone-alt"></span>
-				<input type="text" class="form-control" name="telFixe" maxlength="10" placeholder="0234567890" />
+				<input type="text" class="form-control" name="telFixe" maxlength="20" />
 			</div>
 		</td>
 	</tr>
@@ -55,7 +55,7 @@
 			<b>ADRESSE POSTALE</b> <span class="label label-danger">Champ obligatoire</span>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-envelope"></span>
-				<input type="text" class="form-control" name="adresse" maxlength="100" placeholder="Adresse postale" required />
+				<input type="text" class="form-control" name="adresse" maxlength="150" required />
 			</div>		
 		</td>
 		<td>&nbsp;</td>
@@ -63,7 +63,7 @@
 			<b>ADRESSE E-MAIL</b>
 			<div class="input-group">
 				<span class="input-group-addon glyphicon glyphicon-send"></span>
-				<input type="text" class="form-control" name="mail" maxlength="100" placeholder="Adresse e-mail" />
+				<input type="text" class="form-control" name="mail" maxlength="150" />
 			</div>
 		</td>
 	</tr>
@@ -145,6 +145,25 @@
 				<option value="Pas de sacoche ni transfo">Pas de sacoche ni de transfo</option>
 				<option value="Pas de sacoche ni batterie">Pas de sacoche ni de batterie</option>
 				<option value="Pas de sacoche ni batterie ni transfo">Pas de sacoche ni de batterie ni de transfo</option>
+			</select>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="3">
+			<b>Système d'exploitation du PC</b> <span class="label label-danger">Champ obligatoire</span>
+			<select name="os" required class="form-control">
+				<option value="Windows XP">Windows XP</option>
+				<option value="Windows Vista">Windows Vista</option>
+				<option value="Windows 7">Windows 7</option>
+				<option value="Windows 8">Windows 8</option>
+				<option value="Windows 10">Windows 10</option>
+				<option value="Windows Server 2003">Windows Server 2003</option>
+				<option value="Windows Server 2008">Windows Server 2008</option>
+				<option value="Windows Server 2012">Windows Server 2012</option>
+				<option value="">---</option>
+				<option value="Linux">Linux</option>
+				<option value="Ordissimo">Ordissimo</option>
 			</select>
 		</td>
 	</tr>

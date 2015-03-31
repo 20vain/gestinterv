@@ -138,6 +138,25 @@
 		</tr>
 		
 		<tr>
+		<td colspan="3">
+			<b>Système d'exploitation du PC</b> <span class="label label-danger">Champ obligatoire</span>
+			<select name="os" required class="form-control">
+				<option value="Windows XP">Windows XP</option>
+				<option value="Windows Vista">Windows Vista</option>
+				<option value="Windows 7">Windows 7</option>
+				<option value="Windows 8">Windows 8</option>
+				<option value="Windows 10">Windows 10</option>
+				<option value="Windows Server 2003">Windows Server 2003</option>
+				<option value="Windows Server 2008">Windows Server 2008</option>
+				<option value="Windows Server 2012">Windows Server 2012</option>
+				<option value="">---</option>
+				<option value="Linux">Linux</option>
+				<option value="Ordissimo">Ordissimo</option>
+			</select>
+		</td>
+	</tr>
+		
+		<tr>
 			<td>
 				<b>Session utilisateur</b> à utiliser : 
 				<div class="input-group">

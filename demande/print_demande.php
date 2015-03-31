@@ -22,6 +22,7 @@ if ( (isset($_POST["ajout"])) && ($_POST["ajout"]=="1") && (count($_POST) != 0) 
 	$dateDepot = $_POST["dateDepot"];
 	$dateRestitution = $_POST["dateRestitution"];
 	$materiel = $_POST["materiel"];
+	$os = $_POST["os"];
 	$session_user = $_POST["session_user"];
 	$password = $_POST["password"];
 	$typeInterv = $_POST["typeInterv"];
@@ -78,6 +79,7 @@ else if ( (isset($_POST["client-connu"])) && ($_POST["client-connu"]=="1") && (c
 	$dateDepot = $_POST["dateDepot"];
 	$dateRestitution = $_POST["dateRestitution"];
 	$materiel = $_POST["materiel"];
+	$os = $_POST["os"];
 	$session_user = $_POST["session_user"];
 	$password = $_POST["password"];
 	$typeInterv = $_POST["typeInterv"];
@@ -137,9 +139,7 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 		{ ?>
 			<table border="0" rules="all">
 				<tr>
-					<td>
-						Client : <b><font size='6'><?php echo $ligne1['nom'] . " " . $ligne1['prenom'];?></font></b>&nbsp;
-					</td>
+					<td>Client : <b><font size='6'><?php echo $ligne1['nom'] . " " . $ligne1['prenom'];?></font></b>&nbsp;</td>
 					<td>
 						<?php if ( !empty($ligne1['telPort']) ) { echo "Téléphone PORTABLE : <b>" . $ligne1['telPort'] . "</b><br />"; }
 						if ( !empty($ligne1['telFixe']) ) { echo "Téléphone FIXE : <b>" . $ligne1['telFixe'] . "</b>" ; }?>
@@ -157,26 +157,20 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 						<?php if ( !empty($ligne1['telPort']) ) { echo "Adresse : <b>" . $ligne1['adresse'] . "</b><br />"; }
 						if ( !empty($ligne1['telFixe']) ) { echo "E-Mail : ". $ligne1['mail']; }?>
 					</td>
-					<td>
-						Magasin : <b><?php echo $ligne1['magasin'];?></b>
-					</td>
+					<td>Magasin : <b><?php echo $ligne1['magasin'];?></b></td>
 				</tr>
 
 				<tr>
-					<td>
-						Dépôt du matériel le : <?php echo $ligne['dateDepot'];?><br />
-					</td>
-					<td>
-						Date de restitution : <font size='6'><b><?php echo $ligne['dateRestitution'];?></b></font>
-					</td>
+					<td>Dépôt du matériel le : <?php echo $ligne['dateDepot'];?><br /></td>
+					<td>Date de restitution : <font size='6'><b><?php echo $ligne['dateRestitution'];?></b></font></td>
 				</tr>
 
 				<tr>
 					<td colspan="2">
-						Type de matériel : <b><font size='5'><?php echo $ligne['materiel']; ?></font/></b>
+						Type de matériel : <b><font size='5'><?php echo $ligne['materiel']; ?></font/></b> - <font size='4'><b><?php echo $os; ?></b></font>
 						<br />
 						Type d'intervention à effectuer : <b><font size='5'><?php echo $ligne['typeInterv']; ?></font/></b>
-					</td>					
+					</td>
 				</tr>
 			</table>
 
@@ -185,7 +179,7 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 			<table border="0" rules="all">
 				<tr>
 					<td>
-						<fieldset> <legend><b>Observations complémentaires</b></legend>
+						<fieldset> <legend><b>Problème exposé par le client</b></legend>
 							<?php echo nl2br($ligne['observations']); ?>
 						</fieldset>
 					</td>
@@ -223,7 +217,7 @@ else if ( (isset($_POST["print_demande"])) && ($_POST["print_demande"]=="1") && 
 	</tr>
 </table>
 
-<h3>Complément d'information</h3>
-	<?php if (isset($_POST["print_demande"])) { echo '<center><a href="../index.php?p=interv">Retour accueil</a></center>'; }
-	else echo '<center><a href="../index.php?p=demande">Retour accueil</a></center>'; ?>
+<h3>Observations complémentaires</h3>
+
+<?php if (isset($_POST["print_demande"])) { echo '<center><a href="../index.php?p=interv">Retour accueil</a></center>'; } else echo '<center><a href="../index.php?p=demande">Retour accueil</a></center>'; ?>
 </body>
