@@ -24,7 +24,7 @@ $spywares = " ";
 $intervention = $_POST["intervention"];
 $materiel = $_POST["materiel"];
 
-$observation = $_POST["observation"];
+$observation = htmlentities($_POST["observation"]);
 
 $technicien = $_POST["technicien"];
 

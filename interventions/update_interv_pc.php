@@ -54,16 +54,17 @@ else
 { $strSauvegarde = " "; } // Aucun statut de coché
 
 // Récupération des cases cochées - RAM
-if ( isset($_POST['ram']) && (!empty($_POST['ram'])) ) // Si les POST_Logiciels existent & ne sont pas vides
-{
-	foreach ($_POST['ram'] as $ram) // Pour tous les POST_Logiciel devenu ici la variable "$logiciels"
-		{ $tabRam[] = $ram; }// Remplissage d'un tableau contenant les POST_logiciels
+// if ( isset($_POST['ram']) && (!empty($_POST['ram'])) ) // Si les POST_Logiciels existent & ne sont pas vides
+// {
+	// foreach ($_POST['ram'] as $ram) // Pour tous les POST_Logiciel devenu ici la variable "$logiciels"
+		// { $tabRam[] = $ram; }// Remplissage d'un tableau contenant les POST_logiciels
 
 			// Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
-			$strRam = (implode(", ", $tabRam));
-			}
-else 
-{ $strRam = " "; } // Aucun statut de coché
+			// $strRam = (implode(", ", $tabRam));
+			// }
+// else 
+// { $strRam = " "; } // Aucun statut de coché
+$strRam = " ";
 
 // Récupération des données
 $codeIntervention = $_POST["idIntervention"];
@@ -103,9 +104,9 @@ if ( isset($_POST["scan-redemarrage"]) ) // Si la case "Scan au redémarrage" a 
 
 $intervention = $_POST["intervention"];
 $materiel = $_POST["materiel"];
-$fiabilite = $_POST['fiabilite'];
+$fiabilite = addslashes($_POST["fiabilite"]);
 
-$observation = $_POST["observation"];
+$observation = addslashes($_POST["observation"]);
 
 	if ( isset($_POST["serveur"]) ) // Si une information complémentaire quant aux nettoyages a été saisie, alors on la saisie dans la case observations
 	{ 

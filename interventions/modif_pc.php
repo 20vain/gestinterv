@@ -507,7 +507,8 @@
 				while ( $ligne22 = mysql_fetch_array($req2) )
 				{ echo "<option value='" . $ligne22['nom'] . "'>" . $ligne22['nom'] . "</option>"; } ?>
 			</select>
-			
+
+<!--
 			<hr />
 			
 			<h3>Mémoire</h3>
@@ -519,8 +520,8 @@
 							<label>
 								<span class="input-group-addon">
 									<?php
-									if ( (stripos($ligne["ram"], 'Ajout RAM nécessaire') !== FALSE) ) { ?><input type="checkbox" name="ram[]" value="Ajout RAM nécessaire" checked /><?php } // FIN de condition 
-									else {?> <input type="checkbox" name="ram[]" value="Ajout RAM nécessaire"> <?php } // FIN ELSE ?>
+									// if ( (stripos($ligne["ram"], 'Ajout RAM nécessaire') !== FALSE) ) { ?><input type="checkbox" name="ram[]" value="Ajout RAM nécessaire" checked /><?php //} // FIN de condition 
+									// else {?> <input type="checkbox" name="ram[]" value="Ajout RAM nécessaire"> <?php// } // FIN ELSE ?>
 								</span>
 								<b>Ajout de mémoire vive (RAM) nécessaire</b>
 							</label>
@@ -579,12 +580,12 @@
 				<tr>
 					<td style="text-align:center; vertical-align:middle;">
 						<?php
-						if ( (stripos($ligne["ram"], 'RAM déjà installée dans le PC - Voir accord client') !== FALSE) ) { ?><label><input type="checkbox" name="ram[]" value="RAM déjà installée dans le PC - Voir accord client" checked /> <b>RAM <u>déjà installée</u> et <u>fonctionnelle</u> dans le PC.</b></label><?php } // FIN de condition 
-						else {?> <label><input type="checkbox" name="ram[]" value="RAM déjà installée dans le PC - Voir accord client"> <b>RAM <u>déjà installée</u> et <u>fonctionnelle</u> dans le PC.</b></label> <?php } // FIN ELSE ?>
+						// if ( (stripos($ligne["ram"], 'RAM déjà installée dans le PC - Voir accord client') !== FALSE) ) { ?><label><input type="checkbox" name="ram[]" value="RAM déjà installée dans le PC - Voir accord client" checked /> <b>RAM <u>déjà installée</u> et <u>fonctionnelle</u> dans le PC.</b></label><?php// } // FIN de condition 
+						// else {?> <label><input type="checkbox" name="ram[]" value="RAM déjà installée dans le PC - Voir accord client"> <b>RAM <u>déjà installée</u> et <u>fonctionnelle</u> dans le PC.</b></label> <?php //} // FIN ELSE ?>
 					</td>
 				</tr>
 			</table>
-			
+-->
 			<hr />
 
 		<h2>Partie 5 - Coûts de l'intervention</h2>
@@ -595,8 +596,7 @@
 						<td style="text-align:center; vertical-align:middle;">
 							<label>
 								<?php
-								if ( (stripos($ligne["prix"], '39') !== FALSE) ) { ?><input name="cout-interv" type="checkbox" value="39" checked /> Mini-Nettoyage<?php } // FIN de condition 
-								else {?> <input name="cout-interv" type="checkbox" value="39" /> Mini-Nettoyage <?php } // FIN ELSE ?>
+								if ( (stripos($ligne["prix"], '39') !== FALSE) ) { ?><input name="cout-interv" type="checkbox" value="39" checked /> Mini-Nettoyage<?php } else {?> <input name="cout-interv" type="checkbox" value="39" /> Mini-Nettoyage <?php }?>
 								<div class="input-group">
 									<input class="form-control" type="text" value="39,00" /><span class="input-group-addon">€</span>
 								</div>
@@ -605,8 +605,7 @@
 						<td style="text-align:center; vertical-align:middle;">
 							<label>
 								<?php
-								if ( (stripos($ligne["prix"], '59') !== FALSE) ) { ?><input name="cout-interv" type="checkbox" value="59" checked /> Nettoyage<?php } // FIN de condition 
-								else {?> <input name="cout-interv" type="checkbox" value="59" /> Nettoyage <?php } // FIN ELSE ?>
+								if ( (stripos($ligne["prix"], '59') !== FALSE) ) { ?><input name="cout-interv" type="checkbox" value="59" checked /> Nettoyage<?php } else {?> <input name="cout-interv" type="checkbox" value="59" /> Nettoyage <?php } ?>
 								<div class="input-group">
 									<input class="form-control" type="text" value="59,00" /><span class="input-group-addon">€</span>
 								</div>
@@ -615,20 +614,29 @@
 						<td style="text-align:center; vertical-align:middle;">
 							<label>
 								<?php
-								if ( (stripos($ligne["prix"], '79') !== FALSE) ) { ?><input name="cout-interv" type="checkbox" value="79" checked /> Formatage<?php } // FIN de condition 
-								else {?> <input name="cout-interv" type="checkbox" value="79" /> Formatage <?php } // FIN ELSE ?>
+								if ( (stripos($ligne["prix"], '79') !== FALSE) ) { ?><input name="cout-interv" type="checkbox" value="79" checked /> Formatage<?php } else {?> <input name="cout-interv" type="checkbox" value="79" /> Formatage <?php } ?>
 								<div class="input-group">
 									<input class="form-control" type="text" value="79,00" /><span class="input-group-addon">€</span>
 								</div>
 							</label>
 						</td>
 						<td style="text-align:center; vertical-align:middle;">
-							
+							<?php 
+							if ( ($ligne["prix"] != '39') OR ($ligne["prix"] != '59') OR ($ligne["prix"] != '79') )
+							{?>
+								<input name="mo-atelier" type="checkbox" value="1" checked /> MO Atelier
+								<div class="input-group">
+									<input class="form-control" type="text" name="cout-mo" placeholder="<?php echo $ligne['prix']; ?>" /><span class="input-group-addon">€</span> 
+								</div>
+							<?php
+							}
+							else { ?>
 								<input name="mo-atelier" type="checkbox" value="1" /> MO Atelier
 								<div class="input-group">
 									<input class="form-control" type="text" name="cout-mo" /><span class="input-group-addon">€</span> 
 								</div>
-							
+
+							<?php } // FIN CONDITION ?>
 						</td>				
 					</tr>
 				</table>

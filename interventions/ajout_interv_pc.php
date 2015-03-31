@@ -32,9 +32,7 @@ if ( isset($_POST['logiciels']) && !empty($_POST['logiciels']) ) // Si les POST_
 {
 	foreach ($_POST['logiciels'] as $logiciels) // Pour tous les POST_Logiciel devenu ici la variable "$logiciels"
 		{ $tabLogiciels[] = $logiciels; } // Remplissage d'un tableau contenant les POST_logiciels
-
-			// Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
-			$strLogiciels =  (implode(", ", $tabLogiciels));
+		$strLogiciels = (implode(", ", $tabLogiciels)); // Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
 }
 else 
 { $strLogiciels = " "; } // Aucun statut de coché
@@ -48,9 +46,7 @@ if ( isset($_POST['virus']) && (!empty($_POST['virus'])) ) // Si les POST_Logici
 
 	foreach ($_POST['virus'] as $virus) // Pour tous les POST_Logiciel devenu ici la variable "$logiciels"
 		{ $tabVirus[] = $virus; }// Remplissage d'un tableau contenant les POST_logiciels
-
-			// Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
-			$strVirus =  (implode(", ", $tabVirus));
+		$strVirus = (implode(", ", $tabVirus)); // Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
 }
 else 
 { $strVirus = " "; } // Aucun statut de coché
@@ -60,9 +56,7 @@ if ( isset($_POST['maj']) && !empty($_POST['maj']) ) // Si les POST_Logiciels ex
 {
 	foreach ($_POST['maj'] as $maj) // Pour tous les POST_Logiciel devenu ici la variable "$logiciels"
 		{ $tabMaj[] = $maj; }// Remplissage d'un tableau contenant les POST_logiciels
-
-			// Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
-			$strMaj =  (implode(", ", $tabMaj));
+		$strMaj = (implode(", ", $tabMaj)); // Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
 }
 else 
 { $strMaj = " "; } // Aucun statut de coché
@@ -73,33 +67,33 @@ if ( isset($_POST['sauvegarde']) && !empty($_POST['sauvegarde']) ) // Si les POS
 {
 	foreach ($_POST['sauvegarde'] as $sauvegarde) // Pour tous les POST_Logiciel devenu ici la variable "$logiciels"
 		{ $tabSauvegarde[] = $sauvegarde; }// Remplissage d'un tableau contenant les POST_logiciels
-
-			// Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
-			$strSauvegarde =  (implode(", ", $tabSauvegarde));
-			}
+		$strSauvegarde = (implode(", ", $tabSauvegarde)); // Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
+}
 else 
 { $strSauvegarde = " "; } // Aucun statut de coché
 
 // Récupération des cases cochées - RAM
-if (isset($_POST['ram']) && !empty($_POST['ram'])) // Si les POST_Logiciels existent & ne sont pas vides
-{
-	foreach ($_POST['ram'] as $ram) // Pour tous les POST_Logiciel devenu ici la variable "$logiciels"
-		{ $tabRam[] = $ram; }// Remplissage d'un tableau contenant les POST_logiciels
-
-			// Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
-			$strRam =  (implode(", ", $tabRam));
-			}
-else 
-{ $strRam = " "; } // Aucun statut de coché
+// if (isset($_POST['ram']) && !empty($_POST['ram'])) // Si les POST_Logiciels existent & ne sont pas vides
+// {
+	// foreach ($_POST['ram'] as $ram) // Pour tous les POST_Logiciel devenu ici la variable "$logiciels"
+		// { $tabRam[] = $ram; }// Remplissage d'un tableau contenant les POST_logiciels
+		// $strRam =  (implode(", ", $tabRam)); // Tableau comprenant toutes les cases cochées - Regroupement en une seule ligne
+// }
+// else 
+// { $strRam = " "; } // Aucun statut de coché
+$strRam = " "; // Aucun statut de coché
 
 
 $intervention = $_POST["intervention"];
 $materiel = $_POST["materiel"];
-$fiabilite = $_POST['fiabilite'];
 
-$observation = $_POST["observation"];
+if ( isset($_POST['fiabilite']) )
+	{ $fiabilite = addslashes($_POST['fiabilite']); }
+else { $fiabilite = ""; }
 
-	if ( isset($_POST["serveur"]) ) // Si une information complémentaire quant aux nettoyages a été saisie, alors on la saisie dans la case observations
+$observation = addslashes($_POST["observation"]);
+
+	if ( isset($_POST["serveur"]) )
 	{
 		$nom_serveur = $_POST["serveur"];
 		$sauvegarde = "Les fichiers sont sauvegardés sur le serveur ".$nom_serveur;
@@ -109,7 +103,7 @@ $observation = $_POST["observation"];
 	if ( isset($_POST["poidsSauvegarde"]) )
 	{ $poidsSauvegarde = $_POST["poidsSauvegarde"]; }
 	
-	if ( isset($_POST["suppression-ancien-antivirus"]) ) // Si une information complémentaire quant aux nettoyages a été saisie, alors on la saisie dans la case observations
+	if ( isset($_POST["suppression-ancien-antivirus"]) )
 	{ 
 		if ( ($_POST["suppression-ancien-antivirus"]) != "Non nécessaire" )
 		{
@@ -127,22 +121,21 @@ else if ( (isset($_POST["mo-atelier"])) && ($_POST["mo-atelier"] == "1") )
 	{ $prix = $_POST["cout-mo"]; $mo_atelier = "1"; }
 else { $prix = ""; }
 
-
 	if (isset($_POST["coutcomp1"]))
 	{$coutcomp1 = $_POST["prix-coutcomp1"];
-	$namecoutcomp1 = $_POST["name-coutcomp1"];}
+	$namecoutcomp1 = addslashes($_POST["name-coutcomp1"]);}
 
 	if (isset($_POST["coutcomp2"]))
 	{$coutcomp2 = $_POST["prix-coutcomp2"];
-	$namecoutcomp2 = $_POST["name-coutcomp2"];}
+	$namecoutcomp2 = addslashes($_POST["name-coutcomp2"]);}
 	
 	if (isset($_POST["coutcomp3"]))
 	{$coutcomp3 = $_POST["prix-coutcomp3"];
-	$namecoutcomp3 = $_POST["name-coutcomp3"];}
+	$namecoutcomp3 = addslashes($_POST["name-coutcomp3"]);}
 	
 	if (isset($_POST["coutcomp4"]))
 	{$coutcomp4 = $_POST["prix-coutcomp4"];
-	$namecoutcomp4 = $_POST["name-coutcomp4"];}
+	$namecoutcomp4 = addslashes($_POST["name-coutcomp4"]);}
 
 	if ( (isset($coutcomp1)) && (empty($coutcomp2)) && (empty($coutcomp3)) && (empty($coutcomp4)) )
 	{$cout_complementaire = $coutcomp1." € --> ".$namecoutcomp1;}
@@ -157,7 +150,7 @@ else { $prix = ""; }
 $statut = $_POST["statut"];
 
 $session = $_POST["session"];
-$password = $_POST["password"];
+$password = addslashes($_POST["password"]);
 
 $add_interv = "INSERT INTO tinterventions VALUES ('','$codeClient','$codePreInterv','$dateInterv','$antivirus','$malwares','$spywares','$strLogiciels','$strMaj','$strVirus','$strSauvegarde','$poidsSauvegarde','$strRam','$intervention','$materiel','$fiabilite','$observation','$technicien','$prix','$cout_complementaire','$statut','$session','$password');";
 
@@ -166,14 +159,11 @@ $req = mysql_query ( $add_interv ) or die ( mysql_error() ) ;
 	
 $codeIntervention = mysql_insert_id(); // Reprise du code de l'intervention pour la redirection
 
-if ( (isset($_POST["orange"]) ) )
-{ $orange = $_POST["orange"]; }
+if (isset($_POST["orange"])) {$orange = $_POST["orange"];}
 
-if ( (isset($_POST["win7"]) ) )
-{ $win7 = $_POST["win7"]; }
+if (isset($_POST["win7"])) {$win7 = $_POST["win7"];}
 
-if ( (isset($_POST["win8"]) ) )
-{ $win8 = $_POST["win8"]; }
+if (isset($_POST["win8"])) {$win8 = $_POST["win8"];}
 
 // SUPPRESSION DE LA FICHE DE PRE-INTERVENTION CONCERNEE
 $del = "DELETE FROM tpreinterv WHERE id='$codePreInterv';";
