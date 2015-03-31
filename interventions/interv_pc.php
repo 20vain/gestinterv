@@ -508,12 +508,12 @@ $codeClient = $_POST["codeClient"];
 							</label>
 						</td>
 						<td style="text-align:center; vertical-align:middle;">
-							<label>
+							
 								<input name="mo-atelier" type="checkbox" value="1" /> MO Atelier
 								<div class="input-group">
 									<input class="form-control" type="text" name="cout-mo" /><span class="input-group-addon">€</span> 
 								</div>
-							</label>
+							
 						</td>				
 					</tr>
 				</table>
